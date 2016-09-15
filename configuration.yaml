@@ -1,0 +1,124 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 584
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+
+http:
+  api_password: !secret api_password
+  ssl_certificate: /usr/local/etc/home-assistant/certs/bryce_net.crt
+  ssl_key: /usr/local/etc/home-assistant/certs/bryce_net.key
+
+logger:
+  default: info
+  logs:
+    requests.packages.urllib3.connectionpool: warn
+
+
+recorder:
+  purge_days: 30
+
+notify:
+  - platform: pushover
+    name: pushover
+    user_key: !secret pushover_user_key
+    api_key: !secret pushover_api_key
+  - platform: twilio_sms
+    name: sms
+    account_sid: !secret twilio_account_sid
+    auth_token: !secret twilio_auth_token
+    from_number: !secret twilio_from_number
+  - platform: group
+    name: all
+    services:
+      - service: pushover
+      - service: sms
+        data:
+          target: !secret twilio_target_bryce
+
+device_tracker:
+  platform: owntracks
+  max_gps_accuracy: 200
+
+cover:
+  platform: myq
+  name: Garage Door
+  username: !secret myq_username
+  password: !secret myq_password
+  brand: liftmaster
+  scan_interval: 60
+
+ecobee:
+  api_key: !secret ecobee_key
+  hold_temp: False
+
+graphite:
+  host: 192.168.1.16
+  port: 2003
+
+ifttt:
+  key: !secret ifttt_key
+
+isy994:
+  host: http://isy.local:80
+  username: !secret isy_username
+  password: !secret isy_password
+  hidden_string: {HIDE}
+
+media_player:
+  - platform: plex
+  - platform: directv
+    host: 192.168.1.140
+    name: DirecTV DVR
+  - platform: samsungtv
+    host: 192.168.1.141
+    name: Living Room TV
+#  - platform: directv
+#    host: 192.168.1.142
+#    name: Living Room DirecTV
+  - platform: samsungtv
+    host: 192.168.1.143
+    name: Bedroom TV
+
+#modbus:
+#  type: tcp
+#  host: temp.local
+#  port: 502
+
+mqtt:
+  broker: hass.local
+  port: 1883
+  client_id: home-assistant
+  keepalive: 60
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  protocol: 3.1
+
+emulated_hue:
+
+
+####################
+###  INCLUDES
+####################
+automation: !include automation.yaml
+binary_sensor: !include binary_sensor.yaml
+group: !include group.yaml
+script: !include script.yaml
+sensor: !include sensor.yaml
+
+
+####################
+###  COMPONENTS
+####################
+#discovery:
+sun:
+#updater:
+history:
+frontend:
+#conversation:
+logbook:
+#zeroconf:
+

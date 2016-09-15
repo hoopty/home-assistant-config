@@ -1,0 +1,77 @@
+- alias: location notice
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+  action:
+    service: notify.pushover
+    data_template:
+      message: "Status: {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}unknown{% endif %}."
+- alias: sunset lights on
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:30:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.living_room_lamp
+- alias: late night lights off
+  trigger:
+    platform: time
+    after: '23:00:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.living_room_lamp
+- alias: phone battery alert
+  trigger:
+    platform: numeric_state
+    entity_id: group.all_devices
+    below: 25
+  action:
+    service: notify.pushover
+    data_template:
+      message: "{{ trigger.to_state.name }} battery is {{ trigger.to_state.state }}%."
+- alias: freezer temp alert
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
+    above: 20
+  action:
+    service: notify.pushover
+    data_template:
+      message: "{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F."
+- alias: fridge temp alert
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.drink_fridge_temp
+    above: 50
+  action:
+    service: notify.pushover
+    data_template:
+      message: "{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F."
+- alias: freezer temp rising
+  trigger:
+    platform: state
+    entity_id: sensor.deep_freezer_temp, sensor.freezer_temp, sensor.drink_fridge_temp
+    to: 'on'
+    for:
+      hours: 2
+  action:
+    service: notify.pushover
+    data_template:
+      message: "{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F."
+- alias: thermostat home mode
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: template
+    value_template: "{{ is_state_attr('climate.downstairs', 'away_mode', 'on') or is_state_attr('climate.upstairs', 'away_mode', 'on') }}"
+  action:
+    - service: climate.set_away_mode
+      data:
+        away_mode: 'False'
+    - service: notify.pushover
+      data_template:
+        message: "Thermostat away mode disabled."

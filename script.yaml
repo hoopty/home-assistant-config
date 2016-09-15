@@ -1,0 +1,6 @@
+gate_trigger:
+  alias: 'Gate'
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: switch.gate_opener

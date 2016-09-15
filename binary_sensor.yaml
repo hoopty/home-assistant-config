@@ -1,0 +1,14 @@
+- platform: trend
+  sensors:
+    deep_freezer_heat:
+      friendly_name: 'Deep Freezer Temp rising'
+      entity_id: sensor.deep_freezer_temp
+      sensor_class: heat
+    freezer_heat:
+      friendly_name: 'Freezer Temp rising'
+      entity_id: sensor.freezer_temp
+      sensor_class: heat
+    drink_fridge_heat:
+      friendly_name: 'Drink Fridge Temp rising'
+      entity_id: sensor.drink_fridge_temp
+      sensor_class: heat

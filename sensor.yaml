@@ -1,0 +1,89 @@
+- platform: mqtt
+  state_topic: "owntracks/Bryce/BryPhone"
+  name: "Bryce iPhone Battery"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.batt }}"
+
+- platform: mqtt
+  state_topic: "owntracks/Cindy/iPhone"
+  name: "Cindy iPhone Battery"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.batt }}"
+
+- platform: plex
+  host: media.local
+
+- platform: nzbget
+  host: media.local
+  monitored_variables:
+    - download_rate
+    - remaining_size
+
+- platform: wunderground
+  api_key: !secret wunderground_api_key
+  pws_id: KTXFRISC82
+  monitored_conditions:
+    - weather
+    - temp_f
+    - feelslike_f
+    - heat_index_f
+    - dewpoint_f
+    - relative_humidity
+    - visibility_mi
+    - wind_string
+    - wind_mph
+    - wind_dir
+    - precip_today_in
+    - pressure_in
+    - UV
+    - solarradiation
+
+- platform: tcp
+  scan_interval: 180
+  name: controlbyweb
+  host: temp.local
+  port: 80
+  payload: "GET /state.xml HTTP/1.1\r\nAuthorization: Basic bm9uZTp3ZWJyZWxheQ==\r\n\r\n"
+  value_template: "{{ value|striptags() }}"
+
+- platform: template
+  sensors:
+    deep_freezer_temp:
+      friendly_name: Deep Freezer
+      value_template: "{{ states('sensor.controlbyweb').split(' ')[1] }}"
+      unit_of_measurement: "°F"
+    freezer_temp:
+      friendly_name: Freezer
+      value_template: "{{ states('sensor.controlbyweb').split(' ')[2] }}"
+      unit_of_measurement: "°F"
+    drink_fridge_temp:
+      friendly_name: Drink Fridge
+      value_template: "{{ states('sensor.controlbyweb').split(' ')[3] }}"
+      unit_of_measurement: "°F"
+    garage_temp:
+      friendly_name: Garage Temp
+      value_template: "{{ states('sensor.controlbyweb').split(' ')[4] }}"
+      unit_of_measurement: "°F"
+
+#- platform: modbus
+#  registers:
+#    - register: 16
+#      name: Deep Freezer Temp
+#      unit_of_measurement: '°F'
+#      count: 2
+#      #scale: 0.01
+#    - register: 18
+#      name: Freezer Temp
+#      unit_of_measurement: '°F'
+#      count: 2
+#      #scale: 0.01
+#    - register: 20
+#      name: Drink Fridge Temp
+#      unit_of_measurement: '°F'
+#      count: 2
+#      #scale: 0.01
+#    - register: 22
+#      name: Garage Temp
+#      unit_of_measurement: '°F'
+#      count: 2
+#      #scale: 0.01
