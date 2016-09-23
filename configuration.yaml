@@ -11,6 +11,10 @@ http:
   api_password: !secret api_password
   ssl_certificate: /usr/local/etc/home-assistant/certs/bryce_net.crt
   ssl_key: /usr/local/etc/home-assistant/certs/bryce_net.key
+  approved_ips:
+    - 127.0.0.1
+    - 192.168.0.10
+    - 192.168.0.11
 
 logger:
   default: info
@@ -66,22 +70,23 @@ isy994:
   host: http://isy.local:80
   username: !secret isy_username
   password: !secret isy_password
-  hidden_string: {HIDE}
+  hidden_string: '{HIDE}'
 
 media_player:
   - platform: plex
-  - platform: directv
-    host: 192.168.1.140
-    name: DirecTV DVR
-  - platform: samsungtv
-    host: 192.168.1.141
-    name: Living Room TV
+#  - platform: directv
+#    host: 192.168.1.140
+#    name: DirecTV DVR
+#  - platform: samsungtv
+#    host: 192.168.1.141
+#    port: 8001
+#    name: Living Room TV
 #  - platform: directv
 #    host: 192.168.1.142
 #    name: Living Room DirecTV
   - platform: samsungtv
     host: 192.168.1.143
-    name: Bedroom TV
+    name: Master Bedroom TV
 
 #modbus:
 #  type: tcp
@@ -98,6 +103,9 @@ mqtt:
   protocol: 3.1
 
 emulated_hue:
+  exposed_domains:
+    - switch
+    - light
 
 
 ####################

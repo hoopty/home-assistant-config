@@ -33,18 +33,18 @@ doors:
   - lock.back_door_lock
   - lock.garage_door_lock
 lights:
-  - switch.living_room_lamp
-  - switch.media_room_lamp
+  - light.living_room_lamp
+  - light.media_room_lamp
 downstairs:
   - climate.downstairs
   - sensor.downstairs_temperature
   - sensor.living_room_temperature
-  - sensor.bedroom_temperature
+  - sensor.master_bedroom_temperature
   - sensor.office_temperature
   - sensor.downstairs_humidity
   - binary_sensor.living_room_occupancy
   - binary_sensor.downstairs_occupancy
-  - binary_sensor.bedroom_occupancy
+  - binary_sensor.master_bedroom_occupancy
   - binary_sensor.office_occupancy
 upstairs:
   - climate.upstairs
@@ -68,7 +68,7 @@ garage:
 Media Devices:
   - sensor.plex
   - media_player.living_room_tv
-  - media_player.bedroom_tv
+  - media_player.master_bedroom_tv
 NZBGet:
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size

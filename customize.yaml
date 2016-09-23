@@ -1,6 +1,19 @@
 # ISY994 builtin
 switch.auto_dr:
   hidden: true
+  emulated_hue: false
+switch.gate_binary_sensor:
+  hidden: true
+  emulated_hue: false
+switch.gate_multilevel_sensor:
+  hidden: true
+  emulated_hue: false
+switch.gate_power_management:
+  hidden: true
+  emulated_hue: false
+switch.gate_pulse_meter:
+  hidden: true
+  emulated_hue: false
 
 cover.garage_door:
   friendly_name: Big Garage Door
