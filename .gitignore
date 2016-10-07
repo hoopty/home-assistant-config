@@ -1,2 +1,9 @@
-secrets.yaml
+certs/
+deps/
+.HA_VERSION
+home-assistant*.db
+home-assistant.log
+home-assistant.pid
+*.conf
 known_devices.yaml
+secrets.yaml
