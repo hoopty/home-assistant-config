@@ -42,7 +42,7 @@
   name: controlbyweb
   resource: 'http://temp.local/stateFull.xml'
   username: !secret temp_username
-  password: !scret temp_password
+  password: !secret temp_password
   value_template: '{{ value|replace("<"," <")|striptags() }}'
   scan_interval: 180
 
