@@ -9,39 +9,39 @@ homeassistant:
 
 http:
   api_password: !secret api_password
-  ssl_certificate: /usr/local/etc/home-assistant/certs/bryce_net.crt
-  ssl_key: /usr/local/etc/home-assistant/certs/bryce_net.key
-  approved_ips:
-    - 127.0.0.1
-    - 192.168.0.10
-    - 192.168.0.11
+  ssl_certificate: /home/hass/.homeassistant/certs/bryce_net.crt
+  ssl_key: /home/hass/.homeassistant/certs/bryce_net.key
 
 logger:
   default: info
   logs:
+    plexapi: warn
     requests.packages.urllib3.connectionpool: warn
-
 
 recorder:
   purge_days: 30
 
 notify:
-  - platform: pushover
-    name: pushover
-    user_key: !secret pushover_user_key
+  - name: notify
+    platform: pushbullet
+    api_key: !secret pushbullet_api_key
+  - name: pushover
+    platform: pushover
     api_key: !secret pushover_api_key
-  - platform: twilio_sms
-    name: sms
+    user_key: !secret pushover_user_key
+  - name: sms
+    platform: twilio_sms
     account_sid: !secret twilio_account_sid
     auth_token: !secret twilio_auth_token
     from_number: !secret twilio_from_number
-  - platform: group
-    name: all
+  - name: all
+    platform: group
     services:
       - service: pushover
       - service: sms
         data:
-          target: !secret twilio_target_bryce
+          target:
+            - !secret twilio_target_bryce
 
 device_tracker:
   platform: owntracks
@@ -49,7 +49,6 @@ device_tracker:
 
 cover:
   platform: myq
-  name: Garage Door
   username: !secret myq_username
   password: !secret myq_password
   brand: liftmaster
@@ -72,6 +71,10 @@ isy994:
   password: !secret isy_password
   hidden_string: '{HIDE}'
 
+#zwave:
+#  usb_path: /dev/cuaU0
+#  config_path: /usr/local/home-assistant/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-freebsd-11.0-RELEASE-amd64.egg/config
+
 media_player:
   - platform: plex
 #  - platform: directv
@@ -84,9 +87,9 @@ media_player:
 #  - platform: directv
 #    host: 192.168.1.142
 #    name: Living Room DirecTV
-  - platform: samsungtv
-    host: 192.168.1.143
-    name: Master Bedroom TV
+#  - platform: samsungtv
+#    host: 192.168.1.143
+#    name: Master Bedroom TV
 
 #modbus:
 #  type: tcp
@@ -94,7 +97,7 @@ media_player:
 #  port: 502
 
 mqtt:
-  broker: hass.local
+  broker: localhost
   port: 1883
   client_id: home-assistant
   keepalive: 60
@@ -106,11 +109,14 @@ emulated_hue:
   exposed_domains:
     - switch
     - light
+    - cover
+    - lock
 
 
 ####################
 ###  INCLUDES
 ####################
+
 automation: !include automation.yaml
 binary_sensor: !include binary_sensor.yaml
 group: !include group.yaml
@@ -121,12 +127,13 @@ sensor: !include sensor.yaml
 ####################
 ###  COMPONENTS
 ####################
+
 #discovery:
 sun:
-#updater:
+updater:
 history:
 frontend:
 #conversation:
 logbook:
-#zeroconf:
+zeroconf:
 

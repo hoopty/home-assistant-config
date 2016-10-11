@@ -15,11 +15,6 @@ switch.gate_pulse_meter:
   hidden: true
   emulated_hue: false
 
-cover.garage_door:
-  friendly_name: Big Garage Door
-cover.garage_door_2:
-  friendly_name: Small Garage Door
-
 sensor.controlbyweb:
   hidden: true
 sensor.gate_binary_sensor:
@@ -55,4 +50,3 @@ sensor.pws_uv:
   friendly_name: UV Index
 sensor.pws_solarradiation:
   friendly_name: Solar Radiation
-

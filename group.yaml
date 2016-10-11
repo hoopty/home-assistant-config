@@ -26,12 +26,12 @@ family:
   - sensor.bryce_iphone_battery
   - sensor.cindy_iphone_battery
 doors:
-  - cover.garage_door
-  - cover.garage_door_2
-  - script.gate_trigger
+  - cover.double_garage
+  - cover.single_garage
   - lock.front_door_lock
   - lock.back_door_lock
   - lock.garage_door_lock
+  - script.gate_trigger
 lights:
   - light.living_room_lamp
   - light.media_room_lamp

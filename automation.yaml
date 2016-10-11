@@ -3,7 +3,7 @@
     platform: state
     entity_id: group.all_devices
   action:
-    service: notify.pushover
+    service: notify.notify
     data_template:
       message: "Status: {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}unknown{% endif %}."
 - alias: sunset lights on
@@ -27,27 +27,27 @@
     entity_id: group.all_devices
     below: 25
   action:
-    service: notify.pushover
+    service: notify.notify
     data_template:
-      message: "{{ trigger.to_state.name }} battery is {{ trigger.to_state.state }}%."
+      message: '{{ trigger.to_state.name }} battery is {{ trigger.to_state.state }}%.'
 - alias: freezer temp alert
   trigger:
     platform: numeric_state
     entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
     above: 20
   action:
-    service: notify.pushover
+    service: notify.notify
     data_template:
-      message: "{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F."
+      message: '{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F.'
 - alias: fridge temp alert
   trigger:
     platform: numeric_state
     entity_id: sensor.drink_fridge_temp
     above: 50
   action:
-    service: notify.pushover
+    service: notify.notify
     data_template:
-      message: "{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F."
+      message: '{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F.'
 - alias: freezer temp rising
   trigger:
     platform: state
@@ -56,9 +56,9 @@
     for:
       hours: 2
   action:
-    service: notify.pushover
+    service: notify.notify
     data_template:
-      message: "{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F."
+      message: '{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F.'
 - alias: thermostat home mode
   trigger:
     platform: state
@@ -72,6 +72,6 @@
     - service: climate.set_away_mode
       data:
         away_mode: 'False'
-    - service: notify.pushover
+    - service: notify.notify
       data_template:
-        message: "Thermostat away mode disabled."
+        message: 'Thermostat away mode disabled.'
