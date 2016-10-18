@@ -2,7 +2,7 @@ homeassistant:
   name: Home
   latitude: !secret latitude
   longitude: !secret longitude
-  elevation: 584
+  elevation: 580
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
@@ -11,6 +11,8 @@ http:
   api_password: !secret api_password
   ssl_certificate: /home/hass/.homeassistant/certs/bryce_net.crt
   ssl_key: /home/hass/.homeassistant/certs/bryce_net.key
+
+zone: !include zone.yaml
 
 logger:
   default: info
@@ -105,12 +107,12 @@ mqtt:
   password: !secret mqtt_password
   protocol: 3.1
 
-emulated_hue:
-  exposed_domains:
-    - switch
-    - light
-    - cover
-    - lock
+#emulated_hue:
+#  exposed_domains:
+#    - switch
+#    - light
+#    - cover
+#    - lock
 
 
 ####################

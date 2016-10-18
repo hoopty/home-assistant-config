@@ -21,10 +21,10 @@ weather:
     - group.weather_station
 
 family:
-  - device_tracker.bryce_bryphone
-  - device_tracker.cindy_iphone
-  - sensor.bryce_iphone_battery
-  - sensor.cindy_iphone_battery
+  - device_tracker.bryce_phone
+  - device_tracker.cindy_phone
+  - sensor.bryce_phone_battery
+  - sensor.cindy_phone_battery
 doors:
   - cover.double_garage
   - cover.single_garage
