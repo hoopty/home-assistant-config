@@ -1,12 +1,12 @@
 - platform: mqtt
-  name: 'Bryce iPhone Battery'
-  state_topic: 'owntracks/Bryce/BryPhone'
+  name: 'Bryce Phone Battery'
+  state_topic: 'owntracks/bryce/phone'
   unit_of_measurement: '%'
   value_template: '{{ value_json.batt }}'
 
 - platform: mqtt
-  name: 'Cindy iPhone Battery'
-  state_topic: 'owntracks/Cindy/iPhone'
+  name: 'Cindy Phone Battery'
+  state_topic: 'owntracks/cindy/phone'
   unit_of_measurement: '%'
   value_template: '{{ value_json.batt }}'
 
