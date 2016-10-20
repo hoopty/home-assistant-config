@@ -13,14 +13,14 @@
     offset: '-00:30:00'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.living_room_lamp
+    entity_id: light.living_room_lamp
 - alias: late night lights off
   trigger:
     platform: time
     after: '23:00:00'
   action:
     service: homeassistant.turn_off
-    entity_id: switch.living_room_lamp
+    entity_id: light.living_room_lamp
 - alias: phone battery alert
   trigger:
     platform: numeric_state
