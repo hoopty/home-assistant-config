@@ -1,0 +1,9 @@
+- name: Lockdown
+  entities:
+    lock.front_door_lock: locked
+    lock.back_door_lock: locked
+    lock.garage_door_lock: locked
+    #cover.double_garage: closed
+    #cover.single_garage: closed
+    #cover.gate: closed
+    #alarm: armed

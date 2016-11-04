@@ -1,11 +1,32 @@
-- alias: location notice
+- alias: location change
   trigger:
     platform: state
-    entity_id: group.all_devices
+    entity_id: device_tracker.cindy_phone, device_tracker.bryce_phone
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.state }} != {{ trigger.from_state.state }}'
   action:
-    service: notify.notify
-    data_template:
-      message: "Status: {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}unknown{% endif %}."
+    - service: notify.notify
+      data_template:
+        message: >
+          {{ trigger.to_state.name }} is
+          {%if trigger.to_state.state == 'home' %}home
+            {%elif trigger.to_state.state == 'not_home' %}away
+          {% else %}
+            at {{ trigger.to_state.state|replace('_',' ') }}
+          {% endif %}
+        #message: " at {{ as_timestamp(trigger.to_state.last_changed)|timestamp_custom('%-I:%M:%S %p on %a, %b %-d') }}."
+    - service: logbook.log
+      data_template:
+        entity_id: 'device_tracker.{{ trigger.to_state.name }}_phone'
+        name: '{{ trigger.to_state.name }}'
+        message: >
+          is
+          {%if trigger.to_state.state == 'home' %}home
+            {%elif trigger.to_state.state == 'not_home' %}away
+          {% else %}
+            at {{ trigger.to_state.state|replace('_',' ') }}
+          {% endif %}
 - alias: sunset lights on
   trigger:
     platform: sun
@@ -17,7 +38,7 @@
 - alias: late night lights off
   trigger:
     platform: time
-    after: '23:00:00'
+    after: '00:00:00'
   action:
     service: homeassistant.turn_off
     entity_id: light.living_room_lamp
@@ -29,7 +50,7 @@
   action:
     service: notify.notify
     data_template:
-      message: '{{ trigger.to_state.name }} battery is {{ trigger.to_state.state }}%.'
+      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: freezer temp alert
   trigger:
     platform: numeric_state
@@ -38,7 +59,7 @@
   action:
     service: notify.notify
     data_template:
-      message: '{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F.'
+      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: fridge temp alert
   trigger:
     platform: numeric_state
@@ -47,7 +68,7 @@
   action:
     service: notify.notify
     data_template:
-      message: '{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F.'
+      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: freezer temp rising
   trigger:
     platform: state
@@ -58,7 +79,7 @@
   action:
     service: notify.notify
     data_template:
-      message: '{{ trigger.to_state.name }} temperature is {{ trigger.to_state.state }}°F.'
+      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: thermostat home mode
   trigger:
     platform: state

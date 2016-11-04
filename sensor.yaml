@@ -38,6 +38,14 @@
     - UV
     - solarradiation
 
+- platform: speedtest
+  server_id: 4323
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+  hour: 6
+
 - platform: rest
   name: controlbyweb
   resource: 'http://temp.local/stateFull.xml'

@@ -1,26 +1,18 @@
 # ISY994 builtin
 switch.auto_dr:
   hidden: true
-  emulated_hue: false
-switch.gate_binary_sensor:
-  hidden: true
-  emulated_hue: false
-switch.gate_multilevel_sensor:
-  hidden: true
-  emulated_hue: false
-switch.gate_power_management:
-  hidden: true
-  emulated_hue: false
-switch.gate_pulse_meter:
-  hidden: true
-  emulated_hue: false
-
 sensor.controlbyweb:
   hidden: true
-sensor.gate_binary_sensor:
+
+switch.gate_opener:
   hidden: true
-sensor.gate_multilevel_sensor:
-  hidden: true
+
+sensor.speedtest_download:
+  friendly_name: Download
+sensor.speedtest_ping:
+  friendly_name: Ping
+sensor.speedtest_upload:
+  friendly_name: Upload
 
 sensor.pws_weather:
   friendly_name: Weather

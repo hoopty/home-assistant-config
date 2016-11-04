@@ -18,43 +18,13 @@ logger:
   default: info
   logs:
     plexapi: warn
-    requests.packages.urllib3.connectionpool: warn
 
 recorder:
   purge_days: 30
 
-notify:
-  - name: notify
-    platform: pushbullet
-    api_key: !secret pushbullet_api_key
-  - name: pushover
-    platform: pushover
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
-  - name: sms
-    platform: twilio_sms
-    account_sid: !secret twilio_account_sid
-    auth_token: !secret twilio_auth_token
-    from_number: !secret twilio_from_number
-  - name: all
-    platform: group
-    services:
-      - service: pushover
-      - service: sms
-        data:
-          target:
-            - !secret twilio_target_bryce
-
 device_tracker:
   platform: owntracks
   max_gps_accuracy: 200
-
-cover:
-  platform: myq
-  username: !secret myq_username
-  password: !secret myq_password
-  brand: liftmaster
-  scan_interval: 60
 
 ecobee:
   api_key: !secret ecobee_key
@@ -122,6 +92,8 @@ mqtt:
 automation: !include automation.yaml
 binary_sensor: !include binary_sensor.yaml
 group: !include group.yaml
+notify: !include notify.yaml
+scene: !include scene.yaml
 script: !include script.yaml
 sensor: !include sensor.yaml
 
@@ -137,5 +109,4 @@ history:
 frontend:
 #conversation:
 logbook:
-zeroconf:
-
+#zeroconf:

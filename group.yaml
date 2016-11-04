@@ -1,41 +1,45 @@
 default_view:
   view: yes
   entities:
-    - group.family
     - group.doors
     - group.lights
-media:
+People:
   view: yes
   entities:
-    - group.media_devices
-    - group.nzbget
-climate:
+    - group.family
+Climate:
   view: yes
   entities:
     - group.downstairs
     - group.upstairs
     - group.garage
-weather:
+Media:
+  view: yes
+  entities:
+    - group.media_players
+    - group.internet
+Weather:
   view: yes
   entities:
     - group.weather_station
 
-family:
-  - device_tracker.bryce_phone
-  - device_tracker.cindy_phone
-  - sensor.bryce_phone_battery
-  - sensor.cindy_phone_battery
-doors:
+Doors:
   - cover.double_garage
   - cover.single_garage
   - lock.front_door_lock
   - lock.back_door_lock
   - lock.garage_door_lock
   - script.gate_trigger
-lights:
+  - scene.lockdown
+Lights:
   - light.living_room_lamp
   - light.media_room_lamp
-downstairs:
+Family:
+  - device_tracker.bryce_phone
+  - device_tracker.cindy_phone
+  - sensor.bryce_phone_battery
+  - sensor.cindy_phone_battery
+Downstairs:
   - climate.downstairs
   - sensor.downstairs_temperature
   - sensor.living_room_temperature
@@ -46,7 +50,7 @@ downstairs:
   - binary_sensor.downstairs_occupancy
   - binary_sensor.master_bedroom_occupancy
   - binary_sensor.office_occupancy
-upstairs:
+Upstairs:
   - climate.upstairs
   - sensor.upstairs_temperature
   - sensor.jenny_room_temperature
@@ -57,7 +61,7 @@ upstairs:
   - binary_sensor.jenny_room_occupancy
   - binary_sensor.katy_room_occupancy
   - binary_sensor.guest_room_occupancy
-garage:
+Garage:
   - sensor.garage_temp
   - sensor.deep_freezer_temp
   - sensor.freezer_temp
@@ -65,13 +69,16 @@ garage:
   - binary_sensor.deep_freezer_heat
   - binary_sensor.freezer_heat
   - binary_sensor.drink_fridge_heat
-Media Devices:
+Media Players:
   - sensor.plex
   - media_player.living_room_tv
   - media_player.master_bedroom_tv
-NZBGet:
+Internet:
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
 Weather Station:
   - sun.sun
   - sensor.pws_weather

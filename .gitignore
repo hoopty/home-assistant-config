@@ -1,6 +1,7 @@
 certs/
 deps/
 .HA_VERSION
+.uuid
 home-assistant*.db
 home-assistant.log
 home-assistant.pid
