@@ -6,6 +6,7 @@ home-assistant*.db
 home-assistant.log
 home-assistant.pid
 *.conf
+envisalink.yaml
 known_devices.yaml
 secrets.yaml
 zone.yaml

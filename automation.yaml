@@ -2,31 +2,16 @@
   trigger:
     platform: state
     entity_id: device_tracker.cindy_phone, device_tracker.bryce_phone
-  condition:
-    condition: template
-    value_template: '{{ trigger.to_state.state }} != {{ trigger.from_state.state }}'
   action:
     - service: notify.notify
       data_template:
-        message: >
-          {{ trigger.to_state.name }} is
-          {%if trigger.to_state.state == 'home' %}home
-            {%elif trigger.to_state.state == 'not_home' %}away
-          {% else %}
-            at {{ trigger.to_state.state|replace('_',' ') }}
-          {% endif %}
+        message: {{ trigger.to_state.name }} is {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}at {{ trigger.to_state.state|replace('_',' ') }} {% endif %}
         #message: " at {{ as_timestamp(trigger.to_state.last_changed)|timestamp_custom('%-I:%M:%S %p on %a, %b %-d') }}."
     - service: logbook.log
       data_template:
         entity_id: 'device_tracker.{{ trigger.to_state.name }}_phone'
         name: '{{ trigger.to_state.name }}'
-        message: >
-          is
-          {%if trigger.to_state.state == 'home' %}home
-            {%elif trigger.to_state.state == 'not_home' %}away
-          {% else %}
-            at {{ trigger.to_state.state|replace('_',' ') }}
-          {% endif %}
+        message: is {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}at {{ trigger.to_state.state|replace('_',' ') }} {% endif %}
 - alias: sunset lights on
   trigger:
     platform: sun

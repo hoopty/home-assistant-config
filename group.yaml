@@ -3,6 +3,7 @@ default_view:
   entities:
     - group.doors
     - group.lights
+    - group.alarm
 People:
   view: yes
   entities:
@@ -34,6 +35,14 @@ Doors:
 Lights:
   - light.living_room_lamp
   - light.media_room_lamp
+Alarm:
+  - alarm_control_panel.home_alarm
+  - sensor.home_alarm_keypad
+  - binary_sensor.doors
+  - binary_sensor.back_door
+  - binary_sensor.master_windows
+  - binary_sensor.downstairs_windows
+  - binary_sensor.upstairs_windows
 Family:
   - device_tracker.bryce_phone
   - device_tracker.cindy_phone
@@ -76,7 +85,6 @@ Media Players:
 Internet:
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size
-  - sensor.speedtest_ping
   - sensor.speedtest_download
   - sensor.speedtest_upload
 Weather Station:

@@ -41,7 +41,6 @@
 - platform: speedtest
   server_id: 4323
   monitored_conditions:
-    - ping
     - download
     - upload
   hour: 6
