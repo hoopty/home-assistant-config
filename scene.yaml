@@ -5,5 +5,4 @@
     lock.garage_door_lock: locked
     #cover.double_garage: closed
     #cover.single_garage: closed
-    #cover.gate: closed
-    #alarm: armed
+    cover.gate: closed

@@ -1,16 +1,12 @@
-# ISY994 builtin
-switch.auto_dr:
-  hidden: true
-sensor.controlbyweb:
+sensor.temp_values:
   hidden: true
 
-switch.gate_opener:
-  hidden: true
-
-sensor.speedtest_download:
-  friendly_name: Download
-sensor.speedtest_upload:
-  friendly_name: Upload
+sensor.deep_freezer_temp:
+  max_temp: 20
+sensor.freezer_temp:
+  max_temp: 20
+sensor.drink_fridge_temp:
+  max_temp: 50
 
 sensor.pws_weather:
   friendly_name: Weather
@@ -40,3 +36,11 @@ sensor.pws_uv:
   friendly_name: UV Index
 sensor.pws_solarradiation:
   friendly_name: Solar Radiation
+sensor.pws_alerts:
+  friendly_name: Weather Alerts
+  unit_of_measurement: 'Alerts'
+
+sensor.speedtest_download:
+  friendly_name: Download
+sensor.speedtest_upload:
+  friendly_name: Upload

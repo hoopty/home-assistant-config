@@ -1,14 +1,33 @@
-- platform: trend
+- platform: template
   sensors:
-    deep_freezer_heat:
-      friendly_name: 'Deep Freezer Temp rising'
-      entity_id: sensor.deep_freezer_temp
-      sensor_class: heat
-    freezer_heat:
-      friendly_name: 'Freezer Temp rising'
-      entity_id: sensor.freezer_temp
-      sensor_class: heat
-    drink_fridge_heat:
-      friendly_name: 'Drink Fridge Temp rising'
-      entity_id: sensor.drink_fridge_temp
-      sensor_class: heat
+    all_closed:
+      friendly_name: 'All Closed'
+      value_template: >-
+        {{ is_state('cover.gate', 'closed')
+          and is_state('binary_sensor.main_doors', 'off')
+          and is_state('binary_sensor.back_door', 'off')
+          and is_state('binary_sensor.master_windows', 'off')
+          and is_state('binary_sensor.upstairs_windows', 'off')
+          and is_state('binary_sensor.downstairs_windows', 'off') }}
+      entity_id:
+        - cover.gate
+        - binary_sensor.main_doors
+        - binary_sensor.back_door
+        - binary_sensor.master_windows
+        - binary_sensor.upstairs_windows
+        - binary_sensor.downstairs_windows
+    doors_locked:
+      friendly_name: 'Doors Locked'
+      value_template: >-
+        {{ is_state('lock.front_door_lock', 'locked')
+          and is_state('lock.back_door_lock', 'locked')
+          and is_state('lock.garage_door_lock', 'locked') }}
+      entity_id:
+        - lock.front_door_lock
+        - lock.back_door_lock
+        - lock.garage_door_lock
+    alarm_armed:
+      friendly_name: 'Alarm Armed'
+      value_template: "{{ is_state('alarm_control_panel.home_alarm', 'armed_away') }}"
+      entity_id:
+        - alarm_control_panel.home_alarm

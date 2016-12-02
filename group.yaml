@@ -1,6 +1,7 @@
 default_view:
   view: yes
   entities:
+    - group.status
     - group.doors
     - group.lights
     - group.alarm
@@ -24,13 +25,20 @@ Weather:
   entities:
     - group.weather_station
 
+Status:
+  - binary_sensor.all_closed
+  - binary_sensor.doors_locked
+  - binary_sensor.alarm_armed
+  - binary_sensor.garage_motion_sensor
+  - binary_sensor.mailbox_open_sensor
+  - script.goodnight
 Doors:
+  - cover.gate
   - cover.double_garage
   - cover.single_garage
   - lock.front_door_lock
   - lock.back_door_lock
   - lock.garage_door_lock
-  - script.gate_trigger
   - scene.lockdown
 Lights:
   - light.living_room_lamp
@@ -38,7 +46,7 @@ Lights:
 Alarm:
   - alarm_control_panel.home_alarm
   - sensor.home_alarm_keypad
-  - binary_sensor.doors
+  - binary_sensor.main_doors
   - binary_sensor.back_door
   - binary_sensor.master_windows
   - binary_sensor.downstairs_windows
@@ -71,13 +79,10 @@ Upstairs:
   - binary_sensor.katy_room_occupancy
   - binary_sensor.guest_room_occupancy
 Garage:
-  - sensor.garage_temp
   - sensor.deep_freezer_temp
   - sensor.freezer_temp
   - sensor.drink_fridge_temp
-  - binary_sensor.deep_freezer_heat
-  - binary_sensor.freezer_heat
-  - binary_sensor.drink_fridge_heat
+  - sensor.garage_temp
 Media Players:
   - sensor.plex
   - media_player.living_room_tv
@@ -103,3 +108,4 @@ Weather Station:
   - sensor.pws_pressure_in
   - sensor.pws_uv
   - sensor.pws_solarradiation
+  - sensor.pws_alerts

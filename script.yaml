@@ -1,6 +1,6 @@
-gate_trigger:
-  alias: 'Gate'
+goodnight:
+  alias: 'Good Night'
   sequence:
-    - service: homeassistant.turn_on
-      data:
-        entity_id: switch.gate_opener
+    - service: scene.turn_on
+      entity_id: scene.lockdown
+    - service: alarm_control_panel.alarm_arm_home

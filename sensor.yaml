@@ -37,6 +37,7 @@
     - pressure_in
     - UV
     - solarradiation
+    - alerts
 
 - platform: speedtest
   server_id: 4323
@@ -46,7 +47,7 @@
   hour: 6
 
 - platform: rest
-  name: controlbyweb
+  name: temp_values
   resource: 'http://temp.local/stateFull.xml'
   username: !secret temp_username
   password: !secret temp_password
@@ -58,19 +59,19 @@
     deep_freezer_temp:
       friendly_name: 'Deep Freezer'
       unit_of_measurement: '°F'
-      value_template: '{{ states("sensor.controlbyweb").split(" ")[1] }}'
+      value_template: '{{ states("sensor.temp_values").split(" ")[1] }}'
     freezer_temp:
       friendly_name: 'Freezer'
       unit_of_measurement: '°F'
-      value_template: '{{ states("sensor.controlbyweb").split(" ")[2] }}'
+      value_template: '{{ states("sensor.temp_values").split(" ")[2] }}'
     drink_fridge_temp:
       friendly_name: 'Drink Fridge'
       unit_of_measurement: '°F'
-      value_template: '{{ states("sensor.controlbyweb").split(" ")[3] }}'
+      value_template: '{{ states("sensor.temp_values").split(" ")[3] }}'
     garage_temp:
       friendly_name: 'Garage Temp'
       unit_of_measurement: '°F'
-      value_template: '{{ states("sensor.controlbyweb").split(" ")[4] }}'
+      value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
 
 #- platform: modbus
 #  registers:
