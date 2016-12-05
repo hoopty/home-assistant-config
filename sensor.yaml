@@ -19,6 +19,15 @@
     - download_rate
     - remaining_size
 
+- platform: sonarr
+  api_key: !secret sonarr_api_key
+  host: media.local
+  monitored_conditions:
+    - upcoming
+    - wanted
+    - queue
+    - commands
+
 - platform: wunderground
   api_key: !secret wunderground_api_key
   pws_id: KTXFRISC82
@@ -72,6 +81,9 @@
       friendly_name: 'Garage Temp'
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
+    media_room_remote:
+      friendly_name: 'Family Room'
+      value_template: '{{ states.remote.media_room.attributes.current_activity }}'
 
 #- platform: modbus
 #  registers:

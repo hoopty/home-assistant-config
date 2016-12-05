@@ -1,18 +1,4 @@
-- alias: location change
-  trigger:
-    platform: state
-    entity_id: device_tracker.cindy_phone, device_tracker.bryce_phone
-  action:
-    - service: notify.notify
-      data_template:
-        message: {{ trigger.to_state.name }} is {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}at {{ trigger.to_state.state|replace('_',' ') }} {% endif %}
-        #message: " at {{ as_timestamp(trigger.to_state.last_changed)|timestamp_custom('%-I:%M:%S %p on %a, %b %-d') }}."
-    - service: logbook.log
-      data_template:
-        entity_id: 'device_tracker.{{ trigger.to_state.name }}_phone'
-        name: '{{ trigger.to_state.name }}'
-        message: is {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}at {{ trigger.to_state.state|replace('_',' ') }} {% endif %}
-- alias: sunset lights on
+- alias: evening lights on
   trigger:
     platform: sun
     event: sunset
@@ -27,44 +13,60 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.living_room_lamp
-- alias: phone battery alert
+- alias: ifttt notify
+  trigger:
+    platform: event
+    event_type: ifttt_notify
+  action:
+    - service: notify.notify
+      data_template:
+        message: '{{ trigger.event }}'
+    - service: logbook.log
+      data_template:
+        name: ''
+        message: '{{ trigger.event }}'
+- alias: phone low battery
   trigger:
     platform: numeric_state
     entity_id: group.all_devices
     below: 25
   action:
-    service: notify.notify
-    data_template:
-      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+    - service: notify.notify
+      data_template:
+        message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+    - service: logbook.log
+      data_template:
+        name: '{{ trigger.to_state.name }}'
+        entity_id: '{{ trigger.to_state.entity_id }}'
+        message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: freezer temp alert
   trigger:
     platform: numeric_state
     entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
     above: 20
   action:
-    service: notify.notify
-    data_template:
-      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+    - service: notify.notify
+      data_template:
+        message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+    - service: logbook.log
+      data_template:
+        name: '{{ trigger.to_state.name }}'
+        entity_id: '{{ trigger.to_state.entity_id }}'
+        message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: fridge temp alert
   trigger:
     platform: numeric_state
     entity_id: sensor.drink_fridge_temp
     above: 50
   action:
-    service: notify.notify
-    data_template:
-      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
-- alias: freezer temp rising
-  trigger:
-    platform: state
-    entity_id: sensor.deep_freezer_temp, sensor.freezer_temp, sensor.drink_fridge_temp
-    to: 'on'
-    for:
-      hours: 2
-  action:
-    service: notify.notify
-    data_template:
-      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+    - service: notify.notify
+      data_template:
+        message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+    - service: logbook.log
+      data_template:
+        name: '{{ trigger.to_state.name }}'
+        entity_id: '{{ trigger.to_state.entity_id }}'
+        message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 - alias: thermostat home mode
   trigger:
     platform: state
@@ -81,3 +83,26 @@
     - service: notify.notify
       data_template:
         message: 'Thermostat away mode disabled.'
+#- alias: location change
+#  trigger:
+#    platform: state
+#    entity_id: device_tracker.cindy_phone, device_tracker.bryce_phone
+#  condition:
+#    condition: template
+#    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+#  action:
+#    service: logbook.log
+#    data_template:
+#      name: '{{ trigger.to_state.name }}'
+#      entity_id: '{{ trigger.to_state.entity_id }}'
+#      #domain: light
+#      message: >
+#        is
+#        {%- if trigger.to_state.state == 'home' %}
+#        home
+#        {%- elif trigger.to_state.state == 'not_home' %}
+#        away
+#        {%- else %}
+#        at {{ trigger.to_state.state|replace('_',' ') }}
+#        {%- endif %}
+#      message: "{{ trigger.to_state.name }} is {%if trigger.to_state.state == 'home' %}home{%elif trigger.to_state.state == 'not_home' %}away{% else %}at {{ trigger.to_state.state|replace('_',' ') }} {% endif %}"

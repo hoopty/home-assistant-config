@@ -19,7 +19,7 @@ Media:
   view: yes
   entities:
     - group.media_players
-    - group.internet
+    - group.network
 Weather:
   view: yes
   entities:
@@ -53,9 +53,12 @@ Alarm:
   - binary_sensor.upstairs_windows
 Family:
   - device_tracker.bryce_phone
-  - device_tracker.cindy_phone
+  - device_tracker.beacon_bryce_truck
   - sensor.bryce_phone_battery
+  - device_tracker.cindy_phone
+  - device_tracker.beacon_cindy_truck
   - sensor.cindy_phone_battery
+  - device_tracker.beacon_garage
 Downstairs:
   - climate.downstairs
   - sensor.downstairs_temperature
@@ -84,12 +87,18 @@ Garage:
   - sensor.drink_fridge_temp
   - sensor.garage_temp
 Media Players:
+  - remote.media_room
+  - sensor.media_room_remote
   - sensor.plex
   - media_player.living_room_tv
   - media_player.master_bedroom_tv
-Internet:
+Network:
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size
+  - sensor.sonarr_commands
+  - sensor.sonarr_queue
+  - sensor.sonarr_wanted
+  - sensor.sonarr_upcoming
   - sensor.speedtest_download
   - sensor.speedtest_upload
 Weather Station:
