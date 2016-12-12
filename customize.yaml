@@ -41,6 +41,6 @@ sensor.pws_alerts:
   unit_of_measurement: 'Alerts'
 
 sensor.speedtest_download:
-  friendly_name: Download
+  friendly_name: Internet Download
 sensor.speedtest_upload:
-  friendly_name: Upload
+  friendly_name: Internet Upload
