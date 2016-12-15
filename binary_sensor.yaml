@@ -28,6 +28,6 @@
         - lock.garage_door_lock
     alarm_armed:
       friendly_name: 'Alarm Armed'
-      value_template: "{{ is_state('alarm_control_panel.home_alarm', 'armed_away') }}"
+      value_template: "{{ is_state('alarm_control_panel.home_alarm', 'armed_away') or is_state('alarm_control_panel.home_alarm', 'pending') }}"
       entity_id:
         - alarm_control_panel.home_alarm

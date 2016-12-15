@@ -13,18 +13,6 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.living_room_lamp
-- alias: ifttt notify
-  trigger:
-    platform: event
-    event_type: ifttt_notify
-  action:
-    - service: notify.notify
-      data_template:
-        message: '{{ trigger.event }}'
-    - service: logbook.log
-      data_template:
-        name: ''
-        message: '{{ trigger.event }}'
 - alias: phone low battery
   trigger:
     platform: numeric_state

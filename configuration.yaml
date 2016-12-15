@@ -57,8 +57,8 @@ http:
   ip_ban_enabled: True
   login_attempts_threshold: 5
 
-ifttt:
-  key: !secret ifttt_key
+#ifttt:
+#  key: !secret ifttt_key
 
 isy994:
   host: http://isy.local:80
@@ -93,11 +93,6 @@ media_player:
 #    host: 192.168.1.143
 #    name: Master Bedroom TV
 
-#modbus:
-#  type: tcp
-#  host: temp.local
-#  port: 502
-
 mqtt:
   broker: localhost
   port: 1883
@@ -130,8 +125,4 @@ updater:
 #zeroconf:
 
 #zone: !include zone.yaml
-
-#zwave:
-#  usb_path: /dev/cuaU0
-#  config_path: /usr/local/home-assistant/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-freebsd-11.0-RELEASE-amd64.egg/config
 

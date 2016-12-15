@@ -84,26 +84,3 @@
     media_room_remote:
       friendly_name: 'Family Room'
       value_template: '{{ states.remote.media_room.attributes.current_activity }}'
-
-#- platform: modbus
-#  registers:
-#    - name: Deep Freezer Temp
-#      unit_of_measurement: '°F'
-#      register: 16
-#      count: 2
-#      #scale: 0.01
-#    - name: Freezer Temp
-#      unit_of_measurement: '°F'
-#      register: 18
-#      count: 2
-#      #scale: 0.01
-#    - name: Drink Fridge Temp
-#      unit_of_measurement: '°F'
-#      register: 20
-#      count: 2
-#      #scale: 0.01
-#    - name: Garage Temp
-#      unit_of_measurement: '°F'
-#      register: 22
-#      count: 2
-#      #scale: 0.01
