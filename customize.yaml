@@ -1,12 +1,10 @@
 sensor.temp_values:
   hidden: true
 
-sensor.deep_freezer_temp:
-  max_temp: 20
-sensor.freezer_temp:
-  max_temp: 20
-sensor.drink_fridge_temp:
-  max_temp: 50
+switch.garage_light:
+  icon: mdi:lightbulb
+switch.driveway_light:
+  icon: mdi:lightbulb
 
 sensor.pws_weather:
   friendly_name: Weather

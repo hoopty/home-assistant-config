@@ -124,5 +124,5 @@ updater:
 
 #zeroconf:
 
-#zone: !include zone.yaml
+zone: !include zone.yaml
 

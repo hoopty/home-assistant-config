@@ -12,9 +12,9 @@ People:
 Climate:
   view: yes
   entities:
-    - group.downstairs
-    - group.upstairs
-    - group.garage
+    - group.downstairs_climate
+    - group.upstairs_climate
+    - group.garage_climate
 Media:
   view: yes
   entities:
@@ -41,6 +41,8 @@ Doors:
   - lock.garage_door_lock
   - scene.lockdown
 Lights:
+  - switch.garage_light
+  - switch.driveway_light
   - light.living_room_lamp
   - light.media_room_lamp
 Alarm:
@@ -59,7 +61,7 @@ Family:
   - device_tracker.beacon_cindy_truck
   - sensor.cindy_phone_battery
   - device_tracker.beacon_garage
-Downstairs:
+Downstairs Climate:
   - climate.downstairs
   - sensor.downstairs_temperature
   - sensor.living_room_temperature
@@ -70,7 +72,7 @@ Downstairs:
   - binary_sensor.downstairs_occupancy
   - binary_sensor.master_bedroom_occupancy
   - binary_sensor.office_occupancy
-Upstairs:
+Upstairs Climate:
   - climate.upstairs
   - sensor.upstairs_temperature
   - sensor.jenny_room_temperature
@@ -81,7 +83,7 @@ Upstairs:
   - binary_sensor.jenny_room_occupancy
   - binary_sensor.katy_room_occupancy
   - binary_sensor.guest_room_occupancy
-Garage:
+Garage Climate:
   - sensor.deep_freezer_temp
   - sensor.freezer_temp
   - sensor.drink_fridge_temp

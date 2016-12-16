@@ -1,17 +1,33 @@
+- alias: garage motion on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.garage_motion_sensor
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.garage_light
+- alias: garage motion off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.garage_motion_sensor
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.garage_light
 - alias: evening lights on
   trigger:
     platform: sun
     event: sunset
     offset: '-00:30:00'
   action:
-    service: homeassistant.turn_on
+    service: light.turn_on
     entity_id: light.living_room_lamp
 - alias: late night lights off
   trigger:
     platform: time
     after: '00:00:00'
   action:
-    service: homeassistant.turn_off
+    service: light.turn_off
     entity_id: light.living_room_lamp
 - alias: phone low battery
   trigger:
