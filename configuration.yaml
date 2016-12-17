@@ -26,6 +26,8 @@ ecobee:
 
 emulated_hue:
   exposed_domains:
+    - scene
+    - script
     - switch
     - light
     - cover

@@ -82,5 +82,5 @@
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
     media_room_remote:
-      friendly_name: 'Family Room'
+      friendly_name: 'Media Room'
       value_template: '{{ states.remote.media_room.attributes.current_activity }}'

@@ -29,9 +29,10 @@ Status:
   - binary_sensor.all_closed
   - binary_sensor.doors_locked
   - binary_sensor.alarm_armed
-  - binary_sensor.garage_motion_sensor
-  - binary_sensor.mailbox_open_sensor
   - script.goodnight
+  - binary_sensor.mailbox_open_sensor
+  - binary_sensor.garage_motion_sensor
+  - binary_sensor.master_closet_motion_sensor
 Doors:
   - cover.gate
   - cover.double_garage
@@ -60,7 +61,6 @@ Family:
   - device_tracker.cindy_phone
   - device_tracker.beacon_cindy_truck
   - sensor.cindy_phone_battery
-  - device_tracker.beacon_garage
 Downstairs Climate:
   - climate.downstairs
   - sensor.downstairs_temperature
