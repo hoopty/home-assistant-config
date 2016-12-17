@@ -1,5 +1,6 @@
 certs/
 deps/
+www/
 .HA_VERSION
 .uuid
 home-assistant*.db*
@@ -7,6 +8,7 @@ home-assistant.log
 home-assistant.pid
 *.conf
 envisalink.yaml
+ip_bans.yaml
 known_devices.yaml
 secrets.yaml
 zone.yaml
