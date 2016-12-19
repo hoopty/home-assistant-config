@@ -51,8 +51,8 @@ history:
 
 http:
   api_password: !secret api_password
-  ssl_certificate: /home/hass/.homeassistant/certs/bryce_net.crt
-  ssl_key: /home/hass/.homeassistant/certs/bryce_net.key
+  ssl_certificate: /usr/local/etc/letsencrypt/live/home.bryce.net/fullchain.pem
+  ssl_key: /usr/local/etc/letsencrypt/live/home.bryce.net/privkey.pem
   trusted_networks:
     - 127.0.0.0/8
     - 192.168.0.0/16
@@ -99,10 +99,8 @@ mqtt:
   broker: localhost
   port: 1883
   client_id: home-assistant
-  keepalive: 60
   username: !secret mqtt_username
   password: !secret mqtt_password
-  protocol: 3.1
 
 notify: !include notify.yaml
 
