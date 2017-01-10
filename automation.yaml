@@ -4,7 +4,7 @@
     entity_id: binary_sensor.garage_motion_sensor
     to: 'on'
   action:
-    service: switch.turn_on
+    service: homeassistant.turn_on
     entity_id: switch.garage_light
 - alias: garage motion off
   trigger:
@@ -12,23 +12,88 @@
     entity_id: binary_sensor.garage_motion_sensor
     to: 'off'
   action:
-    service: switch.turn_off
+    service: homeassistant.turn_off
     entity_id: switch.garage_light
-- alias: evening lights on
+- alias: door left unlocked
+  trigger:
+    platform: state
+    entity_id: lock.front_door_lock, lock.back_door_lock
+    state: 'unlocked'
+    for:
+      minutes: 2
+  action:
+    - service: notify.notify
+      data_template:
+        message: '{{ trigger.to_state.name }} left {{ trigger.to_state.state }} for 2 minutes!'
+    - service: logbook.log
+      data_template:
+        name: '{{ trigger.to_state.name }}'
+        entity_id: '{{ trigger.to_state.entity_id }}'
+        message: ' left {{ trigger.to_state.state }} for 2 minutes!'
+- alias: cover left open
+  trigger:
+    platform: state
+    entity_id: cover.gate
+    state: 'open'
+    for:
+      minutes: 2
+  action:
+    - service: notify.notify
+      data_template:
+        message: '{{ trigger.to_state.name }} left {{ trigger.to_state.state }} for 2 minutes!'
+    - service: logbook.log
+      data_template:
+        name: '{{ trigger.to_state.name }}'
+        entity_id: '{{ trigger.to_state.entity_id }}'
+        message: ' left {{ trigger.to_state.state }} for 2 minutes!'
+- alias: mailbox motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.mailbox_closed_sensor
+    to: 'off'
+  action:
+    - service: notify.notify
+      data_template:
+        message: "You've got mail!"
+    - service: logbook.log
+      data_template:
+        message: "You've got mail!"
+- alias: mailbox left open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.mailbox_closed_sensor
+    state: 'off'
+    for:
+      minutes: 2
+  action:
+    - service: notify.notify
+      data_template:
+        message: 'Mailbox left open!'
+    - service: logbook.log
+      data_template:
+        message: 'Mailbox left open!'
+- alias: sunset lights on
   trigger:
     platform: sun
     event: sunset
     offset: '-00:30:00'
   action:
-    service: light.turn_on
-    entity_id: light.living_room_lamp
+    service: homeassistant.turn_on
+    entity_id: switch.front_porch_light, light.living_room_lamp
 - alias: late night lights off
   trigger:
     platform: time
     after: '00:00:00'
   action:
-    service: light.turn_off
+    service: homeassistant.turn_off
     entity_id: light.living_room_lamp
+- alias: sunrise lights off
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.front_porch_light
 - alias: phone low battery
   trigger:
     platform: numeric_state
