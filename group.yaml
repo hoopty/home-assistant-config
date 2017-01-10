@@ -2,13 +2,10 @@ default_view:
   view: yes
   entities:
     - group.status
-    - group.doors
-    - group.lights
-    - group.alarm
-People:
-  view: yes
-  entities:
     - group.family
+    - group.lights
+    - group.doors
+    - group.alarm
 Climate:
   view: yes
   entities:
@@ -33,6 +30,21 @@ Status:
   - binary_sensor.mailbox_open_sensor
   - binary_sensor.garage_motion_sensor
   - binary_sensor.master_closet_motion_sensor
+Family:
+  - device_tracker.bryce_phone
+  - sensor.bryce_phone_battery
+  - device_tracker.cindy_phone
+  - sensor.cindy_phone_battery
+  - device_tracker.jenny_phone
+  - sensor.jenny_phone_battery
+  - device_tracker.katy_phone
+  - sensor.katy_phone_battery
+Lights:
+  - switch.front_porch_light
+  - switch.garage_light
+  - switch.driveway_light
+  - light.living_room_lamp
+  - light.media_room_lamp
 Doors:
   - cover.gate
   - cover.double_garage
@@ -41,11 +53,6 @@ Doors:
   - lock.back_door_lock
   - lock.garage_door_lock
   - scene.lockdown
-Lights:
-  - switch.garage_light
-  - switch.driveway_light
-  - light.living_room_lamp
-  - light.media_room_lamp
 Alarm:
   - alarm_control_panel.home_alarm
   - sensor.home_alarm_keypad
@@ -54,13 +61,6 @@ Alarm:
   - binary_sensor.master_windows
   - binary_sensor.downstairs_windows
   - binary_sensor.upstairs_windows
-Family:
-  - device_tracker.bryce_phone
-  - device_tracker.beacon_bryce_truck
-  - sensor.bryce_phone_battery
-  - device_tracker.cindy_phone
-  - device_tracker.beacon_cindy_truck
-  - sensor.cindy_phone_battery
 Downstairs Climate:
   - climate.downstairs
   - sensor.downstairs_temperature
