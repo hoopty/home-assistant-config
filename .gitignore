@@ -4,8 +4,8 @@ www/
 .HA_VERSION
 .uuid
 home-assistant*.db*
-home-assistant.log
-home-assistant.pid
+*.log
+*.pid
 *.conf
 envisalink.yaml
 ip_bans.yaml

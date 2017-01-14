@@ -18,7 +18,7 @@ device_tracker:
   max_gps_accuracy: 200
   waypoints: False
 
-#discovery:
+discovery:
 
 ecobee:
   api_key: !secret ecobee_key
@@ -131,8 +131,6 @@ sensor: !include sensor.yaml
 sun:
 
 updater:
-
-#zeroconf:
 
 zone: !include zone.yaml
 

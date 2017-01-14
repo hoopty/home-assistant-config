@@ -1,5 +1,25 @@
 - platform: template
   sensors:
+    doors_closed:
+      friendly_name: 'Doors & Windows Closed'
+      value_template: >-
+        {{ is_state('binary_sensor.main_doors', 'off')
+          and is_state('binary_sensor.back_door', 'off')
+          and is_state('binary_sensor.master_windows', 'off')
+          and is_state('binary_sensor.upstairs_windows', 'off')
+          and is_state('binary_sensor.downstairs_windows', 'off') }}
+      entity_id:
+        - binary_sensor.main_doors
+        - binary_sensor.back_door
+        - binary_sensor.master_windows
+        - binary_sensor.upstairs_windows
+        - binary_sensor.downstairs_windows
+    covers_closed:
+      friendly_name: 'Gate Closed'
+      value_template: >-
+        {{ is_state('cover.gate', 'closed') }}
+      entity_id:
+        - cover.gate
     all_closed:
       friendly_name: 'All Closed'
       value_template: >-

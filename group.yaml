@@ -23,10 +23,14 @@ Weather:
     - group.weather_station
 
 Status:
-  - binary_sensor.all_closed
+  - binary_sensor.doors_closed
   - binary_sensor.doors_locked
+  - scene.lock_doors
+  - binary_sensor.covers_closed
+  - scene.close_covers
   - binary_sensor.alarm_armed
-  - script.goodnight
+  - script.arm_home
+  - script.arm_away
 Family:
   - device_tracker.bryce_phone
   - sensor.bryce_phone_battery
@@ -46,10 +50,11 @@ Doors:
   - cover.gate
   - cover.double_garage
   - cover.single_garage
+  - scene.close_covers
   - lock.front_door_lock
   - lock.back_door_lock
   - lock.garage_door_lock
-  - scene.lockdown
+  - scene.lock_doors
 Alarm:
   - alarm_control_panel.home_alarm
   - sensor.home_alarm_keypad
@@ -89,8 +94,8 @@ Media Players:
   - remote.media_room
   - sensor.media_room_remote
   - sensor.plex
-  - media_player.living_room_tv
-  - media_player.master_bedroom_tv
+  - media_player.directv_rid023846842815
+  - media_player._living_room_un55ku6300
 Network:
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size

@@ -1,3 +1,33 @@
+#
+# Phone Devices
+#
+- platform: mqtt
+  name: 'Bryce Phone Battery'
+  state_topic: 'owntracks/bryce/phone'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.batt | round(1) }}'
+
+- platform: mqtt
+  name: 'Cindy Phone Battery'
+  state_topic: 'owntracks/cindy/phone'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.batt | round(1) }}'
+
+- platform: mqtt
+  name: 'Jenny Phone Battery'
+  state_topic: 'owntracks/jenny/phone'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.batt | round(1) }}'
+
+- platform: mqtt
+  name: 'Katy Phone Battery'
+  state_topic: 'owntracks/katy/phone'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.batt | round(1) }}'
+
+#
+# Temp Probes
+#
 - platform: rest
   name: temp_values
   resource: 'http://temp.local/stateFull.xml'
@@ -12,48 +42,26 @@
       friendly_name: 'Deep Freezer'
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[1] }}'
+      entity_id: sensor.temp_values
     freezer_temp:
       friendly_name: 'Freezer'
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[2] }}'
+      entity_id: sensor.temp_values
     drink_fridge_temp:
       friendly_name: 'Drink Fridge'
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[3] }}'
+      entity_id: sensor.temp_values
     garage_temp:
       friendly_name: 'Garage Temp'
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
+      entity_id: sensor.temp_values
     media_room_remote:
       friendly_name: 'Media Room'
       value_template: '{{ states.remote.media_room.attributes.current_activity }}'
-
-#
-# Devices
-#
-- platform: mqtt
-  name: 'Bryce Phone Battery'
-  state_topic: 'owntracks/bryce/phone'
-  unit_of_measurement: '%'
-  value_template: '{{ value_json.batt }}'
-
-- platform: mqtt
-  name: 'Cindy Phone Battery'
-  state_topic: 'owntracks/cindy/phone'
-  unit_of_measurement: '%'
-  value_template: '{{ value_json.batt }}'
-
-- platform: mqtt
-  name: 'Jenny Phone Battery'
-  state_topic: 'owntracks/jenny/phone'
-  unit_of_measurement: '%'
-  value_template: '{{ value_json.batt }}'
-
-- platform: mqtt
-  name: 'Katy Phone Battery'
-  state_topic: 'owntracks/katy/phone'
-  unit_of_measurement: '%'
-  value_template: '{{ value_json.batt }}'
+      entity_id: remote.media_room
 
 #
 # Weather
@@ -117,7 +125,7 @@
   name: 'Rain Rate'
   unit_of_measurement: 'in/hr'
   state_topic: 'weather/loop'
-  value_template: '{{ value_json.rainRate_inch_per_hour }}'
+  value_template: '{{ value_json.rainRate_inch_per_hour | round(1) }}'
 - platform: mqtt
   name: 'Rainfall (today)'
   unit_of_measurement: 'in'

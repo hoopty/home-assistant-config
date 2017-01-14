@@ -1,6 +1,26 @@
+#
+# Hide Items
+#
 sensor.temp_values:
   hidden: true
 
+#
+# Friendly Names
+#
+media_player.directv_rid023846842815:
+  friendly_name: DirecTV DVR
+media_player._living_room_un55ku6300:
+  friendly_name: Living Room TV
+scene.close_covers:
+  friendly_name: Close Gate
+sensor.speedtest_download:
+  friendly_name: Internet Downlink
+sensor.speedtest_upload:
+  friendly_name: Internet Uplink
+
+#
+# Icons
+#
 switch.front_porch_light:
   icon: mdi:lightbulb
 switch.garage_light:
@@ -8,6 +28,9 @@ switch.garage_light:
 switch.driveway_light:
   icon: mdi:lightbulb
 
+#
+# Disable Emulated Hue (even on hidden enities)
+#
 switch.auto_dr:
   emulated_hue: false
 switch.garage_motion_tamper_alarm:
@@ -22,8 +45,3 @@ switch.mailbox_intrusion_alarm:
   emulated_hue: false
 switch.mailbox_tamper_alarm:
   emulated_hue: false
-
-sensor.speedtest_download:
-  friendly_name: Internet Downlink
-sensor.speedtest_upload:
-  friendly_name: Internet Uplink
