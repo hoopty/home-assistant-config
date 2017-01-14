@@ -107,23 +107,23 @@ Network:
   - sensor.speedtest_upload
 Weather Station:
   - sun.sun
-  - sensor.appearant_temperature
-  - sensor.outside_temperature
-  - sensor.wind_chill
-  - sensor.heat_index
-  - sensor.dewpoint
-  - sensor.humidity
-  - sensor.pressure
-  - sensor.cloud_base
-  - sensor.wind_speed
-  - sensor.wind_gusts
-  - sensor.wind_direction
-  - sensor.rain_rate
-  - sensor.rainfall_today
-  - sensor.rainfall_last_hour
-  - sensor.rainfall_last_24_hours
-  - sensor.uv_index
-  - sensor.solar_radiation
-  - sensor.inside_temperature
-  - sensor.inside_dewpoint
-  - sensor.inside_humidity
+  - sensor.wx_appearant_temperature
+  - sensor.wx_outside_temperature
+  - sensor.wx_wind_chill
+  - sensor.wx_heat_index
+  - sensor.wx_dewpoint
+  - sensor.wx_humidity
+  - sensor.wx_pressure
+  - sensor.wx_cloud_base
+  - sensor.wx_wind_speed
+  - sensor.wx_wind_gusts
+  - sensor.wx_wind_direction
+  - sensor.wx_rain_rate
+  - sensor.wx_rainfall_last_hour
+  - sensor.wx_rainfall_today
+  - sensor.wx_rainfall_last_24_hours
+  - sensor.wx_uv_index
+  - sensor.wx_solar_radiation
+  - sensor.wx_inside_temperature
+  - sensor.wx_inside_dewpoint
+  - sensor.wx_inside_humidity

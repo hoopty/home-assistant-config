@@ -21,6 +21,16 @@ sensor.speedtest_upload:
 #
 # Icons
 #
+binary_sensor.doors_locked:
+  icon: mdi:lock
+scene.lock_doors:
+  icon: mdi:lock
+binary_sensor.alarm_armed:
+  icon: mdi:lock
+script.arm_home:
+  icon: mdi:lock
+script.arm_away:
+  icon: mdi:lock
 switch.front_porch_light:
   icon: mdi:lightbulb
 switch.garage_light:
