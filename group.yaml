@@ -98,8 +98,12 @@ Media Players:
   - media_player._living_room_un55ku6300
   - media_player._bed_room_un55f6300
 Network:
+  - sensor.nzbget_download_paused
+  - sensor.nzbget_average_speed
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size
+  - sensor.nzbget_size
+  - sensor.nzbget_disk_free
   - sensor.sonarr_queue
   - sensor.sonarr_wanted
   - sensor.sonarr_upcoming
