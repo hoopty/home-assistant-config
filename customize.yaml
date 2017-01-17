@@ -11,6 +11,8 @@ media_player.directv_rid023846842815:
   friendly_name: DirecTV DVR
 media_player._living_room_un55ku6300:
   friendly_name: Living Room TV
+media_player._bed_room_un55f6300:
+  friendly_name: Master Bedroom TV
 scene.close_covers:
   friendly_name: Close Gate
 sensor.speedtest_download:
@@ -23,9 +25,17 @@ sensor.speedtest_upload:
 #
 binary_sensor.doors_locked:
   icon: mdi:lock
-scene.lock_doors:
-  icon: mdi:lock
 binary_sensor.alarm_armed:
+  icon: mdi:lock
+sensor.bryce_phone_battery:
+  icon: mdi:battery
+sensor.cindy_phone_battery:
+  icon: mdi:battery
+sensor.jenny_phone_battery:
+  icon: mdi:battery
+sensor.katy_phone_battery:
+  icon: mdi:battery
+scene.lock_doors:
   icon: mdi:lock
 script.arm_home:
   icon: mdi:lock

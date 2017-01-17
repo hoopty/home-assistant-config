@@ -96,6 +96,7 @@ Media Players:
   - sensor.plex
   - media_player.directv_rid023846842815
   - media_player._living_room_un55ku6300
+  - media_player._bed_room_un55f6300
 Network:
   - sensor.nzbget_speed
   - sensor.nzbget_queue_size
