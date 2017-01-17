@@ -25,6 +25,7 @@ ecobee:
   hold_temp: False
 
 emulated_hue:
+  upnp_bind_multicast: False
   exposed_domains:
     - scene
     - script
@@ -77,23 +78,11 @@ logbook:
 logger:
   default: info
   logs:
+    root: warn
     plexapi: warn
 
 media_player:
   - platform: plex
-#  - platform: directv
-#    host: 192.168.1.140
-#    name: DirecTV DVR
-#  - platform: samsungtv
-#    host: 192.168.1.141
-#    port: 8001
-#    name: Living Room TV
-#  - platform: directv
-#    host: 192.168.1.142
-#    name: Living Room DirecTV
-#  - platform: samsungtv
-#    host: 192.168.1.143
-#    name: Master Bedroom TV
 
 mqtt:
   broker: localhost

@@ -193,17 +193,21 @@
 - platform: nzbget
   host: media.local
   monitored_variables:
+    - download_paused
+    - average_download_rate
     - download_rate
+    - download_size
     - remaining_size
+    - free_disk_space
 
 - platform: sonarr
   api_key: !secret sonarr_api_key
   host: media.local
+  urlbase: /tv
   monitored_conditions:
     - upcoming
     - wanted
     - queue
-    - commands
 
 - platform: speedtest
   server_id: 4323
