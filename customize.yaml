@@ -49,7 +49,7 @@ switch.driveway_light:
   icon: mdi:lightbulb
 
 #
-# Disable Emulated Hue (even on hidden enities)
+# Disable Emulated Hue (even hidden enities)
 #
 switch.auto_dr:
   emulated_hue: false

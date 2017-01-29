@@ -1,6 +1,32 @@
 #
 # Location based automations
 #
+- alias: open gate for vehicle
+  trigger:
+    platform: state
+    entity_id: device_tracker.beacon_bryce_truck, device_tracker.beacon_cindy_truck
+    to: 'garage'
+  condition:
+    condition: state
+    entity_id: binary_sensor.gate_closed_sensor
+    state: 'on'
+  action:
+    - service: notify.notify
+      data_template:
+        message: 'TEST Opening Gate for {{ trigger.to_state.name }} (after {{ relative_time(trigger.from_state.last_changed) }})'
+- alias: close gate for vehicle
+  trigger:
+    platform: state
+    entity_id: device_tracker.beacon_bryce_truck, device_tracker.beacon_cindy_truck
+    from: 'garage'
+  condition:
+    condition: state
+    entity_id: binary_sensor.gate_closed_sensor
+    state: 'off'
+  action:
+    - service: notify.notify
+      data_template:
+        message: 'TEST Closing Gate for {{ trigger.to_state.name }} (after {{ relative_time(trigger.from_state.last_changed) }})'
 - alias: thermostat home mode
   trigger:
     platform: state
@@ -43,32 +69,32 @@
     entity_id: lock.front_door_lock, lock.back_door_lock
     state: 'unlocked'
     for:
-      minutes: 2
+      minutes: 5
   action:
     - service: notify.notify
       data_template:
-        message: '{{ trigger.to_state.name }} left {{ trigger.to_state.state }} for 2 minutes!'
+        message: '{{ trigger.to_state.name }} has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
     - service: logbook.log
       data_template:
         name: '{{ trigger.to_state.name }}'
         entity_id: '{{ trigger.to_state.entity_id }}'
-        message: ' left {{ trigger.to_state.state }} for 2 minutes!'
+        message: ' has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
 - alias: cover left open
   trigger:
     platform: state
     entity_id: cover.gate
     state: 'open'
     for:
-      minutes: 2
+      minutes: 5
   action:
     - service: notify.notify
       data_template:
-        message: '{{ trigger.to_state.name }} left {{ trigger.to_state.state }} for 2 minutes!'
+        message: '{{ trigger.to_state.name }} has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
     - service: logbook.log
       data_template:
         name: '{{ trigger.to_state.name }}'
         entity_id: '{{ trigger.to_state.entity_id }}'
-        message: ' left {{ trigger.to_state.state }} for 2 minutes!'
+        message: ' has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
 - alias: mailbox left open
   trigger:
     platform: state
@@ -133,7 +159,7 @@
   trigger:
     platform: numeric_state
     entity_id: group.all_devices
-    below: 25
+    below: '25'
   action:
     - service: notify.notify
       data_template:
@@ -151,7 +177,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
-    above: 20
+    above: '20'
   action:
     - service: notify.notify
       data_template:
@@ -165,7 +191,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.drink_fridge_temp
-    above: 50
+    above: '50'
   action:
     - service: notify.notify
       data_template:

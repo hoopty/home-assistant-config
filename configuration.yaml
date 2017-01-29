@@ -18,13 +18,14 @@ device_tracker:
   max_gps_accuracy: 200
   waypoints: False
 
-discovery:
+#discovery:
 
 ecobee:
   api_key: !secret ecobee_key
   hold_temp: False
 
 emulated_hue:
+  type: alexa
   upnp_bind_multicast: False
   exposed_domains:
     - scene
@@ -78,7 +79,6 @@ logbook:
 logger:
   default: info
   logs:
-    root: warn
     plexapi: warn
 
 media_player:
@@ -104,7 +104,7 @@ mqtt:
 notify: !include notify.yaml
 
 recorder:
-  purge_days: 30
+  purge_days: 14
 
 remote:
   - platform: harmony
