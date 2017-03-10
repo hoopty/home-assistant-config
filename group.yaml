@@ -24,10 +24,10 @@ Weather:
 
 Status:
   - binary_sensor.doors_closed
-  - binary_sensor.doors_locked
-  - scene.lock_doors
   - binary_sensor.covers_closed
   - scene.close_covers
+  - binary_sensor.doors_locked
+  - scene.lock_doors
   - binary_sensor.alarm_armed
   - script.arm_home
   - script.arm_away
@@ -95,8 +95,6 @@ Media Players:
   - sensor.media_room_remote
   - sensor.plex
   - media_player.directv_rid023846842815
-  - media_player._living_room_un55ku6300
-  - media_player._bed_room_un55f6300
 Network:
   - sensor.nzbget_download_paused
   - sensor.nzbget_average_speed
@@ -107,7 +105,6 @@ Network:
   - sensor.sonarr_queue
   - sensor.sonarr_wanted
   - sensor.sonarr_upcoming
-  - sensor.sonarr_commands
   - sensor.speedtest_download
   - sensor.speedtest_upload
 Weather Station:

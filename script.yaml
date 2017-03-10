@@ -6,9 +6,3 @@ arm_away:
   alias: 'Arm Alarm - Away'
   sequence:
     - service: alarm_control_panel.alarm_arm_away
-#goodnight:
-#  alias: 'Good Night'
-#  sequence:
-#    - service: scene.turn_on
-#      entity_id: scene.lock_doors, scene.close_covers
-#    - service: alarm_control_panel.alarm_arm_home

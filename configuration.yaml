@@ -7,18 +7,38 @@ homeassistant:
   time_zone: America/Chicago
   customize: !include customize.yaml
 
+alert: !include alert.yaml
+
 automation: !include automation.yaml
 
 binary_sensor: !include binary_sensor.yaml
 
+config:
+
 #conversation:
 
-device_tracker:
-  platform: owntracks
-  max_gps_accuracy: 200
-  waypoints: False
+cover:
+  - platform: myq
+    username: !secret myq_username
+    password: !secret myq_password
+    type: liftmaster
 
-#discovery:
+
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 200
+    waypoints: False
+    track_new_devices: False
+  - platform: unifi
+    host: unifi.local
+    username: !secret unifi_username
+    password: !secret unifi_password
+    track_new_devices: False
+
+discovery:
+  ignore:
+    - directv
+    - samsung_tv
 
 ecobee:
   api_key: !secret ecobee_key
@@ -104,7 +124,7 @@ mqtt:
 notify: !include notify.yaml
 
 recorder:
-  purge_days: 14
+  purge_days: 7
 
 remote:
   - platform: harmony

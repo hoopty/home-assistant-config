@@ -1,5 +1,5 @@
 #
-# Hide Items
+# Visibility
 #
 sensor.temp_values:
   hidden: true
@@ -14,7 +14,7 @@ media_player._living_room_un55ku6300:
 media_player._bed_room_un55f6300:
   friendly_name: Master Bedroom TV
 scene.close_covers:
-  friendly_name: Close Gate
+  friendly_name: Close Garages & Gate
 sensor.speedtest_download:
   friendly_name: Internet Downlink
 sensor.speedtest_upload:

@@ -61,56 +61,6 @@
         message: "You've got mail!"
 
 #
-# Left Open/Unlocked automations
-#
-- alias: door left unlocked
-  trigger:
-    platform: state
-    entity_id: lock.front_door_lock, lock.back_door_lock
-    state: 'unlocked'
-    for:
-      minutes: 5
-  action:
-    - service: notify.notify
-      data_template:
-        message: '{{ trigger.to_state.name }} has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
-    - service: logbook.log
-      data_template:
-        name: '{{ trigger.to_state.name }}'
-        entity_id: '{{ trigger.to_state.entity_id }}'
-        message: ' has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
-- alias: cover left open
-  trigger:
-    platform: state
-    entity_id: cover.gate
-    state: 'open'
-    for:
-      minutes: 5
-  action:
-    - service: notify.notify
-      data_template:
-        message: '{{ trigger.to_state.name }} has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
-    - service: logbook.log
-      data_template:
-        name: '{{ trigger.to_state.name }}'
-        entity_id: '{{ trigger.to_state.entity_id }}'
-        message: ' has been {{ trigger.to_state.state }} for {{ relative_time(trigger.to_state.last_changed) }}!'
-- alias: mailbox left open
-  trigger:
-    platform: state
-    entity_id: binary_sensor.mailbox_closed_sensor
-    state: 'off'
-    for:
-      minutes: 2
-  action:
-    - service: notify.notify
-      data_template:
-        message: 'Mailbox left open!'
-    - service: logbook.log
-      data_template:
-        message: 'Mailbox left open!'
-
-#
 # Lights/Switches on/off
 #
 - alias: garage motion on
@@ -129,6 +79,30 @@
   action:
     service: homeassistant.turn_off
     entity_id: switch.garage_light
+- alias: driveway lights on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.covers_closed
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.driveway_light
+- alias: driveway lights off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.covers_closed
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.driveway_light
 - alias: sunset lights on
   trigger:
     platform: sun
@@ -155,11 +129,11 @@
 #
 # Device Battery automations
 #
-- alias: phone low battery
+- alias: device low battery
   trigger:
     platform: numeric_state
     entity_id: group.all_devices
-    below: '25'
+    below: 25
   action:
     - service: notify.notify
       data_template:
@@ -177,7 +151,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
-    above: '20'
+    above: 20
   action:
     - service: notify.notify
       data_template:
@@ -191,7 +165,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.drink_fridge_temp
-    above: '50'
+    above: 50
   action:
     - service: notify.notify
       data_template:

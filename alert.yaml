@@ -1,0 +1,55 @@
+front_door:
+  name: Front Door left unlocked
+  entity_id: lock.front_door_lock
+  state: 'unlocked'
+  skip_first: True
+  repeat:
+    - 5
+    - 30
+    - 60
+  notifiers:
+    - notify
+back_door:
+  name: Back Door left unlocked
+  entity_id: lock.back_door_lock
+  state: 'unlocked'
+  skip_first: True
+  repeat:
+    - 5
+    - 30
+    - 60
+  notifiers:
+    - notify
+double_garage:
+  name: Double Garage left open
+  entity_id: cover.double_garage
+  state: 'open'
+  skip_first: True
+  repeat:
+    - 5
+    - 30
+    - 60
+  notifiers:
+    - notify
+single_garage:
+  name: Single Garage left open
+  entity_id: cover.single_garage
+  state: 'open'
+  skip_first: True
+  repeat:
+    - 5
+    - 30
+    - 60
+  notifiers:
+    - notify
+gate:
+  name: Gate left open
+  entity_id: cover.gate
+  state: 'open'
+  skip_first: True
+  repeat:
+    - 5
+    - 30
+    - 60
+  notifiers:
+    - notify

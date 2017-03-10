@@ -5,6 +5,6 @@
     lock.garage_door_lock: locked
 - name: Close Covers
   entities:
-    #cover.double_garage: closed
-    #cover.single_garage: closed
+    cover.double_garage: closed
+    cover.single_garage: closed
     cover.gate: closed
