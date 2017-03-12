@@ -139,6 +139,10 @@ sensor: !include sensor.yaml
 
 sun:
 
+#twilio:
+#  account_sid: !secret twilio_account_sid
+#  auth_token: !secret twilio_auth_token
+
 updater:
 
 zone: !include zone.yaml

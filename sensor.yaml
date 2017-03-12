@@ -26,6 +26,15 @@
   value_template: '{{ value_json.batt | round(1) }}'
 
 #
+# Doorbell
+#
+- platform: ring
+  username: !secret ring_username
+  password: !secret ring_password
+  monitored_conditions:
+    - last_activity
+
+#
 # Temp Probes
 #
 - platform: rest
