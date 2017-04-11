@@ -33,6 +33,7 @@ device_tracker:
     host: unifi.local
     username: !secret unifi_username
     password: !secret unifi_password
+    verify_ssl: False
     track_new_devices: False
 
 discovery:
@@ -130,6 +131,10 @@ remote:
   - platform: harmony
     name: Media Room
     host: 192.168.1.154
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
 
 scene: !include scene.yaml
 

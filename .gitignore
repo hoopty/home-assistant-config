@@ -1,12 +1,11 @@
 certs/
 deps/
 www/
-.HA_VERSION
-.uuid
-home-assistant*.db*
+.*
 *.log
 *.pid
 *.conf
+home-assistant*.db*
 envisalink.yaml
 ip_bans.yaml
 known_devices.yaml

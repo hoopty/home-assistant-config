@@ -1,5 +1,5 @@
 default_view:
-  view: yes
+  view: true
   entities:
     - group.status
     - group.family
@@ -7,18 +7,18 @@ default_view:
     - group.doors
     - group.alarm
 Climate:
-  view: yes
+  view: true
   entities:
     - group.downstairs_climate
     - group.upstairs_climate
     - group.garage_climate
 Media:
-  view: yes
+  view: true
   entities:
     - group.media_players
     - group.network
 Weather:
-  view: yes
+  view: true
   entities:
     - group.weather_station
 
