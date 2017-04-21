@@ -160,7 +160,7 @@
   name: 'UV Index'
   entity_namespace: wx
   state_topic: 'weather/loop'
-  value_template: '{{ value_json.UV }}'
+  value_template: '{{ value_json.UV | round(1) }}'
 - platform: mqtt
   name: 'Solar Radiation'
   entity_namespace: wx

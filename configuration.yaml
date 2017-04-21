@@ -29,12 +29,12 @@ device_tracker:
     max_gps_accuracy: 200
     waypoints: False
     track_new_devices: False
-  - platform: unifi
-    host: unifi.local
-    username: !secret unifi_username
-    password: !secret unifi_password
-    verify_ssl: False
-    track_new_devices: False
+#  - platform: unifi
+#    host: unifi.local
+#    username: !secret unifi_username
+#    password: !secret unifi_password
+#    verify_ssl: False
+#    track_new_devices: False
 
 discovery:
   ignore:
@@ -84,6 +84,8 @@ http:
 
 #ifttt:
 #  key: !secret ifttt_key
+
+ios:
 
 isy994:
   host: http://isy.local:80
