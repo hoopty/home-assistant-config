@@ -25,21 +25,17 @@ Weather:
 Status:
   - binary_sensor.doors_closed
   - binary_sensor.covers_closed
-  - scene.close_covers
   - binary_sensor.doors_locked
-  - scene.lock_doors
   - binary_sensor.alarm_armed
+  - scene.lock_doors
+  - scene.close_covers
   - script.arm_home
   - script.arm_away
 Family:
-  - device_tracker.bryce_phone
-  - sensor.bryce_phone_battery
-  - device_tracker.cindy_phone
-  - sensor.cindy_phone_battery
+  - device_tracker.bryphone
+  - device_tracker.cindy_iphone
   - device_tracker.jenny_phone
-  - sensor.jenny_phone_battery
   - device_tracker.katy_phone
-  - sensor.katy_phone_battery
 Lights:
   - switch.front_porch_light
   - switch.garage_light
