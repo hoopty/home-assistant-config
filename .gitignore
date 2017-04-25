@@ -7,6 +7,7 @@ www/
 *.conf
 *.sqlite
 OZW_Log.txt
+zw*.xml
 home-assistant*.db*
 envisalink.yaml
 ip_bans.yaml
