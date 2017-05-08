@@ -1,6 +1,36 @@
-front_door:
-  name: Front Door left unlocked
-  entity_id: lock.front_door_lock
+mailbox_open:
+  name: 'Mailbox is open'
+  entity_id: binary_sensor.mailbox_closed_sensor_4_0
+  state: 'off'
+  skip_first: False
+  repeat: 60
+  notifiers:
+    - phones
+main_doors_open:
+  name: 'Front or Garage door is open'
+  entity_id: binary_sensor.main_doors
+  state: 'on'
+  skip_first: True
+  repeat:
+    - 10
+    - 30
+    - 60
+  notifiers:
+    - phones
+back_door_open:
+  name: 'Back door is open'
+  entity_id: binary_sensor.back_door
+  state: 'on'
+  skip_first: True
+  repeat:
+    - 10
+    - 30
+    - 60
+  notifiers:
+    - phones
+front_door_unlocked:
+  name: 'Front Door is unlocked'
+  entity_id: lock.front_door_locked_11_0
   state: 'unlocked'
   skip_first: True
   repeat:
@@ -8,10 +38,10 @@ front_door:
     - 30
     - 60
   notifiers:
-    - notify
-back_door:
-  name: Back Door left unlocked
-  entity_id: lock.back_door_lock
+    - phones
+back_door_unlocked:
+  name: 'Back Door is unlocked'
+  entity_id: lock.back_door_locked_12_0
   state: 'unlocked'
   skip_first: True
   repeat:
@@ -19,9 +49,9 @@ back_door:
     - 30
     - 60
   notifiers:
-    - notify
-double_garage:
-  name: Double Garage left open
+    - phones
+double_garage_open:
+  name: 'Double Garage is open'
   entity_id: cover.double_garage
   state: 'open'
   skip_first: True
@@ -30,9 +60,9 @@ double_garage:
     - 30
     - 60
   notifiers:
-    - notify
-single_garage:
-  name: Single Garage left open
+    - phones
+single_garage_open:
+  name: 'Single Garage is open'
   entity_id: cover.single_garage
   state: 'open'
   skip_first: True
@@ -41,9 +71,9 @@ single_garage:
     - 30
     - 60
   notifiers:
-    - notify
-gate:
-  name: Gate left open
+    - phones
+gate_open:
+  name: 'Gate is open'
   entity_id: cover.gate
   state: 'open'
   skip_first: True
@@ -52,4 +82,4 @@ gate:
     - 30
     - 60
   notifiers:
-    - notify
+    - phones

@@ -1,4 +1,25 @@
 #
+# Z-Wave battery levels
+#
+- platform: template
+  sensors:
+    master_closet_battery:
+      friendly_name: 'Master Closet Sensor Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.master_closet_2.attributes.battery_level }}'
+      entity_id: zwave.master_closet_2
+    mailbox_closed_battery:
+      friendly_name: 'Mailbox Sensor Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.mailbox_closed_4.attributes.battery_level }}'
+      entity_id: zwave.mailbox_closed_4
+    garage_motion_battery:
+      friendly_name: 'Garage Motion Sensor Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.garage_motion_5.attributes.battery_level }}'
+      entity_id: zwave.garage_motion_5
+
+#
 # Temp Probes
 #
 - platform: rest
@@ -188,6 +209,10 @@
     - download
     - upload
   hour: 12
+
+- platform: cert_expiry
+  host: home.bryce.net
+  port: 8123
 
 #- platform: wunderground
 #  api_key: !secret wunderground_api_key

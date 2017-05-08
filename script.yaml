@@ -1,8 +1,24 @@
 arm_home:
-  alias: 'Arm Alarm - Home'
+  alias: 'Arm Alarm (Home)'
   sequence:
     - service: alarm_control_panel.alarm_arm_home
 arm_away:
-  alias: 'Arm Alarm - Away'
+  alias: 'Arm Alarm (Away)'
   sequence:
     - service: alarm_control_panel.alarm_arm_away
+gate_open:
+  alias: 'Open Gate'
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.gate_sensor_10_0
+      state: 'on'
+    - service: homeassistant.turn_on
+      entity_id: switch.gate_switch_10_0
+gate_close:
+  alias: 'Close Gate'
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.gate_sensor_10_0
+      state: 'off'
+    - service: homeassistant.turn_on
+      entity_id: switch.gate_switch_10_0

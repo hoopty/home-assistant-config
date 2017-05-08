@@ -1,8 +1,8 @@
 homeassistant:
   name: Home
-  latitude: !secret latitude
-  longitude: !secret longitude
-  elevation: 580
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_altitude
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
@@ -22,7 +22,14 @@ cover:
     username: !secret myq_username
     password: !secret myq_password
     type: liftmaster
-
+  - platform: command_line
+    scan_interval: 30
+    covers:
+      gate:
+        friendly_name: Gate
+        command_open: '/usr/local/bin/curl -k -X POST -H "Content-Type: application/json" https://localhost:8123/api/services/script/gate_open'
+        command_close: '/usr/local/bin/curl -k -X POST -H "Content-Type: application/json" https://localhost:8123/api/services/script/gate_close'
+        command_state: '/home/hass/.homeassistant/cover_status.py -e binary_sensor.gate_sensor_10_0'
 
 device_tracker:
   - platform: owntracks
@@ -74,8 +81,8 @@ history:
 
 http:
   api_password: !secret api_password
-  ssl_certificate: /usr/local/etc/letsencrypt/live/home.bryce.net/fullchain.pem
-  ssl_key: /usr/local/etc/letsencrypt/live/home.bryce.net/privkey.pem
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
   trusted_networks:
     - 127.0.0.0/8
     - 192.168.0.0/16
@@ -87,22 +94,17 @@ http:
 
 ios:
 
-isy994:
-  host: http://isy.local:80
-  username: !secret isy_username
-  password: !secret isy_password
-  sensor_string: 'Sensor'
-  hidden_string: '~'
-
 logbook:
   exclude:
     domains:
       - group
+      - zwave
 
 logger:
   default: info
   logs:
     plexapi: warn
+    homeassistant.components.http: warn
 
 media_player:
   - platform: plex
@@ -156,5 +158,5 @@ zone: !include zone.yaml
 
 zwave:
   usb_path: /dev/cuaU0
-  config_path: /home/hass/hass/lib/python3.5/site-packages/python_openzwave/ozw_config
+  config_path: /home/hass/hass/lib/python3.6/site-packages/python_openzwave/ozw_config
 

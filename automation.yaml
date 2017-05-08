@@ -8,10 +8,10 @@
     to: 'garage'
   condition:
     condition: state
-    entity_id: binary_sensor.gate_closed_sensor
+    entity_id: binary_sensor.gate_sensor_10_0
     state: 'on'
   action:
-    - service: notify.notify
+    - service: notify.phones
       data_template:
         message: 'TEST Opening Gate for {{ trigger.to_state.name }} (after {{ relative_time(trigger.from_state.last_changed) }})'
 - alias: close gate for vehicle
@@ -21,16 +21,16 @@
     from: 'garage'
   condition:
     condition: state
-    entity_id: binary_sensor.gate_closed_sensor
+    entity_id: binary_sensor.gate_sensor_10_0
     state: 'off'
   action:
-    - service: notify.notify
+    - service: notify.phones
       data_template:
         message: 'TEST Closing Gate for {{ trigger.to_state.name }} (after {{ relative_time(trigger.from_state.last_changed) }})'
 - alias: thermostat home mode
   trigger:
     platform: state
-    entity_id: group.all_devices
+    entity_id: device_tracker.bryphone, device_tracker.cindy_iphone
     from: 'not_home'
     to: 'home'
   condition:
@@ -40,25 +40,9 @@
     - service: climate.set_away_mode
       data:
         away_mode: 'False'
-    - service: notify.notify
+    - service: notify.phones
       data_template:
         message: 'Thermostat away mode disabled.'
-
-#
-# Motion/Activity automations
-#
-- alias: mailbox motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.mailbox_closed_sensor
-    to: 'off'
-  action:
-    - service: notify.notify
-      data_template:
-        message: "You've got mail!"
-    - service: logbook.log
-      data_template:
-        message: "You've got mail!"
 
 #
 # Lights/Switches on/off
@@ -66,43 +50,43 @@
 - alias: garage motion on
   trigger:
     platform: state
-    entity_id: binary_sensor.garage_motion_sensor
+    entity_id: binary_sensor.garage_motion_sensor_5_0
     to: 'on'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.garage_light
+    entity_id: switch.garage_light_switch_8_0
 - alias: garage motion off
   trigger:
     platform: state
-    entity_id: binary_sensor.garage_motion_sensor
+    entity_id: binary_sensor.garage_motion_sensor_5_0
     to: 'off'
   action:
     service: homeassistant.turn_off
-    entity_id: switch.garage_light
+    entity_id: switch.garage_light_switch_8_0
 - alias: driveway lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.covers_closed
-    to: 'off'
+    entity_id: group.all_covers
+    to: 'open'
   condition:
     condition: state
     entity_id: sun.sun
     state: 'below_horizon'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.driveway_light
+    entity_id: switch.driveway_light_switch_6_0
 - alias: driveway lights off
   trigger:
     platform: state
-    entity_id: binary_sensor.covers_closed
-    to: 'on'
+    entity_id: group.all_covers
+    to: 'closed'
   condition:
     condition: state
     entity_id: sun.sun
     state: 'below_horizon'
   action:
     service: homeassistant.turn_off
-    entity_id: switch.driveway_light
+    entity_id: switch.driveway_light_switch_6_0
 - alias: sunset lights on
   trigger:
     platform: sun
@@ -110,21 +94,21 @@
     offset: '-00:30:00'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.front_porch_light, light.living_room_lamp
+    entity_id: switch.front_porch_light_switch_3_0, light.living_room_lamp_level_7_0
 - alias: late night lights off
   trigger:
     platform: time
     after: '00:00:00'
   action:
     service: homeassistant.turn_off
-    entity_id: light.living_room_lamp
+    entity_id: light.living_room_lamp_level_7_0
 - alias: sunrise lights off
   trigger:
     platform: sun
     event: sunrise
   action:
     service: homeassistant.turn_off
-    entity_id: switch.front_porch_light
+    entity_id: switch.front_porch_light_switch_3_0
 
 #
 # Device Battery automations
@@ -135,7 +119,7 @@
     entity_id: group.all_devices
     below: 25
   action:
-    - service: notify.notify
+    - service: notify.phones
       data_template:
         message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
     - service: logbook.log
@@ -153,7 +137,7 @@
     entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
     above: 20
   action:
-    - service: notify.notify
+    - service: notify.phones
       data_template:
         message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
     - service: logbook.log
@@ -167,7 +151,7 @@
     entity_id: sensor.drink_fridge_temp
     above: 50
   action:
-    - service: notify.notify
+    - service: notify.phones
       data_template:
         message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
     - service: logbook.log

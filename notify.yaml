@@ -1,4 +1,4 @@
-- name: notify
+- name: phones
   platform: group
   services:
     - service: ios_bryphone

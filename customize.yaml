@@ -3,65 +3,49 @@
 #
 sensor.temp_values:
   hidden: true
+sensor.bryphone_battery_state:
+  hidden: true
+sensor.cindy_iphone_battery_state:
+  hidden: true
 
 #
 # Friendly Names
 #
 media_player.directv_rid023846842815:
-  friendly_name: DirecTV DVR
+  friendly_name: 'DirecTV DVR'
 media_player._living_room_un55ku6300:
-  friendly_name: Living Room TV
+  friendly_name: 'Living Room TV'
 media_player._bed_room_un55f6300:
-  friendly_name: Master Bedroom TV
+  friendly_name: 'Master Bedroom TV'
 scene.close_covers:
-  friendly_name: Close Garages & Gate
+  friendly_name: 'Close Garages & Gate'
 sensor.speedtest_download:
-  friendly_name: Internet Downlink
+  friendly_name: 'Internet Downlink'
 sensor.speedtest_upload:
-  friendly_name: Internet Uplink
+  friendly_name: 'Internet Uplink'
+binary_sensor.gate_sensor_10_0:
+  friendly_name: 'Gate Closed'
 
 #
 # Icons
 #
-binary_sensor.doors_locked:
-  icon: mdi:lock
 binary_sensor.alarm_armed:
   icon: mdi:lock
-sensor.bryce_phone_battery:
-  icon: mdi:battery
-sensor.cindy_phone_battery:
-  icon: mdi:battery
-sensor.jenny_phone_battery:
-  icon: mdi:battery
-sensor.katy_phone_battery:
-  icon: mdi:battery
 scene.lock_doors:
   icon: mdi:lock
 script.arm_home:
   icon: mdi:lock
 script.arm_away:
   icon: mdi:lock
-switch.front_porch_light:
+switch.front_porch_light_switch_3_0:
   icon: mdi:lightbulb
-switch.garage_light:
+switch.garage_light_switch_8_0:
   icon: mdi:lightbulb
-switch.driveway_light:
+switch.driveway_light_switch_6_0:
   icon: mdi:lightbulb
 
 #
 # Disable Emulated Hue (even hidden enities)
 #
-switch.auto_dr:
-  emulated_hue: false
-switch.garage_motion_tamper_alarm:
-  emulated_hue: false
-switch.gate_opener:
-  emulated_hue: false
-switch.gate_power_management:
-  emulated_hue: false
-switch.gate_pulse_meter:
-  emulated_hue: false
-switch.mailbox_intrusion_alarm:
-  emulated_hue: false
-switch.mailbox_tamper_alarm:
-  emulated_hue: false
+#switch.example:
+#  emulated_hue: false

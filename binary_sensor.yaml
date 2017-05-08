@@ -6,27 +6,27 @@
 - platform: template
   sensors:
     doors_closed:
-      friendly_name: 'Doors & Windows Closed'
+      friendly_name: 'Doors & Windows'
       device_class: opening
       value_template: >-
-        {{ is_state('binary_sensor.main_doors', 'off')
-          and is_state('binary_sensor.back_door', 'off')
-          and is_state('binary_sensor.master_windows', 'off')
-          and is_state('binary_sensor.upstairs_windows', 'off')
-          and is_state('binary_sensor.downstairs_windows', 'off') }}
+        {{ states('binary_sensor.main_doors') == 'closed'
+          and states('binary_sensor.back_door') == 'closed'
+          and states('binary_sensor.master_windows') == 'closed'
+          and states('binary_sensor.downstairs_windows') == 'closed'
+          and states('binary_sensor.upstairs_windows') == 'closed' }}
       entity_id:
         - binary_sensor.main_doors
         - binary_sensor.back_door
         - binary_sensor.master_windows
-        - binary_sensor.upstairs_windows
         - binary_sensor.downstairs_windows
+        - binary_sensor.upstairs_windows
     covers_closed:
-      friendly_name: 'Garages & Gate Closed'
+      friendly_name: 'Garages & Gate'
       device_class: opening
       value_template: >-
-        {{ is_state('cover.gate', 'closed')
-          and is_state('cover.double_garage', 'closed')
-          and is_state('cover.single_garage', 'closed') }}
+        {{ states('cover.gate') == 'closed'
+          and states('cover.double_garage') == 'closed'
+          and states('cover.single_garage') == 'closed' }}
       entity_id:
         - cover.gate
         - cover.double_garage
@@ -34,15 +34,15 @@
     doors_locked:
       friendly_name: 'Doors Locked'
       value_template: >-
-        {{ is_state('lock.front_door_lock', 'locked')
-          and is_state('lock.back_door_lock', 'locked')
-          and is_state('lock.garage_door_lock', 'locked') }}
+        {{ is_state('lock.front_door_lock') == 'locked'
+          and is_state('lock.back_door_lock') == 'locked'
+          and is_state('lock.garage_door_lock') == 'locked' }}
       entity_id:
         - lock.front_door_lock
         - lock.back_door_lock
         - lock.garage_door_lock
     alarm_armed:
       friendly_name: 'Alarm Armed'
-      value_template: "{{ is_state('alarm_control_panel.home_alarm', 'armed_away') or is_state('alarm_control_panel.home_alarm', 'pending') }}"
+      value_template: "{{ states('alarm_control_panel.home_alarm') == 'armed_away' or states('alarm_control_panel.home_alarm') == 'pending' }}"
       entity_id:
         - alarm_control_panel.home_alarm

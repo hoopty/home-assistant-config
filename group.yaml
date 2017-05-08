@@ -1,10 +1,10 @@
 default_view:
   view: true
   entities:
+    - group.alerts
     - group.status
     - group.family
     - group.lights
-    - group.doors
     - group.alarm
 Climate:
   view: true
@@ -12,16 +12,35 @@ Climate:
     - group.downstairs_climate
     - group.upstairs_climate
     - group.garage_climate
+    - group.other_climate
 Media:
   view: true
   entities:
     - group.media_players
+    - group.nzbget
+    - group.sonarr
     - group.network
 Weather:
   view: true
   entities:
     - group.weather_station
+Sensors:
+  view: true
+  entities:
+    - group.activity
+    - group.zwave_battery
+    - group.zwave_nodes
+    - group.zwave_misc
 
+Alerts:
+  - alert.mailbox_open
+  - alert.main_doors_open
+  - alert.back_door_open
+  - alert.front_door_unlocked
+  - alert.back_door_unlocked
+  - alert.double_garage_open
+  - alert.single_garage_open
+  - alert.gate_open
 Status:
   - binary_sensor.doors_closed
   - binary_sensor.covers_closed
@@ -36,21 +55,14 @@ Family:
   - device_tracker.cindy_iphone
   - device_tracker.jenny_phone
   - device_tracker.katy_phone
+  - sensor.bryphone_battery_level
+  - sensor.cindy_iphone_battery_level
 Lights:
-  - switch.front_porch_light
-  - switch.garage_light
-  - switch.driveway_light
-  - light.living_room_lamp
-  - light.media_room_lamp
-Doors:
-  - cover.gate
-  - cover.double_garage
-  - cover.single_garage
-  - scene.close_covers
-  - lock.front_door_lock
-  - lock.back_door_lock
-  - lock.garage_door_lock
-  - scene.lock_doors
+  - switch.front_porch_light_switch_3_0
+  - switch.garage_light_switch_8_0
+  - switch.driveway_light_switch_6_0
+  - light.living_room_lamp_level_7_0
+  - light.media_room_lamp_level_9_0
 Alarm:
   - alarm_control_panel.home_alarm
   - sensor.home_alarm_keypad
@@ -86,21 +98,28 @@ Garage Climate:
   - sensor.freezer_temp
   - sensor.drink_fridge_temp
   - sensor.garage_temp
+Other Climate:
+  - sensor.master_closet_temperature_2_1
+  - sensor.master_closet_relative_humidity_2_5
+  - sensor.master_closet_luminance_2_3
 Media Players:
   - remote.media_room
   - sensor.media_room_remote
   - sensor.plex
   - media_player.directv_rid023846842815
-Network:
+NZBGet:
   - sensor.nzbget_download_paused
-  - sensor.nzbget_average_speed
   - sensor.nzbget_speed
+  - sensor.nzbget_average_speed
   - sensor.nzbget_queue_size
   - sensor.nzbget_size
   - sensor.nzbget_disk_free
+Sonarr:
   - sensor.sonarr_queue
   - sensor.sonarr_wanted
   - sensor.sonarr_upcoming
+Network:
+  - sensor.ssl_certificate_expiry
   - sensor.speedtest_download
   - sensor.speedtest_upload
 Weather Station:
@@ -125,3 +144,66 @@ Weather Station:
   - sensor.wx_inside_temperature
   - sensor.wx_inside_dewpoint
   - sensor.wx_inside_humidity
+Activity:
+  - binary_sensor.ring_front_door_ding
+  - binary_sensor.ring_front_door_motion
+  - binary_sensor.gate_sensor_10_0
+  - binary_sensor.garage_motion_sensor_5_0
+  - binary_sensor.mailbox_closed_sensor_4_0
+  - binary_sensor.master_closet_sensor_2_0
+ZWave Battery:
+  - sensor.master_closet_battery
+  - sensor.mailbox_closed_battery
+  - sensor.garage_motion_battery
+ZWave Nodes:
+  - zwave.zwaveme_zme_uzb1_usb_stick_1
+  - zwave.master_closet_2
+  - zwave.front_porch_light_3
+  - zwave.mailbox_closed_4
+  - zwave.garage_motion_5
+  - zwave.driveway_light_6
+  - zwave.living_room_lamp_7
+  - zwave.garage_light_8
+  - zwave.media_room_lamp_9
+  - zwave.gate_10
+  - zwave.front_door_11
+  - zwave.back_door_12
+  - zwave.garage_door_13
+ZWave Misc:
+  - sensor.mailbox_closed_alarm_type_4_0
+  - sensor.mailbox_closed_alarm_level_4_1
+  - sensor.mailbox_closed_sourcenodeid_4_2
+  - sensor.mailbox_closed_burglar_4_10
+  - sensor.master_closet_alarm_type_2_0
+  - sensor.master_closet_alarm_level_2_1
+  - sensor.master_closet_sourcenodeid_2_2
+  - sensor.master_closet_appliance_2_15
+  - sensor.master_closet_burglar_2_10
+  - sensor.garage_motion_alarm_type_5_0
+  - sensor.garage_motion_alarm_level_5_1
+  - sensor.garage_motion_sourcenodeid_5_2
+  - sensor.garage_motion_burglar_5_10
+  - sensor.gate_alarm_type_10_0
+  - sensor.gate_alarm_level_10_1
+  - sensor.gate_general_10_2
+  - sensor.front_door_alarm_type_11_0
+  - sensor.front_door_alarm_level_11_1
+  - sensor.front_door_sourcenodeid_11_2
+  - sensor.front_door_access_control_11_9
+  - sensor.front_door_burglar_11_10
+  - sensor.front_door_power_management_11_11
+  - sensor.front_door_system_11_12
+  - sensor.back_door_alarm_type_12_0
+  - sensor.back_door_alarm_level_12_1
+  - sensor.back_door_sourcenodeid_12_2
+  - sensor.back_door_access_control_12_9
+  - sensor.back_door_burglar_12_10
+  - sensor.back_door_power_management_12_11
+  - sensor.back_door_system_12_12
+  - sensor.garage_door_alarm_type_13_0
+  - sensor.garage_door_alarm_level_13_1
+  - sensor.garage_door_sourcenodeid_13_2
+  - sensor.garage_door_access_control_13_9
+  - sensor.garage_door_burglar_13_10
+  - sensor.garage_door_power_management_13_11
+  - sensor.garage_door_system_13_12

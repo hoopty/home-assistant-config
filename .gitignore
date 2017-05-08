@@ -6,8 +6,6 @@ www/
 *.pid
 *.conf
 *.sqlite
-OZW_Log.txt
-zw*.xml
 home-assistant*.db*
 envisalink.yaml
 ip_bans.yaml
@@ -15,3 +13,10 @@ known_devices.yaml
 secrets.yaml
 stuff.yaml
 zone.yaml
+# Z-Wave
+ozw_config
+zwcfg_*.xml
+zwscene.xml
+zwave_device_config.yaml
+options.xml
+OZW_Log.txt
