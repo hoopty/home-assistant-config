@@ -4,6 +4,8 @@ default_view:
     - group.alerts
     - group.status
     - group.family
+    - group.garage_doors
+    - group.door_locks
     - group.lights
     - group.alarm
 Climate:
@@ -46,10 +48,18 @@ Status:
   - binary_sensor.covers_closed
   - binary_sensor.doors_locked
   - binary_sensor.alarm_armed
-  - scene.lock_doors
   - scene.close_covers
+  - scene.lock_doors
   - script.arm_home
   - script.arm_away
+Door Locks:
+  - lock.front_door_locked_11_0
+  - lock.back_door_locked_12_0
+  - lock.garage_door_locked_13_0
+Garage Doors:
+  - cover.double_garage
+  - cover.single_garage
+  - cover.gate
 Family:
   - device_tracker.bryphone
   - device_tracker.cindy_iphone
