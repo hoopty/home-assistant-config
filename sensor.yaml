@@ -3,6 +3,21 @@
 #
 - platform: template
   sensors:
+    front_door_lock_battery:
+      friendly_name: 'Front Door Lock Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.front_door_11.attributes.battery_level }}'
+      entity_id: zwave.front_door_11
+    back_door_lock_battery:
+      friendly_name: 'Back Door Lock Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.back_door_12.attributes.battery_level }}'
+      entity_id: zwave.back_door_12
+    garage_door_lock_battery:
+      friendly_name: 'Garage Door Lock Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.garage_door_13.attributes.battery_level }}'
+      entity_id: zwave.garage_door_13
     master_closet_battery:
       friendly_name: 'Master Closet Sensor Battery'
       unit_of_measurement: '%'

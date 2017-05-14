@@ -162,6 +162,9 @@ Activity:
   - binary_sensor.mailbox_closed_sensor_4_0
   - binary_sensor.master_closet_sensor_2_0
 ZWave Battery:
+  - sensor.front_door_lock_battery
+  - sensor.back_door_lock_battery
+  - sensor.garage_door_lock_battery
   - sensor.master_closet_battery
   - sensor.mailbox_closed_battery
   - sensor.garage_motion_battery
