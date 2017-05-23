@@ -9,7 +9,7 @@ homeassistant:
 
 alert: !include alert.yaml
 
-automation: !include automation.yaml
+automation: !include automations.yaml
 
 binary_sensor: !include binary_sensor.yaml
 
