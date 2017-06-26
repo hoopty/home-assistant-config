@@ -6,33 +6,33 @@
     front_door_lock_battery:
       friendly_name: 'Front Door Lock Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.front_door_11.attributes.battery_level }}'
-      entity_id: zwave.front_door_11
+      value_template: '{{ states.zwave.front_door.attributes.battery_level }}'
+      entity_id: zwave.front_door
     back_door_lock_battery:
       friendly_name: 'Back Door Lock Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.back_door_12.attributes.battery_level }}'
-      entity_id: zwave.back_door_12
+      value_template: '{{ states.zwave.back_door.attributes.battery_level }}'
+      entity_id: zwave.back_door
     garage_door_lock_battery:
       friendly_name: 'Garage Door Lock Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.garage_door_13.attributes.battery_level }}'
-      entity_id: zwave.garage_door_13
+      value_template: '{{ states.zwave.garage_door.attributes.battery_level }}'
+      entity_id: zwave.garage_door
     master_closet_battery:
       friendly_name: 'Master Closet Sensor Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.master_closet_2.attributes.battery_level }}'
-      entity_id: zwave.master_closet_2
+      value_template: '{{ states.zwave.master_closet.attributes.battery_level }}'
+      entity_id: zwave.master_closet
     mailbox_closed_battery:
       friendly_name: 'Mailbox Sensor Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.mailbox_closed_4.attributes.battery_level }}'
-      entity_id: zwave.mailbox_closed_4
+      value_template: '{{ states.zwave.mailbox_closed.attributes.battery_level }}'
+      entity_id: zwave.mailbox_closed
     garage_motion_battery:
       friendly_name: 'Garage Motion Sensor Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.garage_motion_5.attributes.battery_level }}'
-      entity_id: zwave.garage_motion_5
+      value_template: '{{ states.zwave.garage_motion.attributes.battery_level }}'
+      entity_id: zwave.garage_motion
 
 #
 # Temp Probes

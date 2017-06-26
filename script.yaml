@@ -10,15 +10,15 @@ gate_open:
   alias: 'Open Gate'
   sequence:
     - condition: state
-      entity_id: binary_sensor.gate_sensor_10_0
+      entity_id: binary_sensor.gate_sensor
       state: 'on'
     - service: homeassistant.turn_on
-      entity_id: switch.gate_switch_10_0
+      entity_id: switch.gate_switch
 gate_close:
   alias: 'Close Gate'
   sequence:
     - condition: state
-      entity_id: binary_sensor.gate_sensor_10_0
+      entity_id: binary_sensor.gate_sensor
       state: 'off'
     - service: homeassistant.turn_on
-      entity_id: switch.gate_switch_10_0
+      entity_id: switch.gate_switch

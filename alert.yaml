@@ -1,6 +1,6 @@
 mailbox_open:
   name: 'Mailbox is open'
-  entity_id: binary_sensor.mailbox_closed_sensor_4_0
+  entity_id: binary_sensor.mailbox_closed_sensor
   state: 'off'
   skip_first: False
   repeat: 60
@@ -30,7 +30,7 @@ back_door_open:
     - phones
 front_door_unlocked:
   name: 'Front Door is unlocked'
-  entity_id: lock.front_door_locked_11_0
+  entity_id: lock.front_door_locked
   state: 'unlocked'
   skip_first: True
   repeat:
@@ -41,7 +41,7 @@ front_door_unlocked:
     - phones
 back_door_unlocked:
   name: 'Back Door is unlocked'
-  entity_id: lock.back_door_locked_12_0
+  entity_id: lock.back_door_locked
   state: 'unlocked'
   skip_first: True
   repeat:

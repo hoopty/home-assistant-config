@@ -1,8 +1,8 @@
 - name: Lock Doors
   entities:
-    lock.front_door_locked_11_0: locked
-    lock.back_door_locked_12_0: locked
-    lock.garage_door_locked_13_0: locked
+    lock.front_door_locked: locked
+    lock.back_door_locked: locked
+    lock.garage_door_locked: locked
 - name: Close Covers
   entities:
     cover.double_garage: closed

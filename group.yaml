@@ -53,9 +53,9 @@ Status:
   - script.arm_home
   - script.arm_away
 Door Locks:
-  - lock.front_door_locked_11_0
-  - lock.back_door_locked_12_0
-  - lock.garage_door_locked_13_0
+  - lock.front_door_locked
+  - lock.back_door_locked
+  - lock.garage_door_locked
 Garage Doors:
   - cover.double_garage
   - cover.single_garage
@@ -68,11 +68,11 @@ Family:
   - sensor.bryphone_battery_level
   - sensor.cindy_iphone_battery_level
 Lights:
-  - switch.front_porch_light_switch_3_0
-  - switch.garage_light_switch_8_0
-  - switch.driveway_light_switch_6_0
-  - light.living_room_lamp_level_7_0
-  - light.media_room_lamp_level_9_0
+  - switch.front_porch_light_switch
+  - switch.garage_light_switch
+  - switch.driveway_light_switch
+  - light.living_room_lamp_level
+  - light.media_room_lamp_level
 Alarm:
   - alarm_control_panel.home_alarm
   - sensor.home_alarm_keypad
@@ -109,9 +109,9 @@ Garage Climate:
   - sensor.drink_fridge_temp
   - sensor.garage_temp
 Other Climate:
-  - sensor.master_closet_temperature_2_1
-  - sensor.master_closet_relative_humidity_2_5
-  - sensor.master_closet_luminance_2_3
+  - sensor.master_closet_temperature
+  - sensor.master_closet_relative_humidity
+  - sensor.master_closet_luminance
 Media Players:
   - remote.media_room
   - sensor.media_room_remote
@@ -157,10 +157,10 @@ Weather Station:
 Activity:
   - binary_sensor.ring_front_door_ding
   - binary_sensor.ring_front_door_motion
-  - binary_sensor.gate_sensor_10_0
-  - binary_sensor.garage_motion_sensor_5_0
-  - binary_sensor.mailbox_closed_sensor_4_0
-  - binary_sensor.master_closet_sensor_2_0
+  - binary_sensor.gate_sensor
+  - binary_sensor.garage_motion_sensor
+  - binary_sensor.mailbox_closed_sensor
+  - binary_sensor.master_closet_sensor
 ZWave Battery:
   - sensor.front_door_lock_battery
   - sensor.back_door_lock_battery
@@ -169,54 +169,54 @@ ZWave Battery:
   - sensor.mailbox_closed_battery
   - sensor.garage_motion_battery
 ZWave Nodes:
-  - zwave.zwaveme_zme_uzb1_usb_stick_1
-  - zwave.master_closet_2
-  - zwave.front_porch_light_3
-  - zwave.mailbox_closed_4
-  - zwave.garage_motion_5
-  - zwave.driveway_light_6
-  - zwave.living_room_lamp_7
-  - zwave.garage_light_8
-  - zwave.media_room_lamp_9
-  - zwave.gate_10
-  - zwave.front_door_11
-  - zwave.back_door_12
-  - zwave.garage_door_13
+  - zwave.zwaveme_zme_uzb1_usb_stick
+  - zwave.master_closet
+  - zwave.front_porch_light
+  - zwave.mailbox_closed
+  - zwave.garage_motion
+  - zwave.driveway_light
+  - zwave.living_room_lamp
+  - zwave.garage_light
+  - zwave.media_room_lamp
+  - zwave.gate
+  - zwave.front_door
+  - zwave.back_door
+  - zwave.garage_door
 ZWave Misc:
-  - sensor.mailbox_closed_alarm_type_4_0
-  - sensor.mailbox_closed_alarm_level_4_1
-  - sensor.mailbox_closed_sourcenodeid_4_2
-  - sensor.mailbox_closed_burglar_4_10
-  - sensor.master_closet_alarm_type_2_0
-  - sensor.master_closet_alarm_level_2_1
-  - sensor.master_closet_sourcenodeid_2_2
-  - sensor.master_closet_appliance_2_15
-  - sensor.master_closet_burglar_2_10
-  - sensor.garage_motion_alarm_type_5_0
-  - sensor.garage_motion_alarm_level_5_1
-  - sensor.garage_motion_sourcenodeid_5_2
-  - sensor.garage_motion_burglar_5_10
-  - sensor.gate_alarm_type_10_0
-  - sensor.gate_alarm_level_10_1
-  - sensor.gate_general_10_2
-  - sensor.front_door_alarm_type_11_0
-  - sensor.front_door_alarm_level_11_1
-  - sensor.front_door_sourcenodeid_11_2
-  - sensor.front_door_access_control_11_9
-  - sensor.front_door_burglar_11_10
-  - sensor.front_door_power_management_11_11
-  - sensor.front_door_system_11_12
-  - sensor.back_door_alarm_type_12_0
-  - sensor.back_door_alarm_level_12_1
-  - sensor.back_door_sourcenodeid_12_2
-  - sensor.back_door_access_control_12_9
-  - sensor.back_door_burglar_12_10
-  - sensor.back_door_power_management_12_11
-  - sensor.back_door_system_12_12
-  - sensor.garage_door_alarm_type_13_0
-  - sensor.garage_door_alarm_level_13_1
-  - sensor.garage_door_sourcenodeid_13_2
-  - sensor.garage_door_access_control_13_9
-  - sensor.garage_door_burglar_13_10
-  - sensor.garage_door_power_management_13_11
-  - sensor.garage_door_system_13_12
+  - sensor.mailbox_closed_alarm_type
+  - sensor.mailbox_closed_alarm_level
+  - sensor.mailbox_closed_sourcenodeid
+  - sensor.mailbox_closed_burglar
+  - sensor.master_closet_alarm_type
+  - sensor.master_closet_alarm_level
+  - sensor.master_closet_sourcenodeid
+  - sensor.master_closet_appliance
+  - sensor.master_closet_burglar
+  - sensor.garage_motion_alarm_type
+  - sensor.garage_motion_alarm_level
+  - sensor.garage_motion_sourcenodeid
+  - sensor.garage_motion_burglar
+  - sensor.gate_alarm_type
+  - sensor.gate_alarm_level
+  - sensor.gate_general
+  - sensor.front_door_alarm_type
+  - sensor.front_door_alarm_level
+  - sensor.front_door_sourcenodeid
+  - sensor.front_door_access_control
+  - sensor.front_door_burglar
+  - sensor.front_door_power_management
+  - sensor.front_door_system
+  - sensor.back_door_alarm_type
+  - sensor.back_door_alarm_level
+  - sensor.back_door_sourcenodeid
+  - sensor.back_door_access_control
+  - sensor.back_door_burglar
+  - sensor.back_door_power_management
+  - sensor.back_door_system
+  - sensor.garage_door_alarm_type
+  - sensor.garage_door_alarm_level
+  - sensor.garage_door_sourcenodeid
+  - sensor.garage_door_access_control
+  - sensor.garage_door_burglar
+  - sensor.garage_door_power_management
+  - sensor.garage_door_system

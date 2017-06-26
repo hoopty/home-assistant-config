@@ -23,7 +23,7 @@ sensor.speedtest_download:
   friendly_name: 'Internet Downlink'
 sensor.speedtest_upload:
   friendly_name: 'Internet Uplink'
-binary_sensor.gate_sensor_10_0:
+binary_sensor.gate_sensor:
   friendly_name: 'Gate Closed'
 
 #
@@ -37,11 +37,11 @@ script.arm_home:
   icon: mdi:lock
 script.arm_away:
   icon: mdi:lock
-switch.front_porch_light_switch_3_0:
+switch.front_porch_light_switch:
   icon: mdi:lightbulb
-switch.garage_light_switch_8_0:
+switch.garage_light_switch:
   icon: mdi:lightbulb
-switch.driveway_light_switch_6_0:
+switch.driveway_light_switch:
   icon: mdi:lightbulb
 
 #
