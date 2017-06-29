@@ -92,6 +92,13 @@ influxdb:
 
 ios:
 
+isy994:
+  host: http://isy.local:80
+  username: !secret isy_username
+  password: !secret isy_password
+  sensor_string: 'Sensor'
+  hidden_string: '~'
+
 logbook:
   exclude:
     domains:

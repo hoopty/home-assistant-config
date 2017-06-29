@@ -21,6 +21,7 @@ Media:
     - group.media_players
     - group.nzbget
     - group.sonarr
+    - group.radarr
     - group.network
 Weather:
   view: true
@@ -128,6 +129,10 @@ Sonarr:
   - sensor.sonarr_queue
   - sensor.sonarr_wanted
   - sensor.sonarr_upcoming
+Radarr:
+  - sensor.radarr_upcoming
+  - sensor.radarr_commands
+  - sensor.radarr_status
 Network:
   - sensor.ssl_certificate_expiry
   - sensor.speedtest_download

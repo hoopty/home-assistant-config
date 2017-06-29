@@ -218,6 +218,15 @@
     - wanted
     - queue
 
+- platform: radarr
+  api_key: !secret radarr_api_key
+  host: media.local
+  urlbase: /movies
+  monitored_conditions:
+    - upcoming
+    - commands
+    - status
+
 - platform: speedtest
   server_id: 4323
   monitored_conditions:
