@@ -37,12 +37,6 @@ script.arm_home:
   icon: mdi:lock
 script.arm_away:
   icon: mdi:lock
-switch.porch_light:
-  icon: mdi:lightbulb
-switch.garage_light:
-  icon: mdi:lightbulb
-switch.driveway_light:
-  icon: mdi:lightbulb
 
 #
 # Disable Emulated Hue (even hidden enities)

@@ -6,6 +6,9 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
+  customize_glob:
+    "switch.*_light":
+      icon: mdi:lightbulb
 
 alert: !include alert.yaml
 
@@ -22,14 +25,18 @@ cover:
     username: !secret myq_username
     password: !secret myq_password
     type: liftmaster
-  - platform: command_line
-    scan_interval: 30
+  - platform: template
     covers:
       gate:
-        friendly_name: Gate
-        command_open: '/usr/local/bin/curl -k -X POST -H "Content-Type: application/json" https://localhost:8123/api/services/script/gate_open'
-        command_close: '/usr/local/bin/curl -k -X POST -H "Content-Type: application/json" https://localhost:8123/api/services/script/gate_close'
-        command_state: '/home/hass/.homeassistant/cover_status.py -e binary_sensor.gate_closed_sensor'
+        friendly_name: 'Gate'
+        value_template: "{{ is_state('binary_sensor.gate_closed_sensor', 'off') }}"
+        entity_id: binary_sensor.gate_closed_sensor
+        open_cover:
+          service: script.gate_open
+        close_cover:
+          service: script.gate_close
+        stop_cover:
+          service: script.gate_open
 
 device_tracker:
   - platform: owntracks

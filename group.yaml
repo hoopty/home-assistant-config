@@ -131,8 +131,8 @@ NZBGet:
   - sensor.nzbget_disk_free
 Sonarr:
   - sensor.sonarr_queue
-  - sensor.sonarr_wanted
   - sensor.sonarr_upcoming
+  - sensor.sonarr_wanted
 Radarr:
   - sensor.radarr_upcoming
   - sensor.radarr_commands
