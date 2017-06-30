@@ -8,7 +8,7 @@
     to: 'garage'
   condition:
     condition: state
-    entity_id: binary_sensor.gate_sensor
+    entity_id: binary_sensor.gate_closed_sensor
     state: 'on'
   action:
     - service: notify.phones
@@ -21,7 +21,7 @@
     from: 'garage'
   condition:
     condition: state
-    entity_id: binary_sensor.gate_sensor
+    entity_id: binary_sensor.gate_closed_sensor
     state: 'off'
   action:
     - service: notify.phones
@@ -54,7 +54,7 @@
     to: 'on'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.garage_light_switch
+    entity_id: switch.garage_light
 - alias: garage motion off
   trigger:
     platform: state
@@ -62,7 +62,7 @@
     to: 'off'
   action:
     service: homeassistant.turn_off
-    entity_id: switch.garage_light_switch
+    entity_id: switch.garage_light
 - alias: driveway lights on
   trigger:
     platform: state
@@ -74,7 +74,7 @@
     state: 'below_horizon'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.driveway_light_switch
+    entity_id: switch.driveway_light
 - alias: driveway lights off
   trigger:
     platform: state
@@ -86,7 +86,7 @@
     state: 'below_horizon'
   action:
     service: homeassistant.turn_off
-    entity_id: switch.driveway_light_switch
+    entity_id: switch.driveway_light
 - alias: sunset lights on
   trigger:
     platform: sun
@@ -94,21 +94,21 @@
     offset: '-00:30:00'
   action:
     service: homeassistant.turn_on
-    entity_id: switch.front_porch_light_switch, light.living_room_lamp_level
+    entity_id: switch.porch_light, light.living_room_lamp
 - alias: late night lights off
   trigger:
     platform: time
     after: '00:00:00'
   action:
     service: homeassistant.turn_off
-    entity_id: light.living_room_lamp_level
+    entity_id: light.living_room_lamp
 - alias: sunrise lights off
   trigger:
     platform: sun
     event: sunrise
   action:
     service: homeassistant.turn_off
-    entity_id: switch.front_porch_light_switch
+    entity_id: switch.porch_light
 
 #
 # Device Battery automations

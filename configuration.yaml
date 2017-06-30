@@ -29,7 +29,7 @@ cover:
         friendly_name: Gate
         command_open: '/usr/local/bin/curl -k -X POST -H "Content-Type: application/json" https://localhost:8123/api/services/script/gate_open'
         command_close: '/usr/local/bin/curl -k -X POST -H "Content-Type: application/json" https://localhost:8123/api/services/script/gate_close'
-        command_state: '/home/hass/.homeassistant/cover_status.py -e binary_sensor.gate_sensor'
+        command_state: '/home/hass/.homeassistant/cover_status.py -e binary_sensor.gate_closed_sensor'
 
 device_tracker:
   - platform: owntracks
@@ -103,7 +103,6 @@ logbook:
   exclude:
     domains:
       - group
-      - zwave
 
 logger:
   default: info
@@ -154,11 +153,12 @@ sensor: !include sensor.yaml
 sun:
 
 updater:
+  include_used_components: true
 
 zone: !include zone.yaml
 
-zwave:
-  usb_path: /dev/cuaU0
-  config_path: /home/hass/hass/lib/python3.6/site-packages/python_openzwave/ozw_config
-  new_entity_ids: true
+#zwave:
+#  usb_path: /dev/cuaU0
+#  config_path: /home/hass/hass/lib/python3.6/site-packages/python_openzwave/ozw_config
+#  new_entity_ids: true
 

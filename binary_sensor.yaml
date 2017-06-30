@@ -34,13 +34,13 @@
     doors_locked:
       friendly_name: 'Doors Locked'
       value_template: >-
-        {{ states('lock.front_door_locked') == 'locked'
-          and states('lock.back_door_locked') == 'locked'
-          and states('lock.garage_door_locked') == 'locked' }}
+        {{ states('lock.front_door_lock') == 'locked'
+          and states('lock.back_door_lock') == 'locked'
+          and states('lock.garage_door_lock') == 'locked' }}
       entity_id:
-        - lock.front_door_locked
-        - lock.back_door_locked
-        - lock.garage_door_locked
+        - lock.front_door_lock
+        - lock.back_door_lock
+        - lock.garage_door_lock
     alarm_armed:
       friendly_name: 'Alarm Armed'
       value_template: "{{ states('alarm_control_panel.home_alarm') == 'armed_away' or states('alarm_control_panel.home_alarm') == 'pending' }}"

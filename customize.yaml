@@ -11,6 +11,8 @@ sensor.cindy_iphone_battery_state:
 #
 # Friendly Names
 #
+binary_sensor.gate_closed_sensor:
+  friendly_name: 'Gate Closed'
 media_player.directv_rid023846842815:
   friendly_name: 'DirecTV DVR'
 media_player._living_room_un55ku6300:
@@ -23,8 +25,6 @@ sensor.speedtest_download:
   friendly_name: 'Internet Downlink'
 sensor.speedtest_upload:
   friendly_name: 'Internet Uplink'
-binary_sensor.gate_sensor:
-  friendly_name: 'Gate Closed'
 
 #
 # Icons
@@ -37,11 +37,11 @@ script.arm_home:
   icon: mdi:lock
 script.arm_away:
   icon: mdi:lock
-switch.front_porch_light_switch:
+switch.porch_light:
   icon: mdi:lightbulb
-switch.garage_light_switch:
+switch.garage_light:
   icon: mdi:lightbulb
-switch.driveway_light_switch:
+switch.driveway_light:
   icon: mdi:lightbulb
 
 #

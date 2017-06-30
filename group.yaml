@@ -3,11 +3,12 @@ default_view:
   entities:
     - group.alerts
     - group.status
-    - group.family
-    - group.garage_doors
-    - group.door_locks
+    - group.doors
     - group.lights
-    - group.alarm
+Family:
+  view: true
+  entities:
+    - group.devices
 Climate:
   view: true
   entities:
@@ -15,14 +16,6 @@ Climate:
     - group.upstairs_climate
     - group.garage_climate
     - group.other_climate
-Media:
-  view: true
-  entities:
-    - group.media_players
-    - group.nzbget
-    - group.sonarr
-    - group.radarr
-    - group.network
 Weather:
   view: true
   entities:
@@ -31,9 +24,12 @@ Sensors:
   view: true
   entities:
     - group.activity
-    - group.zwave_battery
-    - group.zwave_nodes
-    - group.zwave_misc
+    - group.alarm
+    - group.media_players
+    - group.nzbget
+    - group.sonarr
+    - group.radarr
+    - group.network
 
 Alerts:
   - alert.mailbox_open
@@ -53,35 +49,28 @@ Status:
   - scene.lock_doors
   - script.arm_home
   - script.arm_away
-Door Locks:
-  - lock.front_door_locked
-  - lock.back_door_locked
-  - lock.garage_door_locked
-Garage Doors:
+Doors:
+  - cover.gate
   - cover.double_garage
   - cover.single_garage
-  - cover.gate
-Family:
+  - lock.front_door_lock
+  - lock.back_door_lock
+  - lock.garage_door_lock
+Devices:
   - device_tracker.bryphone
   - device_tracker.cindy_iphone
   - device_tracker.jenny_phone
   - device_tracker.katy_phone
   - sensor.bryphone_battery_level
   - sensor.cindy_iphone_battery_level
+  - sensor.jenny_phone_battery
+  - sensor.katy_phone_battery
 Lights:
-  - switch.front_porch_light_switch
-  - switch.garage_light_switch
-  - switch.driveway_light_switch
-  - light.living_room_lamp_level
-  - light.media_room_lamp_level
-Alarm:
-  - alarm_control_panel.home_alarm
-  - sensor.home_alarm_keypad
-  - binary_sensor.main_doors
-  - binary_sensor.back_door
-  - binary_sensor.master_windows
-  - binary_sensor.downstairs_windows
-  - binary_sensor.upstairs_windows
+  - switch.porch_light
+  - switch.garage_light
+  - switch.driveway_light
+  - light.living_room_lamp
+  - light.media_room_lamp
 Downstairs Climate:
   - climate.downstairs
   - sensor.downstairs_temperature
@@ -113,6 +102,21 @@ Other Climate:
   - sensor.master_closet_temperature
   - sensor.master_closet_relative_humidity
   - sensor.master_closet_luminance
+Activity:
+  - binary_sensor.ring_front_door_ding
+  - binary_sensor.ring_front_door_motion
+  - binary_sensor.mailbox_closed_sensor
+  - binary_sensor.gate_closed_sensor
+  - binary_sensor.garage_motion_sensor
+  - binary_sensor.master_closet_motion_sensor
+Alarm:
+  - alarm_control_panel.home_alarm
+  - sensor.home_alarm_keypad
+  - binary_sensor.main_doors
+  - binary_sensor.back_door
+  - binary_sensor.master_windows
+  - binary_sensor.downstairs_windows
+  - binary_sensor.upstairs_windows
 Media Players:
   - remote.media_room
   - sensor.media_room_remote
@@ -159,69 +163,3 @@ Weather Station:
   - sensor.wx_inside_temperature
   - sensor.wx_inside_dewpoint
   - sensor.wx_inside_humidity
-Activity:
-  - binary_sensor.ring_front_door_ding
-  - binary_sensor.ring_front_door_motion
-  - binary_sensor.gate_sensor
-  - binary_sensor.garage_motion_sensor
-  - binary_sensor.mailbox_closed_sensor
-  - binary_sensor.master_closet_sensor
-ZWave Battery:
-  - sensor.front_door_lock_battery
-  - sensor.back_door_lock_battery
-  - sensor.garage_door_lock_battery
-  - sensor.master_closet_battery
-  - sensor.mailbox_closed_battery
-  - sensor.garage_motion_battery
-ZWave Nodes:
-  - zwave.zwaveme_zme_uzb1_usb_stick
-  - zwave.master_closet
-  - zwave.front_porch_light
-  - zwave.mailbox_closed
-  - zwave.garage_motion
-  - zwave.driveway_light
-  - zwave.living_room_lamp
-  - zwave.garage_light
-  - zwave.media_room_lamp
-  - zwave.gate
-  - zwave.front_door
-  - zwave.back_door
-  - zwave.garage_door
-ZWave Misc:
-  - sensor.mailbox_closed_alarm_type
-  - sensor.mailbox_closed_alarm_level
-  - sensor.mailbox_closed_sourcenodeid
-  - sensor.mailbox_closed_burglar
-  - sensor.master_closet_alarm_type
-  - sensor.master_closet_alarm_level
-  - sensor.master_closet_sourcenodeid
-  - sensor.master_closet_appliance
-  - sensor.master_closet_burglar
-  - sensor.garage_motion_alarm_type
-  - sensor.garage_motion_alarm_level
-  - sensor.garage_motion_sourcenodeid
-  - sensor.garage_motion_burglar
-  - sensor.gate_alarm_type
-  - sensor.gate_alarm_level
-  - sensor.gate_general
-  - sensor.front_door_alarm_type
-  - sensor.front_door_alarm_level
-  - sensor.front_door_sourcenodeid
-  - sensor.front_door_access_control
-  - sensor.front_door_burglar
-  - sensor.front_door_power_management
-  - sensor.front_door_system
-  - sensor.back_door_alarm_type
-  - sensor.back_door_alarm_level
-  - sensor.back_door_sourcenodeid
-  - sensor.back_door_access_control
-  - sensor.back_door_burglar
-  - sensor.back_door_power_management
-  - sensor.back_door_system
-  - sensor.garage_door_alarm_type
-  - sensor.garage_door_alarm_level
-  - sensor.garage_door_sourcenodeid
-  - sensor.garage_door_access_control
-  - sensor.garage_door_burglar
-  - sensor.garage_door_power_management
-  - sensor.garage_door_system

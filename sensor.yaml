@@ -1,38 +1,18 @@
 #
-# Z-Wave battery levels
+# Battery levels
 #
 - platform: template
   sensors:
-    front_door_lock_battery:
-      friendly_name: 'Front Door Lock Battery'
+    jenny_phone_battery:
+      friendly_name: 'Jenny Phone Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.front_door.attributes.battery_level }}'
-      entity_id: zwave.front_door
-    back_door_lock_battery:
-      friendly_name: 'Back Door Lock Battery'
+      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery }}'
+      entity_id: device_tracker.jenny_phone
+    katy_phone_battery:
+      friendly_name: 'Katy Phone Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.zwave.back_door.attributes.battery_level }}'
-      entity_id: zwave.back_door
-    garage_door_lock_battery:
-      friendly_name: 'Garage Door Lock Battery'
-      unit_of_measurement: '%'
-      value_template: '{{ states.zwave.garage_door.attributes.battery_level }}'
-      entity_id: zwave.garage_door
-    master_closet_battery:
-      friendly_name: 'Master Closet Sensor Battery'
-      unit_of_measurement: '%'
-      value_template: '{{ states.zwave.master_closet.attributes.battery_level }}'
-      entity_id: zwave.master_closet
-    mailbox_closed_battery:
-      friendly_name: 'Mailbox Sensor Battery'
-      unit_of_measurement: '%'
-      value_template: '{{ states.zwave.mailbox_closed.attributes.battery_level }}'
-      entity_id: zwave.mailbox_closed
-    garage_motion_battery:
-      friendly_name: 'Garage Motion Sensor Battery'
-      unit_of_measurement: '%'
-      value_template: '{{ states.zwave.garage_motion.attributes.battery_level }}'
-      entity_id: zwave.garage_motion
+      value_template: '{{ states.device_tracker.katy_phone.attributes.battery }}'
+      entity_id: device_tracker.katy_phone
 
 #
 # Temp Probes
@@ -223,7 +203,7 @@
   host: media.local
   urlbase: /movies
   monitored_conditions:
-    - upcoming
+#    - upcoming
     - commands
     - status
 
