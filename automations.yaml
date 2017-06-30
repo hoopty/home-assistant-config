@@ -1,53 +1,5 @@
-#
-# Location based automations
-#
-- alias: open gate for vehicle
-  trigger:
-    platform: state
-    entity_id: device_tracker.beacon_bryce_truck, device_tracker.beacon_cindy_truck
-    to: 'garage'
-  condition:
-    condition: state
-    entity_id: binary_sensor.gate_closed_sensor
-    state: 'on'
-  action:
-    - service: notify.phones
-      data_template:
-        message: 'TEST Opening Gate for {{ trigger.to_state.name }} (after {{ relative_time(trigger.from_state.last_changed) }})'
-- alias: close gate for vehicle
-  trigger:
-    platform: state
-    entity_id: device_tracker.beacon_bryce_truck, device_tracker.beacon_cindy_truck
-    from: 'garage'
-  condition:
-    condition: state
-    entity_id: binary_sensor.gate_closed_sensor
-    state: 'off'
-  action:
-    - service: notify.phones
-      data_template:
-        message: 'TEST Closing Gate for {{ trigger.to_state.name }} (after {{ relative_time(trigger.from_state.last_changed) }})'
-- alias: thermostat home mode
-  trigger:
-    platform: state
-    entity_id: device_tracker.bryphone, device_tracker.cindy_iphone
-    from: 'not_home'
-    to: 'home'
-  condition:
-    condition: template
-    value_template: "{{ is_state_attr('climate.downstairs', 'away_mode', 'on') or is_state_attr('climate.upstairs', 'away_mode', 'on') }}"
-  action:
-    - service: climate.set_away_mode
-      data:
-        away_mode: 'False'
-    - service: notify.phones
-      data_template:
-        message: 'Thermostat away mode disabled.'
-
-#
-# Lights/Switches on/off
-#
-- alias: garage motion on
+- id: garage_motion_on
+  alias: garage motion on
   trigger:
     platform: state
     entity_id: binary_sensor.garage_motion_sensor
@@ -55,7 +7,8 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.garage_light
-- alias: garage motion off
+- id: garage_motion_off
+  alias: garage motion off
   trigger:
     platform: state
     entity_id: binary_sensor.garage_motion_sensor
@@ -63,7 +16,8 @@
   action:
     service: homeassistant.turn_off
     entity_id: switch.garage_light
-- alias: driveway lights on
+- id: driveway_lights_on
+  alias: driveway lights on
   trigger:
     platform: state
     entity_id: group.all_covers
@@ -75,7 +29,8 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.driveway_light
-- alias: driveway lights off
+- id: driveway_lights_off
+  alias: driveway lights off
   trigger:
     platform: state
     entity_id: group.all_covers
@@ -87,7 +42,8 @@
   action:
     service: homeassistant.turn_off
     entity_id: switch.driveway_light
-- alias: sunset lights on
+- id: sunset_lights_on
+  alias: sunset lights on
   trigger:
     platform: sun
     event: sunset
@@ -95,14 +51,16 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.porch_light, light.living_room_lamp
-- alias: late night lights off
+- id: late_night_lights_off
+  alias: late night lights off
   trigger:
     platform: time
     after: '00:00:00'
   action:
     service: homeassistant.turn_off
     entity_id: light.living_room_lamp
-- alias: sunrise lights off
+- id: sunrise_lights_off
+  alias: sunrise lights off
   trigger:
     platform: sun
     event: sunrise
@@ -110,10 +68,8 @@
     service: homeassistant.turn_off
     entity_id: switch.porch_light
 
-#
-# Device Battery automations
-#
-- alias: device low battery
+- id: device_low_battery
+  alias: device low battery
   trigger:
     platform: numeric_state
     entity_id: group.all_devices
@@ -128,10 +84,8 @@
         entity_id: '{{ trigger.to_state.entity_id }}'
         message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
 
-#
-# Temperature automations
-#
-- alias: freezer temp alert
+- id: freezer_temp_alert
+  alias: freezer temp alert
   trigger:
     platform: numeric_state
     entity_id: sensor.deep_freezer_temp, sensor.freezer_temp
@@ -145,7 +99,8 @@
         name: '{{ trigger.to_state.name }}'
         entity_id: '{{ trigger.to_state.entity_id }}'
         message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
-- alias: fridge temp alert
+- id: fridge_temp_alert
+  alias: fridge temp alert
   trigger:
     platform: numeric_state
     entity_id: sensor.drink_fridge_temp
