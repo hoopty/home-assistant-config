@@ -22,3 +22,8 @@ gate_close:
       state: 'off'
     - service: homeassistant.turn_on
       entity_id: switch.gate_switch
+gate_stop:
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.gate_closed_sensor
+      state: 'on'

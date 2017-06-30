@@ -7,6 +7,8 @@ sensor.bryphone_battery_state:
   hidden: true
 sensor.cindy_iphone_battery_state:
   hidden: true
+script.gate_stop:
+  hidden: true
 
 #
 # Friendly Names
