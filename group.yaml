@@ -98,10 +98,6 @@ Garage Climate:
   - sensor.freezer_temp
   - sensor.drink_fridge_temp
   - sensor.garage_temp
-Other Climate:
-  - sensor.master_closet_temperature
-  - sensor.master_closet_relative_humidity
-  - sensor.master_closet_luminance
 Activity:
   - binary_sensor.ring_front_door_ding
   - binary_sensor.ring_front_door_motion
