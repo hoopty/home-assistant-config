@@ -15,7 +15,6 @@ Climate:
     - group.downstairs_climate
     - group.upstairs_climate
     - group.garage_climate
-    - group.other_climate
 Weather:
   view: true
   entities:
@@ -117,7 +116,6 @@ Media Players:
   - remote.media_room
   - sensor.media_room_remote
   - sensor.plex
-  - media_player.directv_rid023846842815
 NZBGet:
   - sensor.nzbget_download_paused
   - sensor.nzbget_speed

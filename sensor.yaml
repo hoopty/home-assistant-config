@@ -203,7 +203,7 @@
   host: media.local
   urlbase: /movies
   monitored_conditions:
-#    - upcoming
+    - upcoming
     - commands
     - status
 
