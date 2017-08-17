@@ -23,7 +23,27 @@ gate_close:
     - service: homeassistant.turn_on
       entity_id: switch.gate_switch
 gate_stop:
+  alias: 'Stop Gate'
   sequence:
     - condition: state
       entity_id: binary_sensor.gate_closed_sensor
       state: 'on'
+open_sesame:
+  alias: 'Open Sesame'
+  sequence:
+    - service: cover.open_cover
+      entity_id: cover.gate
+    - service: cover.open_cover
+      entity_id: cover.double_garage
+    - delay: 00:01:00
+    - service: cover.close_cover
+      entity_id: cover.gate
+    - service: cover.close_cover
+      entity_id: cover.double_garage
+movie_time:
+  alias: 'Movie Time'
+  sequence:
+    - service: remote.turn_on
+      entity_id: remote.media_room
+      data:
+        activity: 'Watch Media'

@@ -55,7 +55,7 @@
   alias: late night lights off
   trigger:
     platform: time
-    after: '00:00:00'
+    at: '00:00:00'
   action:
     service: homeassistant.turn_off
     entity_id: light.living_room_lamp

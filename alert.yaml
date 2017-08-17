@@ -1,11 +1,3 @@
-mailbox_open:
-  name: 'Mailbox is open'
-  entity_id: binary_sensor.mailbox_closed_sensor
-  state: 'off'
-  skip_first: False
-  repeat: 60
-  notifiers:
-    - phones
 main_doors_open:
   name: 'Front or Garage door is open'
   entity_id: binary_sensor.main_doors

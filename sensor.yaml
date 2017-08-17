@@ -47,134 +47,6 @@
       unit_of_measurement: '°F'
       value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
       entity_id: sensor.temp_values
-    media_room_remote:
-      friendly_name: 'Media Room'
-      value_template: '{{ states.remote.media_room.attributes.current_activity }}'
-      entity_id: remote.media_room
-
-#
-# Weather
-#
-- platform: mqtt
-  name: 'Appearant Temperature'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.appTemp_F | round(1) }}'
-- platform: mqtt
-  name: 'Outside Temperature'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.outTemp_F | round(1) }}'
-- platform: mqtt
-  name: 'Wind Chill'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.windchill_F | round(1) }}'
-- platform: mqtt
-  name: 'Heat Index'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.heatindex_F | round(1) }}'
-- platform: mqtt
-  name: 'Dewpoint'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.heatindex_F | round(1) }}'
-- platform: mqtt
-  name: 'Humidity'
-  entity_namespace: wx
-  unit_of_measurement: '%'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.outHumidity | round(1) }}'
-- platform: mqtt
-  name: 'Pressure'
-  entity_namespace: wx
-  unit_of_measurement: 'inHg'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.barometer_inHg | round(2) }}'
-- platform: mqtt
-  name: 'Cloud Base'
-  entity_namespace: wx
-  unit_of_measurement: 'ft'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.cloudbase_foot | int }}'
-- platform: mqtt
-  name: 'Wind Speed'
-  entity_namespace: wx
-  unit_of_measurement: 'mph'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.windSpeed_mph | round(1) }}'
-- platform: mqtt
-  name: 'Wind Gusts'
-  entity_namespace: wx
-  unit_of_measurement: 'mph'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.windGust_mph }}'
-- platform: mqtt
-  name: 'Wind Direction'
-  entity_namespace: wx
-  unit_of_measurement: '°'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.windDir | int }}'
-- platform: mqtt
-  name: 'Rain Rate'
-  entity_namespace: wx
-  unit_of_measurement: 'in/hr'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.rainRate_inch_per_hour | round(1) }}'
-- platform: mqtt
-  name: 'Rainfall (today)'
-  entity_namespace: wx
-  unit_of_measurement: 'in'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.dayRain_in }}'
-- platform: mqtt
-  name: 'Rainfall (last hour)'
-  entity_namespace: wx
-  unit_of_measurement: 'in'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.hourRain_in }}'
-- platform: mqtt
-  name: 'Rainfall (last 24 hours)'
-  entity_namespace: wx
-  unit_of_measurement: 'in'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.rain24_in }}'
-- platform: mqtt
-  name: 'UV Index'
-  entity_namespace: wx
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.UV | round(1) }}'
-- platform: mqtt
-  name: 'Solar Radiation'
-  entity_namespace: wx
-  unit_of_measurement: 'W/m^2'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.radiation_Wpm2 | int }}'
-- platform: mqtt
-  name: 'Inside Temperature'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.inTemp_F | round(1) }}'
-- platform: mqtt
-  name: 'Inside Dewpoint'
-  entity_namespace: wx
-  unit_of_measurement: '°F'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.inDewpoint | round(1) }}'
-- platform: mqtt
-  name: 'Inside Humidity'
-  entity_namespace: wx
-  unit_of_measurement: '%'
-  state_topic: 'weather/loop'
-  value_template: '{{ value_json.inHumidity | round(1) }}'
-
 
 - platform: plex
   host: media.local
@@ -216,24 +88,23 @@
 
 - platform: cert_expiry
   host: home.bryce.net
-  port: 8123
 
-#- platform: wunderground
-#  api_key: !secret wunderground_api_key
-#  pws_id: KTXFRISC82
-#  monitored_conditions:
-#    - weather
-#    - temp_f
-#    - feelslike_f
-#    - heat_index_f
-#    - dewpoint_f
-#    - relative_humidity
-#    - visibility_mi
-#    - wind_string
-#    - wind_mph
-#    - wind_dir
-#    - precip_today_in
-#    - pressure_in
-#    - UV
-#    - solarradiation
-#    - alerts
+- platform: wunderground
+  api_key: !secret wunderground_api_key
+  pws_id: KTXFRISC82
+  monitored_conditions:
+    - weather
+    - temp_f
+    - feelslike_f
+    - heat_index_f
+    - dewpoint_f
+    - relative_humidity
+    - visibility_mi
+    - wind_string
+    - wind_mph
+    - wind_dir
+    - precip_today_in
+    - pressure_in
+    - UV
+    - solarradiation
+    - alerts

@@ -18,7 +18,7 @@ binary_sensor: !include binary_sensor.yaml
 
 config:
 
-#conversation:
+conversation:
 
 cover:
   - platform: myq
@@ -43,12 +43,12 @@ device_tracker:
     max_gps_accuracy: 200
     waypoints: False
     track_new_devices: False
-#  - platform: unifi
-#    host: unifi.local
-#    username: !secret unifi_username
-#    password: !secret unifi_password
-#    verify_ssl: False
-#    track_new_devices: False
+  - platform: unifi
+    host: unifi.local
+    username: !secret unifi_username
+    password: !secret unifi_password
+    verify_ssl: False
+    track_new_devices: False
 
 discovery:
   ignore:
@@ -144,8 +144,8 @@ recorder:
 
 remote:
   - platform: harmony
-    name: Media Room
-    host: 192.168.1.154
+    name: 'Media Room'
+    activity: 'Watch Media'
 
 ring:
   username: !secret ring_username
@@ -163,9 +163,3 @@ updater:
   include_used_components: true
 
 zone: !include zone.yaml
-
-#zwave:
-#  usb_path: /dev/cuaU0
-#  config_path: /home/hass/hass/lib/python3.6/site-packages/python_openzwave/ozw_config
-#  new_entity_ids: true
-

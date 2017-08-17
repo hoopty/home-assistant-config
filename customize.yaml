@@ -7,8 +7,12 @@ sensor.bryphone_battery_state:
   hidden: true
 sensor.cindy_iphone_battery_state:
   hidden: true
+sensor.ipad_battery_state:
+  hidden: true
 script.gate_stop:
   hidden: true
+script.open_sesame:
+  can_cancel: false
 
 #
 # Friendly Names
@@ -17,7 +21,7 @@ binary_sensor.gate_closed_sensor:
   friendly_name: 'Gate Closed'
 media_player.directv_rid023846842815:
   friendly_name: 'DirecTV DVR'
-media_player._living_room_un55ku6300:
+media_player.tv_un55ku6300:
   friendly_name: 'Living Room TV'
 media_player._bed_room_un55f6300:
   friendly_name: 'Master Bedroom TV'
