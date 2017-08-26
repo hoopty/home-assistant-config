@@ -108,3 +108,11 @@
     - UV
     - solarradiation
     - alerts
+
+- platform: ups
+  username: !secret ups_username
+  password: !secret ups_password
+
+- platform: fedex
+  username: !secret fedex_username
+  password: !secret fedex_password

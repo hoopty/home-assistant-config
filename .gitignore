@@ -4,6 +4,7 @@ www/
 .*
 *.log
 *.pid
+*.pickle
 *.conf
 *.sqlite
 home-assistant*.db*

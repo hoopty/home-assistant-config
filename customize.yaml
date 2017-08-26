@@ -23,7 +23,7 @@ media_player.directv_rid023846842815:
   friendly_name: 'DirecTV DVR'
 media_player.tv_un55ku6300:
   friendly_name: 'Living Room TV'
-media_player._bed_room_un55f6300:
+media_player.tv_un55f6300:
   friendly_name: 'Master Bedroom TV'
 scene.close_covers:
   friendly_name: 'Close Garages & Gate'

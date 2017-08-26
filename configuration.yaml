@@ -96,6 +96,8 @@ influxdb:
   host: metrics.local
   username: !secret influxdb_username
   password: !secret influxdb_password
+  tags_attributes:
+    - friendly_name
 
 ios:
 
@@ -147,13 +149,17 @@ remote:
     name: 'Media Room'
     activity: 'Watch Media'
 
+usps:
+  username: !secret usps_username
+  password: !secret usps_password
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
 
 scene: !include scene.yaml
 
-script: !include script.yaml
+script: !include scripts.yaml
 
 sensor: !include sensor.yaml
 

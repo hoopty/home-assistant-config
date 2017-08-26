@@ -31,6 +31,7 @@ Sensors:
   view: true
   entities:
     - group.activity
+    - group.deliveries
     - group.alarm
     - group.miscellaneous
 
@@ -104,6 +105,12 @@ Garage Climate:
   - sensor.freezer_temp
   - sensor.drink_fridge_temp
   - sensor.garage_temp
+Deliveries:
+  - sensor.usps_mail
+  - sensor.usps_packages
+  - sensor.ups
+  - sensor.fedex
+  - camera.usps_mail
 Activity:
   - binary_sensor.ring_front_door_ding
   - binary_sensor.ring_front_door_motion
@@ -122,6 +129,7 @@ Media Players:
   - remote.media_room
   - sensor.plex
   - media_player.tv_un55ku6300
+  - media_player.tv_un55f6300
 Movies:
   - sensor.radarr_upcoming
   - sensor.radarr_commands
@@ -133,10 +141,10 @@ TV Shows:
 Downloads:
   - sensor.nzbget_speed
   - sensor.nzbget_average_speed
-  - sensor.nzbget_download_paused
   - sensor.nzbget_queue_size
   - sensor.nzbget_size
   - sensor.nzbget_disk_free
+  - sensor.nzbget_download_paused
 Miscellaneous:
   - updater.updater
   - sensor.ssl_certificate_expiry
