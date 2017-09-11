@@ -9,6 +9,10 @@ default_view:
 Family:
   view: true
   entities:
+    - device_tracker.bryphone
+    - device_tracker.cindy_iphone
+    - device_tracker.jenny_phone
+    - device_tracker.katy_phone
     - group.devices
 Climate:
   view: true
@@ -19,7 +23,9 @@ Climate:
 Weather:
   view: true
   entities:
+    - sun.sun
     - group.weather_underground
+    - group.air_quality
 Media:
   view: true
   entities:
@@ -34,7 +40,6 @@ Sensors:
     - group.deliveries
     - group.alarm
     - group.miscellaneous
-
 Alerts:
   - alert.main_doors_open
   - alert.back_door_open
@@ -44,17 +49,21 @@ Alerts:
   - alert.single_garage_open
   - alert.gate_open
 Activities:
-  - script.open_sesame
-  - script.movie_time
+  control: hidden
+  entities:
+    - script.open_sesame
+    - script.movie_time
 Status:
-  - binary_sensor.doors_closed
-  - binary_sensor.covers_closed
-  - binary_sensor.doors_locked
-  - binary_sensor.alarm_armed
-  - scene.close_covers
-  - scene.lock_doors
-  - script.arm_home
-  - script.arm_away
+  control: hidden
+  entities:
+    - binary_sensor.doors_closed
+    - binary_sensor.covers_closed
+    - binary_sensor.doors_locked
+    - binary_sensor.alarm_armed
+    - scene.close_covers
+    - scene.lock_doors
+    - script.arm_home
+    - script.arm_away
 Doors:
   - cover.gate
   - cover.double_garage
@@ -63,21 +72,19 @@ Doors:
   - lock.back_door_lock
   - lock.garage_door_lock
 Devices:
-  - device_tracker.bryphone
-  - device_tracker.cindy_iphone
-  - device_tracker.jenny_phone
-  - device_tracker.katy_phone
   - sensor.bryphone_battery_level
   - sensor.cindy_iphone_battery_level
   - sensor.jenny_phone_battery
   - sensor.katy_phone_battery
   - sensor.ipad_battery_level
 Lights:
-  - switch.porch_light
-  - switch.garage_light
-  - switch.driveway_light
-  - light.living_room_lamp
-  - light.media_room_lamp
+  control: hidden
+  entities:
+    - switch.porch_light
+    - switch.garage_light
+    - switch.driveway_light
+    - light.living_room_lamp
+    - light.media_room_lamp
 Downstairs Climate:
   - climate.downstairs
   - sensor.downstairs_temperature
@@ -110,7 +117,6 @@ Deliveries:
   - sensor.usps_packages
   - sensor.ups
   - sensor.fedex
-  - camera.usps_mail
 Activity:
   - binary_sensor.ring_front_door_ding
   - binary_sensor.ring_front_door_motion
@@ -133,11 +139,12 @@ Media Players:
 Movies:
   - sensor.radarr_upcoming
   - sensor.radarr_commands
+  - sensor.radarr_status
 TV Shows:
   - sensor.sonarr_wanted
   - sensor.sonarr_upcoming
   - sensor.sonarr_queue
-  - sensor.radarr_status
+  - sensor.sonarr_status
 Downloads:
   - sensor.nzbget_speed
   - sensor.nzbget_average_speed
@@ -150,8 +157,11 @@ Miscellaneous:
   - sensor.ssl_certificate_expiry
   - sensor.speedtest_download
   - sensor.speedtest_upload
+Air Quality:
+  - sensor.us_air_pollution_level
+  - sensor.us_air_quality_index
+  - sensor.us_main_pollutant
 Weather Underground:
-  - sun.sun
   - sensor.pws_weather
   - sensor.pws_temp_f
   - sensor.pws_feelslike_f

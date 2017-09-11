@@ -69,6 +69,7 @@
     - upcoming
     - wanted
     - queue
+    - status
 
 - platform: radarr
   api_key: !secret radarr_api_key
@@ -108,6 +109,11 @@
     - UV
     - solarradiation
     - alerts
+
+- platform: airvisual
+  api_key: !secret airvisual_api_key
+  monitored_conditions:
+    - us
 
 - platform: ups
   username: !secret ups_username
