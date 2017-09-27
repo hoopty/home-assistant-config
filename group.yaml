@@ -62,8 +62,7 @@ Status:
     - binary_sensor.alarm_armed
     - scene.close_covers
     - scene.lock_doors
-    - script.arm_home
-    - script.arm_away
+    - script.arm_alarm
 Doors:
   - cover.gate
   - cover.double_garage

@@ -1,6 +1,4 @@
-certs/
 deps/
-www/
 .*
 *.log
 *.pid
@@ -8,6 +6,7 @@ www/
 *.conf
 *.sqlite
 home-assistant*.db*
+emulated_hue_ids.json
 envisalink.yaml
 ip_bans.yaml
 known_devices.yaml

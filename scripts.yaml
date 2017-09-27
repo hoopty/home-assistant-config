@@ -1,11 +1,7 @@
-arm_home:
-  alias: 'Arm Alarm (Home)'
+arm_alarm:
+  alias: 'Arm Alarm'
   sequence:
     - service: alarm_control_panel.alarm_arm_home
-arm_away:
-  alias: 'Arm Alarm (Away)'
-  sequence:
-    - service: alarm_control_panel.alarm_arm_away
 gate_open:
   alias: 'Open Gate'
   sequence:
@@ -35,7 +31,7 @@ open_sesame:
       entity_id: cover.gate
     - service: cover.open_cover
       entity_id: cover.double_garage
-    - delay: 00:01:00
+    - delay: 00:02:00
     - service: cover.close_cover
       entity_id: cover.gate
     - service: cover.close_cover

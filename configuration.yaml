@@ -41,14 +41,14 @@ cover:
 device_tracker:
   - platform: owntracks
     max_gps_accuracy: 200
-    waypoints: False
-    track_new_devices: False
+    waypoints: false
+    track_new_devices: false
   - platform: unifi
     host: unifi.local
     username: !secret unifi_username
     password: !secret unifi_password
-    verify_ssl: False
-    track_new_devices: False
+    verify_ssl: false
+    track_new_devices: false
 
 discovery:
   ignore:
@@ -57,18 +57,15 @@ discovery:
 
 ecobee:
   api_key: !secret ecobee_key
-  hold_temp: False
+  hold_temp: false
 
 emulated_hue:
-  type: alexa
-  upnp_bind_multicast: False
+  upnp_bind_multicast: false
   exposed_domains:
-    - scene
-    - script
     - switch
     - light
-    - cover
-    - lock
+    - scene
+    - script
 
 envisalink: !include envisalink.yaml
 
@@ -86,8 +83,8 @@ http:
   api_password: !secret api_password
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-  use_x_forwarded_for: True
-  ip_ban_enabled: True
+  use_x_forwarded_for: true
+  ip_ban_enabled: true
   login_attempts_threshold: 5
   trusted_networks:
     - 127.0.0.0/8
@@ -124,21 +121,26 @@ media_player:
   - platform: plex
 
 mqtt:
+  embedded:
+    listeners:
+      default:
+        type: tcp
+      tcp:
+        bind: 0.0.0.0:1883
+      tcp-ssl:
+        bind: 0.0.0.0:8883
+        ssl: on
+        cafile: !secret mqtt_cafile
+        certfile: !secret mqtt_certfile
+        keyfile: !secret ssl_key
+    auth:
+      allow-anonymous: false
+      password-file: !secret mqtt_pwfile
   broker: localhost
   port: 1883
   client_id: home-assistant
   username: !secret mqtt_username
   password: !secret mqtt_password
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-    qos: 1
-    retain: true
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-    qos: 1
-    retain: true
 
 notify: !include notify.yaml
 
@@ -150,9 +152,9 @@ remote:
     name: 'Media Room'
     activity: 'Watch Media'
 
-usps:
-  username: !secret usps_username
-  password: !secret usps_password
+#usps:
+#  username: !secret usps_username
+#  password: !secret usps_password
 
 ring:
   username: !secret ring_username

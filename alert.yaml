@@ -2,7 +2,7 @@ main_doors_open:
   name: 'Front or Garage door is open'
   entity_id: binary_sensor.main_doors
   state: 'on'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30
@@ -13,7 +13,7 @@ back_door_open:
   name: 'Back door is open'
   entity_id: binary_sensor.back_door
   state: 'on'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30
@@ -24,7 +24,7 @@ front_door_unlocked:
   name: 'Front Door is unlocked'
   entity_id: lock.front_door_lock
   state: 'unlocked'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30
@@ -35,7 +35,7 @@ back_door_unlocked:
   name: 'Back Door is unlocked'
   entity_id: lock.back_door_lock
   state: 'unlocked'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30
@@ -46,7 +46,7 @@ double_garage_open:
   name: 'Double Garage is open'
   entity_id: cover.double_garage
   state: 'open'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30
@@ -57,7 +57,7 @@ single_garage_open:
   name: 'Single Garage is open'
   entity_id: cover.single_garage
   state: 'open'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30
@@ -68,7 +68,7 @@ gate_open:
   name: 'Gate is open'
   entity_id: cover.gate
   state: 'open'
-  skip_first: True
+  skip_first: true
   repeat:
     - 10
     - 30

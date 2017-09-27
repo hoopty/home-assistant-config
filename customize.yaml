@@ -11,6 +11,19 @@ sensor.ipad_battery_state:
   hidden: true
 script.gate_stop:
   hidden: true
+  emulated_hue: false
+switch.auto_dr:
+  emulated_hue: false
+switch.garage_tamper_alarm:
+  emulated_hue: false
+switch.gate_power_management:
+  emulated_hue: false
+switch.gate_pulse_meter:
+  emulated_hue: false
+switch.gate_switch:
+  emulated_hue: false
+switch.master_closet_multilevel:
+  emulated_hue: false
 
 script.open_sesame:
   can_cancel: false
@@ -28,6 +41,7 @@ media_player.tv_un55f6300:
   friendly_name: 'Master Bedroom Plex'
 scene.close_covers:
   friendly_name: 'Close Garages & Gate'
+  emulated_hue_name: "Close Outside Doors"
 sensor.speedtest_download:
   friendly_name: 'Internet Downlink'
 sensor.speedtest_upload:
@@ -40,13 +54,5 @@ binary_sensor.alarm_armed:
   icon: mdi:lock
 scene.lock_doors:
   icon: mdi:lock
-script.arm_home:
+script.arm_alarm:
   icon: mdi:lock
-script.arm_away:
-  icon: mdi:lock
-
-#
-# Disable Emulated Hue (even hidden enities)
-#
-#switch.example:
-#  emulated_hue: false
