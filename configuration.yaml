@@ -119,6 +119,9 @@ logger:
 
 media_player:
   - platform: plex
+  - platform: emby
+    host: media.local
+    api_key: !secret emby_api_key
 
 mqtt:
   embedded:
