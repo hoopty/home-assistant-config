@@ -1,8 +1,16 @@
+- id: doorbel_motion
+  alias: doorbell motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ring_front_door_motion
+    to: 'off'
+  action:
+    service: python_script.ring_downloader
 - id: garage_motion_on
   alias: garage motion on
   trigger:
     platform: state
-    entity_id: binary_sensor.garage_motion_sensor
+    entity_id: sensor.garage_motion_sensor
     to: 'on'
   action:
     service: homeassistant.turn_on
@@ -11,7 +19,7 @@
   alias: garage motion off
   trigger:
     platform: state
-    entity_id: binary_sensor.garage_motion_sensor
+    entity_id: sensor.garage_motion_sensor
     to: 'off'
   action:
     service: homeassistant.turn_off

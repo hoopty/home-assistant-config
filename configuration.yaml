@@ -16,6 +16,21 @@ automation: !include automations.yaml
 
 binary_sensor: !include binary_sensor.yaml
 
+camera:
+  - platform: ring
+
+cloud:
+  alexa:
+    filter:
+      exclude_entities:
+        - script.gate_stop
+        - switch.auto_dr
+        - switch.garage_tamper_alarm
+        - switch.gate_power_management
+        - switch.gate_pulse_meter
+        - switch.gate_switch
+        - switch.master_closet_multilevel
+
 config:
 
 conversation:
@@ -39,21 +54,22 @@ cover:
           service: script.gate_stop
 
 device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 200
-    waypoints: false
-    track_new_devices: false
   - platform: unifi
     host: unifi.local
     username: !secret unifi_username
     password: !secret unifi_password
     verify_ssl: false
     track_new_devices: false
+    scan_interval: 60
+  - platform: owntracks_http
 
 discovery:
   ignore:
     - directv
     - samsung_tv
+
+downloader:
+  download_dir: downloads
 
 ecobee:
   api_key: !secret ecobee_key
@@ -68,6 +84,9 @@ emulated_hue:
     - script
 
 envisalink: !include envisalink.yaml
+
+ffmpeg:
+  ffmpeg_bin: '/usr/local/bin/ffmpeg'
 
 frontend:
 
@@ -98,13 +117,25 @@ influxdb:
     - friendly_name
 
 ios:
+  push:
+    categories:
+      - name: Gate
+        identifier: 'gate'
+        actions:
+          - identifier: 'CLOSE_GATE'
+            title: 'Close Gate'
+      - name: Garage
+        identifier: 'garage'
+        actions:
+          - identifier: 'CLOSE_GARAGE'
+            title: 'Close Garage'
 
 isy994:
   host: http://isy.local:80
   username: !secret isy_username
   password: !secret isy_password
   sensor_string: 'Sensor'
-  hidden_string: '~'
+  ignore_string: '~'
 
 logbook:
   exclude:
@@ -114,46 +145,24 @@ logbook:
 logger:
   default: info
   logs:
-    plexapi: warn
     homeassistant.components.http: warn
-
-media_player:
-  - platform: plex
-  - platform: emby
-    host: media.local
-    api_key: !secret emby_api_key
-
-mqtt:
-  embedded:
-    listeners:
-      default:
-        type: tcp
-      tcp:
-        bind: 0.0.0.0:1883
-      tcp-ssl:
-        bind: 0.0.0.0:8883
-        ssl: on
-        cafile: !secret mqtt_cafile
-        certfile: !secret mqtt_certfile
-        keyfile: !secret ssl_key
-    auth:
-      allow-anonymous: false
-      password-file: !secret mqtt_pwfile
-  broker: localhost
-  port: 1883
-  client_id: home-assistant
-  username: !secret mqtt_username
-  password: !secret mqtt_password
 
 notify: !include notify.yaml
 
+python_script:
+
+rachio:
+  api_key: !secret rachio_api_key
+
 recorder:
-  purge_days: 7
+  purge_interval: 1
+  purge_keep_days: 7
 
 remote:
   - platform: harmony
     name: 'Media Room'
     activity: 'Watch Media'
+    scan_interval: 60
 
 #usps:
 #  username: !secret usps_username
@@ -170,6 +179,12 @@ script: !include scripts.yaml
 sensor: !include sensor.yaml
 
 sun:
+
+#switch:
+#  - platform: rachio
+#    access_token: !secret rachio_api_key
+#    entity_namespace: 'sprinkler'
+#    scan_interval: 60
 
 updater:
   include_used_components: true

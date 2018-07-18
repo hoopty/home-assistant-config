@@ -1,4 +1,5 @@
 deps/
+downloads/
 .*
 *.log
 *.pid
@@ -6,6 +7,7 @@ deps/
 *.conf
 *.sqlite
 home-assistant*.db*
+entity_registry.yaml
 emulated_hue_ids.json
 envisalink.yaml
 ip_bans.yaml

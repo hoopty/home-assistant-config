@@ -11,19 +11,6 @@ sensor.ipad_battery_state:
   hidden: true
 script.gate_stop:
   hidden: true
-  emulated_hue: false
-switch.auto_dr:
-  emulated_hue: false
-switch.garage_tamper_alarm:
-  emulated_hue: false
-switch.gate_power_management:
-  emulated_hue: false
-switch.gate_pulse_meter:
-  emulated_hue: false
-switch.gate_switch:
-  emulated_hue: false
-switch.master_closet_multilevel:
-  emulated_hue: false
 
 script.open_sesame:
   can_cancel: false
@@ -35,13 +22,13 @@ binary_sensor.gate_closed_sensor:
   friendly_name: 'Gate Closed'
 media_player.directv_rid023846842815:
   friendly_name: 'DirecTV DVR'
-media_player.tv_un55ku6300:
-  friendly_name: 'Living Room Plex'
-media_player.tv_un55f6300:
-  friendly_name: 'Master Bedroom Plex'
+#media_player.tv_un55ku6300:
+#  friendly_name: 'Living Room Plex'
+#media_player.tv_un55f6300:
+#  friendly_name: 'Master Bedroom Plex'
 scene.close_covers:
   friendly_name: 'Close Garages & Gate'
-  emulated_hue_name: "Close Outside Doors"
+  emulated_hue_name: 'Close Outside Doors'
 sensor.speedtest_download:
   friendly_name: 'Internet Downlink'
 sensor.speedtest_upload:

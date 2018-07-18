@@ -48,9 +48,6 @@
       value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
       entity_id: sensor.temp_values
 
-- platform: plex
-  host: media.local
-
 - platform: nzbget
   host: media.local
   monitored_variables:
@@ -61,6 +58,26 @@
     - remaining_size
     - free_disk_space
 
+#- platform: deluge
+#  host: media.local
+#  username: !secret deluge_username
+#  password: !secret deluge_password
+#  monitored_variables:
+#    - current_status
+#    - download_speed
+#    - upload_speed
+
+- platform: ring
+
+#- platform: radarr
+#  api_key: !secret radarr_api_key
+#  host: media.local
+#  urlbase: /movies
+#  monitored_conditions:
+#    - upcoming
+#    - commands
+#    - status
+
 - platform: sonarr
   api_key: !secret sonarr_api_key
   host: media.local
@@ -69,15 +86,6 @@
     - upcoming
     - wanted
     - queue
-    - status
-
-- platform: radarr
-  api_key: !secret radarr_api_key
-  host: media.local
-  urlbase: /movies
-  monitored_conditions:
-    - upcoming
-    - commands
     - status
 
 - platform: speedtest
@@ -112,13 +120,22 @@
 
 - platform: airvisual
   api_key: !secret airvisual_api_key
+  scan_interval: 300
   monitored_conditions:
     - us
 
-- platform: ups
-  username: !secret ups_username
-  password: !secret ups_password
+- platform: pollen
+  zip_code: "75034"
+  monitored_conditions:
+    - allergy_average_forecasted
+    - allergy_index_today
+    - allergy_index_tomorrow
+    - disease_average_forecasted
 
-- platform: fedex
-  username: !secret fedex_username
-  password: !secret fedex_password
+#- platform: ups
+#  username: !secret ups_username
+#  password: !secret ups_password
+
+#- platform: fedex
+#  username: !secret fedex_username
+#  password: !secret fedex_password

@@ -1,10 +1,12 @@
 default_view:
+  name: Home
   view: true
   entities:
     - group.alerts
     - group.activities
     - group.status
-    - group.doors
+    - group.front
+    - group.back
     - group.lights
 Family:
   view: true
@@ -37,7 +39,6 @@ Sensors:
   view: true
   entities:
     - group.activity
-    - group.deliveries
     - group.alarm
     - group.sprinklers
     - group.miscellaneous
@@ -65,14 +66,35 @@ Status:
     - scene.close_covers
     - scene.lock_doors
     - script.arm_alarm
-Doors:
+Front:
+  control: hidden
   entities:
-    - cover.gate
-    - cover.double_garage
-    - cover.single_garage
     - lock.front_door_lock
+    - switch.porch_light
+    - binary_sensor.ring_front_door_ding
+    - binary_sensor.ring_front_door_motion
+#    - sensor.ups
+    - sensor.fedex
+    - sensor.usps_mail
+    - sensor.usps_packages
+    - camera.usps_mail
+Back:
+  control: hidden
+  entities:
     - lock.back_door_lock
     - lock.garage_door_lock
+    - cover.double_garage
+    - cover.single_garage
+    - cover.gate
+    - binary_sensor.gate_closed_sensor
+    - switch.garage_light
+    - sensor.garage_motion_sensor
+    - switch.driveway_light
+Lights:
+  control: hidden
+  entities:
+    - light.living_room_lamp
+    - light.media_room_lamp
 Devices:
   entities:
     - sensor.bryphone_battery_level
@@ -80,14 +102,6 @@ Devices:
     - sensor.jenny_phone_battery
     - sensor.katy_phone_battery
     - sensor.ipad_battery_level
-Lights:
-  control: hidden
-  entities:
-    - switch.porch_light
-    - switch.garage_light
-    - switch.driveway_light
-    - light.living_room_lamp
-    - light.media_room_lamp
 Downstairs Climate:
   entities:
     - climate.downstairs
@@ -118,19 +132,9 @@ Garage Climate:
   - sensor.freezer_temp
   - sensor.drink_fridge_temp
   - sensor.garage_temp
-Deliveries:
-  entities:
-    - sensor.usps_mail
-    - sensor.usps_packages
-    - sensor.ups
-    - sensor.fedex
 Activity:
   entities:
-    - binary_sensor.ring_front_door_ding
-    - binary_sensor.ring_front_door_motion
-    - binary_sensor.gate_closed_sensor
-    - binary_sensor.garage_motion_sensor
-    - binary_sensor.master_closet_motion_sensor
+    - sensor.master_closet_sensor
 Alarm:
   entities:
     - alarm_control_panel.home_alarm
@@ -143,25 +147,20 @@ Alarm:
 Sprinklers:
   control: hidden
   entities:
-      - switch.front_flower_bed
-      - switch.side_yard_north
-      - switch.front_yard_north
-      - switch.front_yard_south
-      - switch.side_yard_south__garden
-      - switch.back_yard
+      - switch.sprinkler_front_flower_bed
+      - switch.sprinkler_side_yard_north
+      - switch.sprinkler_front_yard_north
+      - switch.sprinkler_front_yard_south
+      - switch.sprinkler_side_yard_south__garden
+      - switch.sprinkler_back_yard
 Media Players:
   entities:
     - remote.media_room
-    - sensor.plex
-    - media_player.tv_un55ku6300
-    - media_player.tv_un55f6300
-    - media_player.emby__dlna__living_room
-    - media_player.emby__dlna__media_room
-Movies:
-  entities:
-    - sensor.radarr_upcoming
-    - sensor.radarr_commands
-    - sensor.radarr_status
+#Movies:
+#  entities:
+#    - sensor.radarr_upcoming
+#    - sensor.radarr_commands
+#    - sensor.radarr_status
 TV Shows:
   entities:
     - sensor.sonarr_wanted
@@ -186,11 +185,6 @@ Miscellaneous:
     - sensor.igd_packets_received
     - sensor.igd_packets_sent
     - sensor.ssl_certificate_expiry
-Air Quality:
-  entities:
-    - sensor.us_air_pollution_level
-    - sensor.us_air_quality_index
-    - sensor.us_main_pollutant
 Weather Underground:
   entities:
     - sensor.pws_weather
@@ -208,3 +202,12 @@ Weather Underground:
     - sensor.pws_uv
     - sensor.pws_solarradiation
     - sensor.pws_alerts
+Air Quality:
+  entities:
+    - sensor.us_air_pollution_level
+    - sensor.us_air_quality_index
+    - sensor.us_main_pollutant
+    - sensor.allergy_index_forecasted_average
+    - sensor.allergy_index_today
+    - sensor.allergy_index_tomorrow
+    - sensor.cold__flu_forecasted_average
