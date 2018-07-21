@@ -5,12 +5,16 @@ homeassistant:
   elevation: !secret home_altitude
   unit_system: imperial
   time_zone: America/Chicago
+  auth_providers:
+    - type: homeassistant
   customize: !include customize.yaml
   customize_glob:
     "switch.*_light":
       icon: mdi:lightbulb
 
 alert: !include alert.yaml
+
+auth:
 
 automation: !include automations.yaml
 
