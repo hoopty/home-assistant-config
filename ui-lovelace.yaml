@@ -45,6 +45,12 @@ views:
             service_data: 
               entity_id: alarm_control_panel.home_alarm
       - type: entities
+        title: Lights
+        show_header_toggle: false
+        entities:
+          - entity: light.living_room_lamp
+            icon: mdi:lightbulb
+      - type: entities
         title: Front
         show_header_toggle: false
         entities:
@@ -59,16 +65,6 @@ views:
           - sensor.usps_packages
           - camera.usps_mail
       - type: entities
-        title: Garage
-        show_header_toggle: false
-        entities:
-          - lock.garage_door
-          - cover.double_garage
-          - cover.single_garage
-          - entity: switch.garage_light
-            icon: mdi:lightbulb
-          - binary_sensor.garage_motion
-      - type: entities
         title: Back
         show_header_toggle: false
         entities:
@@ -78,11 +74,15 @@ views:
           - entity: switch.driveway_light
             icon: mdi:lightbulb
       - type: entities
-        title: Lights
+        title: Garage
         show_header_toggle: false
         entities:
-          - entity: light.living_room_lamp
+          - lock.garage_door
+          - cover.double_garage
+          - cover.single_garage
+          - entity: switch.garage_light
             icon: mdi:lightbulb
+          - binary_sensor.garage_motion
   - title: Family
     id: family
     icon: mdi:account-multiple

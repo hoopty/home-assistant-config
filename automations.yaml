@@ -39,7 +39,7 @@
   condition:
     condition: state
     entity_id: sun.sun
-    state: 'below_horizon'
+    state: below_horizon
   action:
     service: homeassistant.turn_on
     data:
@@ -54,7 +54,7 @@
   condition:
     condition: state
     entity_id: sun.sun
-    state: 'below_horizon'
+    state: below_horizon
   action:
     service: homeassistant.turn_off
     data:
@@ -78,7 +78,7 @@
   hide_entity: True
   trigger:
     platform: time
-    at: '00:00:00'
+    at: 00:00:00
   action:
     service: homeassistant.turn_off
     data:
