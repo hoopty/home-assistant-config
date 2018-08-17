@@ -1,0 +1,141 @@
+#
+# Battery levels
+#
+- platform: template
+  sensors:
+    jenny_phone_battery:
+      friendly_name: 'Jenny Phone Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery }}'
+      entity_id: device_tracker.jenny_phone
+    katy_phone_battery:
+      friendly_name: 'Katy Phone Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.device_tracker.katy_phone.attributes.battery }}'
+      entity_id: device_tracker.katy_phone
+
+#
+# Temp Probes
+#
+- platform: rest
+  name: temp_values
+  resource: 'http://192.168.1.157/stateFull.xml'
+  username: !secret temp_username
+  password: !secret temp_password
+  value_template: '{{ value|replace("<"," <")|striptags() }}'
+  scan_interval: 180
+
+- platform: template
+  sensors:
+    deep_freezer_temp:
+      friendly_name: 'Deep Freezer'
+      unit_of_measurement: '°F'
+      value_template: '{{ states("sensor.temp_values").split(" ")[1] }}'
+      entity_id: sensor.temp_values
+    freezer_temp:
+      friendly_name: 'Freezer'
+      unit_of_measurement: '°F'
+      value_template: '{{ states("sensor.temp_values").split(" ")[2] }}'
+      entity_id: sensor.temp_values
+    drink_fridge_temp:
+      friendly_name: 'Drink Fridge'
+      unit_of_measurement: '°F'
+      value_template: '{{ states("sensor.temp_values").split(" ")[3] }}'
+      entity_id: sensor.temp_values
+    garage_temp:
+      friendly_name: 'Garage Temp'
+      unit_of_measurement: '°F'
+      value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
+      entity_id: sensor.temp_values
+
+#- platform: nzbget
+#  host: media.local
+#  monitored_variables:
+#    - download_paused
+#    - average_download_rate
+#    - download_rate
+#    - download_size
+#    - remaining_size
+#    - free_disk_space
+
+#- platform: deluge
+#  host: media.local
+#  username: !secret deluge_username
+#  password: !secret deluge_password
+#  monitored_variables:
+#    - current_status
+#    - download_speed
+#    - upload_speed
+
+- platform: ring
+
+#- platform: radarr
+#  api_key: !secret radarr_api_key
+#  host: media.local
+#  urlbase: /movies
+#  monitored_conditions:
+#    - upcoming
+#    - commands
+#    - status
+
+#- platform: sonarr
+#  api_key: !secret sonarr_api_key
+#  host: media.local
+#  urlbase: /tv
+#  monitored_conditions:
+#    - upcoming
+#    - wanted
+#    - queue
+#    - status
+
+#- platform: speedtest
+#  server_id: 4323
+#  monitored_conditions:
+#    - download
+#    - upload
+#  hour: 12
+
+- platform: cert_expiry
+  host: home.bryce.net
+
+- platform: wunderground
+  api_key: !secret wunderground_api_key
+  pws_id: KTXFRISC82
+  monitored_conditions:
+    - weather
+    - temp_f
+    - feelslike_f
+    - heat_index_f
+    - dewpoint_f
+    - relative_humidity
+    - visibility_mi
+    - wind_string
+    - wind_mph
+    - wind_dir
+    - precip_today_in
+    - pressure_in
+    - UV
+    - solarradiation
+    - alerts
+
+- platform: airvisual
+  api_key: !secret airvisual_api_key
+  scan_interval: 300
+  monitored_conditions:
+    - us
+
+- platform: pollen
+  zip_code: "75034"
+  monitored_conditions:
+    - allergy_average_forecasted
+    - allergy_index_today
+    - allergy_index_tomorrow
+    - disease_average_forecasted
+
+#- platform: ups
+#  username: !secret ups_username
+#  password: !secret ups_password
+
+#- platform: fedex
+#  username: !secret fedex_username
+#  password: !secret fedex_password

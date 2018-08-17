@@ -1,0 +1,10 @@
+- name: Lock Doors
+  entities:
+    lock.front_door: locked
+    lock.back_door: locked
+    lock.garage_door: locked
+- name: Close Covers
+  entities:
+    cover.double_garage: closed
+    cover.single_garage: closed
+    cover.gate: closed

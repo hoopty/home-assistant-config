@@ -1,0 +1,41 @@
+- platform: rachio
+
+- platform: ring
+
+- platform: template
+  sensors:
+    doors_closed:
+      friendly_name: 'Doors & Windows Closed'
+      value_template: >-
+        {{ states('binary_sensor.main_doors') == 'off'
+          and states('binary_sensor.back_door') == 'off'
+          and states('binary_sensor.master_windows') == 'off'
+          and states('binary_sensor.downstairs_windows') == 'off'
+          and states('binary_sensor.upstairs_windows') == 'off' }}
+      entity_id:
+        - binary_sensor.main_doors
+        - binary_sensor.back_door
+        - binary_sensor.master_windows
+        - binary_sensor.downstairs_windows
+        - binary_sensor.upstairs_windows
+    covers_closed:
+      friendly_name: 'Garages & Gate Closed'
+      value_template: "{{ states('cover.gate') == 'closed' and states('cover.double_garage') == 'closed' and states('cover.single_garage') == 'closed' }}"
+      entity_id:
+        - cover.gate
+        - cover.double_garage
+        - cover.single_garage
+    doors_locked:
+      friendly_name: 'Doors Locked'
+      value_template: >-
+        {{ states('lock.front_door') == 'locked'
+          and states('lock.back_door') == 'locked'
+          and states('lock.garage_door') == 'locked' }}
+      entity_id:
+        - lock.front_door
+        - lock.back_door
+        - lock.garage_door
+    alarm_armed:
+      friendly_name: 'Alarm Armed'
+      value_template: "{{ states('alarm_control_panel.home_alarm') == 'armed_away' or states('alarm_control_panel.home_alarm') == 'pending' }}"
+      entity_id: alarm_control_panel.home_alarm

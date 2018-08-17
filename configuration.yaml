@@ -1,0 +1,183 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_altitude
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+
+alert: !include alert.yaml
+
+#auth:
+
+automation: !include automations.yaml
+
+binary_sensor: !include binary_sensor.yaml
+
+camera:
+  - platform: ring
+
+cloud:
+
+config:
+
+conversation:
+
+cover:
+  - platform: myq
+    username: !secret myq_username
+    password: !secret myq_password
+    type: liftmaster
+  - platform: template
+    covers:
+      gate:
+        friendly_name: 'Gate'
+        value_template: "{{ is_state('binary_sensor.gate_closed_sensor', 'off') }}"
+        entity_id: binary_sensor.gate_closed
+        open_cover:
+          service: script.gate_open
+        close_cover:
+          service: script.gate_close
+
+device_tracker:
+  - platform: unifi
+    host: 192.168.1.14
+    username: !secret unifi_username
+    password: !secret unifi_password
+    verify_ssl: false
+    new_device_defaults:
+      track_new_devices: false
+  - platform: owntracks_http
+
+discovery:
+  ignore:
+    - directv
+    - samsung_tv
+
+#downloader:
+#  download_dir: downloads
+
+ecobee:
+  api_key: !secret ecobee_key
+
+#emulated_hue:
+#  upnp_bind_multicast: false
+#  exposed_domains:
+#    - switch
+#    - light
+#    - scene
+#    - script
+
+envisalink: !include envisalink.yaml
+
+#ffmpeg:
+
+frontend:
+
+#group: !include group.yaml
+
+hassio:
+
+#history:
+#  exclude:
+#    domains:
+#      - automation
+#      - group
+
+http:
+  api_password: !secret api_password
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  trusted_networks:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
+
+#influxdb:
+#  host: metrics.local
+#  username: !secret influxdb_username
+#  password: !secret influxdb_password
+#  tags_attributes:
+#    - friendly_name
+
+ios:
+#  push:
+#    categories:
+#      - name: Gate
+#        identifier: 'gate'
+#        actions:
+#          - identifier: 'CLOSE_GATE'
+#            title: 'Close Gate'
+#      - name: Garage
+#        identifier: 'garage'
+#        actions:
+#          - identifier: 'CLOSE_GARAGE'
+#            title: 'Close Garage'
+
+logbook:
+  exclude:
+    domains:
+      - group
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.http: warn
+
+map:
+
+notify: !include notify.yaml
+
+#python_script:
+
+rachio:
+  api_key: !secret rachio_api_key
+
+recorder:
+  purge_keep_days: 1
+
+remote:
+  - platform: harmony
+    name: 'Media Room'
+    host: 192.168.1.154
+    activity: 'Watch Media'
+
+#tts:
+#  - platform: google
+
+#usps:
+#  username: !secret usps_username
+#  password: !secret usps_password
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+scene: !include scene.yaml
+
+script: !include scripts.yaml
+
+sensor: !include sensor.yaml
+
+sun:
+
+switch:
+  - platform: rachio
+    access_token: !secret rachio_api_key
+    entity_namespace: 'sprinkler'
+
+updater:
+  include_used_components: true
+
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret network_key
+
+#zha:
+#  usb_path: /dev/ttyAMA0
+#  database_path: /config/zigbee.db
+
+zone: !include zone.yaml
