@@ -2,6 +2,7 @@ deps/
 downloads/
 .*
 *.log
+*.txt
 *.pid
 *.pickle
 *.conf
@@ -13,5 +14,5 @@ envisalink.yaml
 ip_bans.yaml
 known_devices.yaml
 secrets.yaml
-stuff.yaml
 zone.yaml
+zwcfg_*.xml

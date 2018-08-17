@@ -1,45 +1,8 @@
-#
-# Visibility
-#
-sensor.temp_values:
-  hidden: true
-sensor.bryphone_battery_state:
-  hidden: true
-sensor.cindy_iphone_battery_state:
-  hidden: true
-sensor.ipad_battery_state:
-  hidden: true
-script.gate_stop:
-  hidden: true
-
 script.open_sesame:
   can_cancel: false
-
-#
-# Friendly Names
-#
-binary_sensor.gate_closed_sensor:
-  friendly_name: 'Gate Closed'
-media_player.directv_rid023846842815:
-  friendly_name: 'DirecTV DVR'
-#media_player.tv_un55ku6300:
-#  friendly_name: 'Living Room Plex'
-#media_player.tv_un55f6300:
-#  friendly_name: 'Master Bedroom Plex'
-scene.close_covers:
-  friendly_name: 'Close Garages & Gate'
-  emulated_hue_name: 'Close Outside Doors'
-sensor.speedtest_download:
-  friendly_name: 'Internet Downlink'
-sensor.speedtest_upload:
-  friendly_name: 'Internet Uplink'
-
-#
-# Icons
-#
-binary_sensor.alarm_armed:
-  icon: mdi:lock
-scene.lock_doors:
-  icon: mdi:lock
-script.arm_alarm:
-  icon: mdi:lock
+sensor.us_air_quality_index:
+  hidden: true
+sensor.us_air_pollution_level:
+  hidden: true
+sensor.us_main_pollutant:
+  hidden: true

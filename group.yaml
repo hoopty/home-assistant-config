@@ -69,7 +69,7 @@ Status:
 Front:
   control: hidden
   entities:
-    - lock.front_door_lock
+    - lock.front_door
     - switch.porch_light
     - binary_sensor.ring_front_door_ding
     - binary_sensor.ring_front_door_motion
@@ -81,14 +81,14 @@ Front:
 Back:
   control: hidden
   entities:
-    - lock.back_door_lock
-    - lock.garage_door_lock
+    - lock.back_door
+    - lock.garage_door
     - cover.double_garage
     - cover.single_garage
     - cover.gate
-    - binary_sensor.gate_closed_sensor
+    - binary_sensor.gate_closed
     - switch.garage_light
-    - sensor.garage_motion_sensor
+    - binary_sensor.garage_motion
     - switch.driveway_light
 Lights:
   control: hidden
@@ -147,6 +147,7 @@ Alarm:
 Sprinklers:
   control: hidden
   entities:
+      - switch.sprinkler_home_in_standby_mode
       - switch.sprinkler_front_flower_bed
       - switch.sprinkler_side_yard_north
       - switch.sprinkler_front_yard_north

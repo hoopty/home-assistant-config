@@ -1,12 +1,8 @@
-arm_alarm:
-  alias: 'Arm Alarm'
-  sequence:
-    - service: alarm_control_panel.alarm_arm_home
 gate_open:
   alias: 'Open Gate'
   sequence:
     - condition: state
-      entity_id: binary_sensor.gate_closed_sensor
+      entity_id: binary_sensor.gate_closed
       state: 'on'
     - service: homeassistant.turn_on
       entity_id: switch.gate_switch
@@ -14,16 +10,10 @@ gate_close:
   alias: 'Close Gate'
   sequence:
     - condition: state
-      entity_id: binary_sensor.gate_closed_sensor
+      entity_id: binary_sensor.gate_closed
       state: 'off'
     - service: homeassistant.turn_on
       entity_id: switch.gate_switch
-gate_stop:
-  alias: 'Stop Gate'
-  sequence:
-    - condition: state
-      entity_id: binary_sensor.gate_closed_sensor
-      state: 'on'
 open_sesame:
   alias: 'Open Sesame'
   sequence:
@@ -36,10 +26,3 @@ open_sesame:
       entity_id: cover.gate
     - service: cover.close_cover
       entity_id: cover.double_garage
-movie_time:
-  alias: 'Movie Time'
-  sequence:
-    - service: remote.turn_on
-      entity_id: remote.media_room
-      data:
-        activity: 'Watch Media'

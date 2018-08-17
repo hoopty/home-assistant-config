@@ -19,7 +19,7 @@
 #
 - platform: rest
   name: temp_values
-  resource: 'http://temp.local/stateFull.xml'
+  resource: 'http://192.168.1.157/stateFull.xml'
   username: !secret temp_username
   password: !secret temp_password
   value_template: '{{ value|replace("<"," <")|striptags() }}'
@@ -48,15 +48,15 @@
       value_template: '{{ states("sensor.temp_values").split(" ")[4] }}'
       entity_id: sensor.temp_values
 
-- platform: nzbget
-  host: media.local
-  monitored_variables:
-    - download_paused
-    - average_download_rate
-    - download_rate
-    - download_size
-    - remaining_size
-    - free_disk_space
+#- platform: nzbget
+#  host: media.local
+#  monitored_variables:
+#    - download_paused
+#    - average_download_rate
+#    - download_rate
+#    - download_size
+#    - remaining_size
+#    - free_disk_space
 
 #- platform: deluge
 #  host: media.local
@@ -78,22 +78,22 @@
 #    - commands
 #    - status
 
-- platform: sonarr
-  api_key: !secret sonarr_api_key
-  host: media.local
-  urlbase: /tv
-  monitored_conditions:
-    - upcoming
-    - wanted
-    - queue
-    - status
+#- platform: sonarr
+#  api_key: !secret sonarr_api_key
+#  host: media.local
+#  urlbase: /tv
+#  monitored_conditions:
+#    - upcoming
+#    - wanted
+#    - queue
+#    - status
 
-- platform: speedtest
-  server_id: 4323
-  monitored_conditions:
-    - download
-    - upload
-  hour: 12
+#- platform: speedtest
+#  server_id: 4323
+#  monitored_conditions:
+#    - download
+#    - upload
+#  hour: 12
 
 - platform: cert_expiry
   host: home.bryce.net

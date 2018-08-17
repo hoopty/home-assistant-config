@@ -22,7 +22,7 @@ back_door_open:
     - phones
 front_door_unlocked:
   name: 'Front Door is unlocked'
-  entity_id: lock.front_door_lock
+  entity_id: lock.front_door
   state: 'unlocked'
   skip_first: true
   repeat:
@@ -33,7 +33,7 @@ front_door_unlocked:
     - phones
 back_door_unlocked:
   name: 'Back Door is unlocked'
-  entity_id: lock.back_door_lock
+  entity_id: lock.back_door
   state: 'unlocked'
   skip_first: true
   repeat:
