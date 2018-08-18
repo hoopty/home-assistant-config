@@ -8,19 +8,16 @@ views:
     id: home
     icon: mdi:home-assistant
     cards:
-      - type: entity-filter
-        title: Alerts
+      - type: custom:monster-card
         show_empty: False
-        entities:
-          - alert.main_doors_open
-          - alert.back_door_open
-          - alert.front_door_unlocked
-          - alert.back_door_unlocked
-          - alert.double_garage_open
-          - alert.single_garage_open
-          - alert.gate_open
-        state_filter:
-          - On
+        card:
+          type: entities
+          title: Alerts
+        filter:
+          include:
+            - domain: alert
+          exclude:
+            - state: 'idle'
       - type: entities
         title: Activities
         entities:
@@ -46,13 +43,13 @@ views:
               entity_id: alarm_control_panel.home_alarm
       - type: entities
         title: Lights
-        show_header_toggle: false
+        show_header_toggle: False
         entities:
           - entity: light.living_room_lamp
             icon: mdi:lightbulb
       - type: entities
         title: Front
-        show_header_toggle: false
+        show_header_toggle: False
         entities:
           - lock.front_door
           - entity: switch.porch_light
@@ -66,7 +63,7 @@ views:
           - camera.usps_mail
       - type: entities
         title: Back
-        show_header_toggle: false
+        show_header_toggle: False
         entities:
           - lock.back_door
           - cover.gate
@@ -75,7 +72,7 @@ views:
             icon: mdi:lightbulb
       - type: entities
         title: Garage
-        show_header_toggle: false
+        show_header_toggle: False
         entities:
           - lock.garage_door
           - cover.double_garage
@@ -209,7 +206,7 @@ views:
           - binary_sensor.upstairs_windows
       - type: entities
         title: Sprinklers
-        show_header_toggle: false
+        show_header_toggle: False
         entities:
           - switch.sprinkler_home_in_standby_mode
           - switch.sprinkler_front_flower_bed
@@ -219,9 +216,10 @@ views:
           - switch.sprinkler_side_yard_south__garden
           - switch.sprinkler_back_yard
       - type: custom:monster-card
-        show_empty: false
+        show_empty: False
         card:
           type: entities
+          title: Z-Wave
         filter:
           include:
             - domain: zwave
