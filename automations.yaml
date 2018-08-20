@@ -1,26 +1,30 @@
 - id: doorbel_motion
   alias: doorbell motion
-  hide_entity: True
+  hide_entity: true
   trigger:
-    platform: state
+  - platform: state
     entity_id: binary_sensor.ring_front_door_motion
     to: 'off'
   action:
-    service: python_script.ring_downloader
+  - service: downloader.download_file
+    data_template:
+      url: '{{ states.camera.front_door.attributes.video_url }}'
+      filename: 'latest.mp4'
+      overwrite: true
 - id: garage_motion_on
   alias: garage motion on
-  hide_entity: True
+  hide_entity: true
   trigger:
-  - entity_id: binary_sensor.garage_motion
     platform: state
+    entity_id: binary_sensor.garage_motion
     to: 'on'
   action:
-    service: homeassistant.turn_on
+  - service: homeassistant.turn_on
     data:
       entity_id: switch.garage_light
 - id: garage_motion_off
   alias: garage motion off
-  hide_entity: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: binary_sensor.garage_motion
@@ -31,7 +35,7 @@
       entity_id: switch.garage_light
 - id: driveway_lights_on
   alias: driveway lights on
-  hide_entity: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: group.all_covers
@@ -41,12 +45,12 @@
     entity_id: sun.sun
     state: below_horizon
   action:
-    service: homeassistant.turn_on
+  - service: homeassistant.turn_on
     data:
       entity_id: switch.driveway_light
 - id: driveway_lights_off
   alias: driveway lights off
-  hide_entity: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: group.all_covers
@@ -56,12 +60,12 @@
     entity_id: sun.sun
     state: below_horizon
   action:
-    service: homeassistant.turn_off
+  - service: homeassistant.turn_off
     data:
       entity_id: switch.driveway_light
 - id: sunset_lights_on
   alias: sunset lights on
-  hide_entity: True
+  hide_entity: true
   trigger:
     platform: sun
     event: sunset
@@ -75,31 +79,40 @@
       entity_id: light.living_room_lamp
 - id: late_night_lights_off
   alias: late night lights off
-  hide_entity: True
+  hide_entity: true
   trigger:
     platform: time
     at: 00:00:00
   action:
-    service: homeassistant.turn_off
+  - service: homeassistant.turn_off
     data:
       entity_id: light.living_room_lamp
 - id: sunrise_lights_off
   alias: sunrise lights off
-  hide_entity: True
+  hide_entity: true
   trigger:
     platform: sun
     event: sunrise
   action:
-    service: homeassistant.turn_off
+  - service: homeassistant.turn_off
     data:
       entity_id: switch.porch_light
-- id: device_low_battery
-  alias: device low battery
-  hide_entity: True
+- id: device_alert
+  alias: Device Alert
+  hide_entity: true
   trigger:
-    platform: numeric_state
+  - platform: numeric_state
     entity_id: group.all_devices
     below: 25
+  - platform: numeric_state
+    entity_id: sensor.deep_freezer_temp
+    above: 20
+  - platform: numeric_state
+    entity_id: sensor.freezer_temp
+    above: 20
+  - platform: numeric_state
+    entity_id: sensor.drink_fridge_temp
+    above: 50
   action:
   - service: notify.phones
     data_template:
@@ -109,25 +122,16 @@
       name: '{{ trigger.to_state.name }}'
       entity_id: '{{ trigger.to_state.entity_id }}'
       message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
-- id: temp_alert
-  alias: temp alert
-  hide_entity: True
+- id: garage_light_double_off
+  alias: Garage Light Double Off
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.deep_freezer_temp
-      above: 20
-    - platform: numeric_state
-      entity_id: sensor.freezer_temp
-      above: 20
-    - platform: numeric_state
-      entity_id: sensor.drink_fridge_temp
-      above: 50
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garage_light
+      scene_id: 1
+      scene_data: 3
   action:
-  - service: notify.phones
-    data_template:
-      message: '{{ trigger.to_state.name }} is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
-  - service: logbook.log
-    data_template:
-      name: '{{ trigger.to_state.name }}'
-      entity_id: '{{ trigger.to_state.entity_id }}'
-      message: ' is {{ trigger.to_state.state }}{{ trigger.to_state.attributes.unit_of_measurement }}.'
+  - service: homeassistant.turn_off
+    data:
+      entity_id: switch.garage_light

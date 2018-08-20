@@ -6,6 +6,7 @@
   sensors:
     doors_closed:
       friendly_name: 'Doors & Windows Closed'
+      device_class: moving
       value_template: >-
         {{ states('binary_sensor.main_doors') == 'off'
           and states('binary_sensor.back_door') == 'off'
@@ -20,6 +21,7 @@
         - binary_sensor.upstairs_windows
     covers_closed:
       friendly_name: 'Garages & Gate Closed'
+      device_class: moving
       value_template: "{{ states('cover.gate') == 'closed' and states('cover.double_garage') == 'closed' and states('cover.single_garage') == 'closed' }}"
       entity_id:
         - cover.gate
@@ -27,6 +29,7 @@
         - cover.single_garage
     doors_locked:
       friendly_name: 'Doors Locked'
+      device_class: moving
       value_template: >-
         {{ states('lock.front_door') == 'locked'
           and states('lock.back_door') == 'locked'
@@ -37,5 +40,6 @@
         - lock.garage_door
     alarm_armed:
       friendly_name: 'Alarm Armed'
+      device_class: moving
       value_template: "{{ states('alarm_control_panel.home_alarm') == 'armed_away' or states('alarm_control_panel.home_alarm') == 'pending' }}"
       entity_id: alarm_control_panel.home_alarm

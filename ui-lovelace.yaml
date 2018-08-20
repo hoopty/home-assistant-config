@@ -9,7 +9,7 @@ views:
     icon: mdi:home-assistant
     cards:
       - type: custom:monster-card
-        show_empty: False
+        show_empty: false
         card:
           type: entities
           title: Alerts
@@ -28,8 +28,7 @@ views:
           - binary_sensor.doors_closed
           - binary_sensor.covers_closed
           - binary_sensor.doors_locked
-          - entity: binary_sensor.alarm_armed
-            icon: mdi:lock
+          - binary_sensor.alarm_armed
           - entity: scene.close_covers
             name: 'Close Garages & Gate'
           - entity: scene.lock_doors
@@ -43,13 +42,13 @@ views:
               entity_id: alarm_control_panel.home_alarm
       - type: entities
         title: Lights
-        show_header_toggle: False
+        show_header_toggle: false
         entities:
           - entity: light.living_room_lamp
             icon: mdi:lightbulb
       - type: entities
         title: Front
-        show_header_toggle: False
+        show_header_toggle: false
         entities:
           - lock.front_door
           - entity: switch.porch_light
@@ -63,7 +62,7 @@ views:
           - camera.usps_mail
       - type: entities
         title: Back
-        show_header_toggle: False
+        show_header_toggle: false
         entities:
           - lock.back_door
           - cover.gate
@@ -72,7 +71,7 @@ views:
             icon: mdi:lightbulb
       - type: entities
         title: Garage
-        show_header_toggle: False
+        show_header_toggle: false
         entities:
           - lock.garage_door
           - cover.double_garage
@@ -206,7 +205,7 @@ views:
           - binary_sensor.upstairs_windows
       - type: entities
         title: Sprinklers
-        show_header_toggle: False
+        show_header_toggle: false
         entities:
           - switch.sprinkler_home_in_standby_mode
           - switch.sprinkler_front_flower_bed
@@ -216,7 +215,7 @@ views:
           - switch.sprinkler_side_yard_south__garden
           - switch.sprinkler_back_yard
       - type: custom:monster-card
-        show_empty: False
+        show_empty: false
         card:
           type: entities
           title: Z-Wave

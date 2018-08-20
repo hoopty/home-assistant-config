@@ -55,8 +55,8 @@ discovery:
     - directv
     - samsung_tv
 
-#downloader:
-#  download_dir: downloads
+downloader:
+  download_dir: downloads
 
 ecobee:
   api_key: !secret ecobee_key
@@ -131,8 +131,6 @@ map:
 
 notify: !include notify.yaml
 
-#python_script:
-
 rachio:
   api_key: !secret rachio_api_key
 
@@ -175,6 +173,8 @@ updater:
 zwave:
   usb_path: /dev/ttyACM0
   network_key: !secret network_key
+  device_config: !include zwave_device_config.yaml
+  device_config_glob: !include zwave_device_glob.yaml
 
 #zha:
 #  usb_path: /dev/ttyAMA0
