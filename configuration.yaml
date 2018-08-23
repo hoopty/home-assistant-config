@@ -6,6 +6,7 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
 
 alert: !include alert.yaml
 
@@ -43,9 +44,10 @@ cover:
 device_tracker:
   - platform: unifi
     host: 192.168.1.14
+    verify_ssl: false
     username: !secret unifi_username
     password: !secret unifi_password
-    verify_ssl: false
+    scan_interval: 60
     new_device_defaults:
       track_new_devices: false
   - platform: owntracks_http
@@ -71,11 +73,7 @@ ecobee:
 
 envisalink: !include envisalink.yaml
 
-#ffmpeg:
-
 frontend:
-
-#group: !include group.yaml
 
 hassio:
 
@@ -93,7 +91,7 @@ http:
     - 10.0.0.0/8
     - 172.16.0.0/12
     - 192.168.0.0/16
-  ip_ban_enabled: True
+  ip_ban_enabled: true
   login_attempts_threshold: 5
 
 #influxdb:
@@ -143,13 +141,6 @@ remote:
     host: 192.168.1.154
     activity: 'Watch Media'
 
-#tts:
-#  - platform: google
-
-#usps:
-#  username: !secret usps_username
-#  password: !secret usps_password
-
 ring:
   username: !secret ring_username
   password: !secret ring_password
@@ -162,10 +153,7 @@ sensor: !include sensor.yaml
 
 sun:
 
-switch:
-  - platform: rachio
-    access_token: !secret rachio_api_key
-    entity_namespace: 'sprinkler'
+switch: !include switch.yaml
 
 updater:
   include_used_components: true

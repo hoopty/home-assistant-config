@@ -2,13 +2,12 @@
   alias: doorbell motion
   hide_entity: true
   trigger:
-  - platform: state
-    entity_id: binary_sensor.ring_front_door_motion
-    to: 'off'
+    platform: template
+    value_template: "{{ is_state_attr('sensor.ring_front_door_last_activity', 'recording_status', 'ready') }}"
   action:
-  - service: downloader.download_file
+    service: downloader.download_file
     data_template:
-      url: '{{ states.camera.front_door.attributes.video_url }}'
+      url: "{{ states.camera.front_door.attributes.video_url }}"
       filename: 'latest.mp4'
       overwrite: true
 - id: garage_motion_on
@@ -19,7 +18,7 @@
     entity_id: binary_sensor.garage_motion
     to: 'on'
   action:
-  - service: homeassistant.turn_on
+    service: homeassistant.turn_on
     data:
       entity_id: switch.garage_light
 - id: garage_motion_off
@@ -45,7 +44,7 @@
     entity_id: sun.sun
     state: below_horizon
   action:
-  - service: homeassistant.turn_on
+    service: homeassistant.turn_on
     data:
       entity_id: switch.driveway_light
 - id: driveway_lights_off
@@ -60,7 +59,7 @@
     entity_id: sun.sun
     state: below_horizon
   action:
-  - service: homeassistant.turn_off
+    service: homeassistant.turn_off
     data:
       entity_id: switch.driveway_light
 - id: sunset_lights_on
@@ -84,7 +83,7 @@
     platform: time
     at: 00:00:00
   action:
-  - service: homeassistant.turn_off
+    service: homeassistant.turn_off
     data:
       entity_id: light.living_room_lamp
 - id: sunrise_lights_off
@@ -94,7 +93,7 @@
     platform: sun
     event: sunrise
   action:
-  - service: homeassistant.turn_off
+    service: homeassistant.turn_off
     data:
       entity_id: switch.porch_light
 - id: device_alert
@@ -132,6 +131,6 @@
       scene_id: 1
       scene_data: 3
   action:
-  - service: homeassistant.turn_off
+    service: homeassistant.turn_off
     data:
       entity_id: switch.garage_light

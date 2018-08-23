@@ -1,103 +1,83 @@
-resources:
-  - url: /local/monster-card.js?v=1
-    type: js
-
 title: Home
 views:
   - title: Home
     id: home
     icon: mdi:home-assistant
     cards:
-      - type: custom:monster-card
-        show_empty: false
+      - type: entity-filter
         card:
-          type: entities
           title: Alerts
-        filter:
-          include:
-            - domain: alert
-          exclude:
-            - state: 'idle'
-      - type: entities
-        title: Activities
+        show_empty: false
+        state_filter:
+          - 'on'
         entities:
-          - script.open_sesame
+          - alert.main_doors_open
+          - alert.back_door_open
+          - alert.front_door_unlocked
+          - alert.back_door_unlocked
+          - alert.double_garage_open
+          - alert.single_garage_open
+          - alert.gate_open
       - type: entities
         title: Status
+        show_header_toggle: false
         entities:
           - binary_sensor.doors_closed
-          - binary_sensor.covers_closed
-          - binary_sensor.doors_locked
-          - binary_sensor.alarm_armed
-          - entity: scene.close_covers
-            name: 'Close Garages & Gate'
-          - entity: scene.lock_doors
-            icon: mdi:lock
-          - type: call-service
-            name: 'Arm Alarm'
-            icon: mdi:lock
-            action_name: 'Arm'
-            service: alarm_control_panel.alarm_arm_home
-            service_data: 
-              entity_id: alarm_control_panel.home_alarm
+          - switch.close_covers
+          - switch.lock_doors
+          - switch.arm_alarm
+          - type: divider
+          - script.open_sesame
       - type: entities
         title: Lights
         show_header_toggle: false
         entities:
-          - entity: light.living_room_lamp
-            icon: mdi:lightbulb
+          - light.living_room_lamp
       - type: entities
-        title: Front
+        title: Outside
         show_header_toggle: false
         entities:
           - lock.front_door
-          - entity: switch.porch_light
-            icon: mdi:lightbulb
-          - binary_sensor.ring_front_door_ding
-          - binary_sensor.ring_front_door_motion
-          - sensor.ups
-          - sensor.fedex
-          - sensor.usps_mail
-          - sensor.usps_packages
-          - camera.usps_mail
-      - type: entities
-        title: Back
-        show_header_toggle: false
-        entities:
           - lock.back_door
-          - cover.gate
-          - binary_sensor.gate_closed
-          - entity: switch.driveway_light
-            icon: mdi:lightbulb
-      - type: entities
-        title: Garage
-        show_header_toggle: false
-        entities:
           - lock.garage_door
+          - type: divider
+          - cover.gate
           - cover.double_garage
           - cover.single_garage
-          - entity: switch.garage_light
-            icon: mdi:lightbulb
-          - binary_sensor.garage_motion
+          - type: divider
+          - switch.porch_light
+          - switch.garage_light
+          - switch.driveway_light
+      - type: entities
+        title: Front Door
+        show_header_toggle: false
+        column_width: 25%
+        entities:
+          - camera.front_door
+          - binary_sensor.ring_front_door_ding
+          - binary_sensor.ring_front_door_motion
+          - type: divider
+          - sensor.ups
+          - sensor.fedex
   - title: Family
     id: family
     icon: mdi:account-multiple
     cards:
       - type: glance
-        title: People
+        title: Family
         entities:
           - device_tracker.bryphone
           - device_tracker.cindy_iphone
           - device_tracker.jenny_phone
-          - device_tracker.katy_phone
+#          - device_tracker.katy_phone
       - type: entities
         title: Devices
         entities:
           - sensor.bryphone_battery_level
           - sensor.cindy_iphone_battery_level
-          - sensor.jenny_phone_battery
-          - sensor.katy_phone_battery
-          - sensor.ipad_battery_level
+#          - sensor.jenny_phone_battery
+#          - sensor.katy_phone_battery
+#          - sensor.ipad_battery
   - title: Media Room
     id: media_room
     icon: mdi:television-classic
@@ -113,16 +93,14 @@ views:
               entity_id: remote.media_room
               activity: "Watch Media"
           - remote.media_room
-          - entity: light.media_room_lights
-            icon: mdi:lightbulb
-          - entity: light.media_room_lamp
-            icon: mdi:lightbulb
+          - light.media_room_lights
+          - light.media_room_lamp
   - title: Climate
     id: climate
     icon: mdi:thermometer
     cards:
       - type: entities
-        title: Downstairs Climate
+        title: Downstairs
         entities:
           - climate.downstairs
           - sensor.downstairs_temperature
@@ -135,7 +113,7 @@ views:
           - binary_sensor.master_bedroom_occupancy
           - binary_sensor.office_occupancy
       - type: entities
-        title: Upstairs Climate
+        title: Upstairs
         entities:
           - climate.upstairs
           - sensor.upstairs_temperature
@@ -148,7 +126,7 @@ views:
           - binary_sensor.katy_room_occupancy
           - binary_sensor.guest_room_occupancy
       - type: entities
-        title: Garage Climate
+        title: Garage
         entities:
           - sensor.deep_freezer_temp
           - sensor.freezer_temp
@@ -158,12 +136,10 @@ views:
     id: weather
     icon: mdi:cloud
     cards:
-      - type: glance
+      - type: entities
+        title: Weather
         entities:
           - sun.sun
-      - type: entities
-        title: Weather Underground
-        entities:
           - sensor.pws_weather
           - sensor.pws_temp_f
           - sensor.pws_feelslike_f
@@ -214,14 +190,22 @@ views:
           - switch.sprinkler_front_yard_south
           - switch.sprinkler_side_yard_south__garden
           - switch.sprinkler_back_yard
-      - type: custom:monster-card
-        show_empty: false
-        card:
-          type: entities
-          title: Z-Wave
-        filter:
-          include:
-            - domain: zwave
+      - type: entities
+        title: Z-Wave
+        entities:
+          - zwave.zwaveme_zme_uzb1_usb_stick
+          - zwave.front_door
+          - zwave.garage_door
+          - zwave.back_door
+          - zwave.porch_light
+          - zwave.driveway_light
+          - zwave.garage_light
+          - zwave.garage_motion
+          - zwave.master_closet_sensor
+          - zwave.living_room_lamp
+          - zwave.media_room_lamp
+          - zwave.media_room_lights
+          - zwave.gate
       - type: entities
         title: Miscellaneous
         entities:

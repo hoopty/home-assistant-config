@@ -6,13 +6,13 @@
     jenny_phone_battery:
       friendly_name: 'Jenny Phone Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery }}'
+      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery|int }}'
       entity_id: device_tracker.jenny_phone
-    katy_phone_battery:
-      friendly_name: 'Katy Phone Battery'
-      unit_of_measurement: '%'
-      value_template: '{{ states.device_tracker.katy_phone.attributes.battery }}'
-      entity_id: device_tracker.katy_phone
+#    katy_phone_battery:
+#      friendly_name: 'Katy Phone Battery'
+#      unit_of_measurement: '%'
+#      value_template: '{{ states.device_tracker.katy_phone.attributes.battery|int }}'
+#      entity_id: device_tracker.katy_phone
 
 #
 # Temp Probes
@@ -132,10 +132,10 @@
     - allergy_index_tomorrow
     - disease_average_forecasted
 
-#- platform: ups
-#  username: !secret ups_username
-#  password: !secret ups_password
+- platform: ups
+  username: !secret ups_username
+  password: !secret ups_password
 
-#- platform: fedex
-#  username: !secret fedex_username
-#  password: !secret fedex_password
+- platform: fedex
+  username: !secret fedex_username
+  password: !secret fedex_password
