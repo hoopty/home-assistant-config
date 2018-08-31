@@ -69,15 +69,14 @@ views:
           - device_tracker.bryphone
           - device_tracker.cindy_iphone
           - device_tracker.jenny_phone
-#          - device_tracker.katy_phone
+          - device_tracker.katy_phone
       - type: entities
         title: Devices
         entities:
           - sensor.bryphone_battery_level
           - sensor.cindy_iphone_battery_level
-#          - sensor.jenny_phone_battery
-#          - sensor.katy_phone_battery
-#          - sensor.ipad_battery
+          - sensor.jenny_phone_battery
+          - sensor.katy_phone_battery
   - title: Media Room
     id: media_room
     icon: mdi:television-classic
@@ -158,6 +157,15 @@ views:
       - type: entities
         title: Air Quality
         entities:
+          - sensor.current_uv_index
+          - sensor.max_uv_index
+          - sensor.skin_type_1_safe_exposure_time
+          - sensor.skin_type_2_safe_exposure_time
+          - sensor.skin_type_3_safe_exposure_time
+          - sensor.skin_type_4_safe_exposure_time
+          - sensor.skin_type_5_safe_exposure_time
+          - sensor.skin_type_6_safe_exposure_time
+          - type: divider
           - sensor.us_air_pollution_level
           - sensor.us_air_quality_index
           - sensor.us_main_pollutant

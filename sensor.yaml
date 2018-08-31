@@ -6,13 +6,13 @@
     jenny_phone_battery:
       friendly_name: 'Jenny Phone Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery|int }}'
+      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery }}'
       entity_id: device_tracker.jenny_phone
-#    katy_phone_battery:
-#      friendly_name: 'Katy Phone Battery'
-#      unit_of_measurement: '%'
-#      value_template: '{{ states.device_tracker.katy_phone.attributes.battery|int }}'
-#      entity_id: device_tracker.katy_phone
+    katy_phone_battery:
+      friendly_name: 'Katy Phone Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.device_tracker.katy_phone.attributes.battery }}'
+      entity_id: device_tracker.katy_phone
 
 #
 # Temp Probes
@@ -88,12 +88,12 @@
 #    - queue
 #    - status
 
-#- platform: speedtest
-#  server_id: 4323
-#  monitored_conditions:
-#    - download
-#    - upload
-#  hour: 12
+- platform: speedtest
+  server_id: 4323
+  monitored_conditions:
+    - download
+    - upload
+  hour: 12
 
 - platform: cert_expiry
   host: home.bryce.net
