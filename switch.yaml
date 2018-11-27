@@ -1,7 +1,3 @@
-- platform: rachio
-  access_token: !secret rachio_api_key
-  entity_namespace: 'sprinkler'
-
 - platform: template
   switches:
     close_covers:

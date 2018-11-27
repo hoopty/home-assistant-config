@@ -118,12 +118,6 @@
     - solarradiation
     - alerts
 
-- platform: airvisual
-  api_key: !secret airvisual_api_key
-  scan_interval: 300
-  monitored_conditions:
-    - us
-
 - platform: pollen
   zip_code: "75034"
   monitored_conditions:
@@ -132,10 +126,10 @@
     - allergy_index_tomorrow
     - disease_average_forecasted
 
-- platform: ups
-  username: !secret ups_username
-  password: !secret ups_password
+#- platform: ups
+#  username: !secret ups_username
+#  password: !secret ups_password
 
-- platform: fedex
-  username: !secret fedex_username
-  password: !secret fedex_password
+#- platform: fedex
+#  username: !secret fedex_username
+#  password: !secret fedex_password

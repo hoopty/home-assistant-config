@@ -1,8 +1,2 @@
 script.open_sesame:
   can_cancel: false
-sensor.us_air_quality_index:
-  hidden: true
-sensor.us_air_pollution_level:
-  hidden: true
-sensor.us_main_pollutant:
-  hidden: true
