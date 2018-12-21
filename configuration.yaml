@@ -40,15 +40,15 @@ cover:
           service: script.gate_close
 
 device_tracker:
-  - platform: unifi
-    host: 192.168.1.14
-    verify_ssl: false
-    username: !secret unifi_username
-    password: !secret unifi_password
-    scan_interval: 60
+  - platform: owntracks
     new_device_defaults:
       track_new_devices: false
-  - platform: owntracks_http
+#  - platform: unifi
+#    host: 192.168.1.14
+#    verify_ssl: false
+#    username: !secret unifi_username
+#    password: !secret unifi_password
+#    scan_interval: 60
 
 discovery:
   ignore:
@@ -131,6 +131,9 @@ notify: !include notify.yaml
 
 openuv:
   api_key: !secret openuv_api_key
+
+owntracks:
+  max_gps_accuracy: 200
 
 rachio:
   api_key: !secret rachio_api_key

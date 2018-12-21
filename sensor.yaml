@@ -6,11 +6,13 @@
     jenny_phone_battery:
       friendly_name: 'Jenny Phone Battery'
       unit_of_measurement: '%'
-      value_template: '{{ states.device_tracker.jenny_phone.attributes.battery }}'
-      entity_id: device_tracker.jenny_phone
+      device_class: battery
+      value_template: '{{ states.device_tracker.jenny_dcf29e171d2e436789b971c49dbc0499.attributes.battery }}'
+      entity_id: device_tracker.jenny_dcf29e171d2e436789b971c49dbc0499
     katy_phone_battery:
       friendly_name: 'Katy Phone Battery'
       unit_of_measurement: '%'
+      device_class: battery
       value_template: '{{ states.device_tracker.katy_phone.attributes.battery }}'
       entity_id: device_tracker.katy_phone
 
