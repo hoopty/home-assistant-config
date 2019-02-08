@@ -8,6 +8,10 @@ homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
+ambient_station:
+  api_key: !secret ambient_api_key
+  app_key: !secret ambient_app_key
+
 alert: !include alert.yaml
 
 automation: !include automations.yaml
@@ -32,7 +36,7 @@ cover:
     covers:
       gate:
         friendly_name: 'Gate'
-        value_template: "{{ is_state('binary_sensor.gate_closed_sensor', 'off') }}"
+        value_template: "{{ is_state('binary_sensor.gate_closed', 'off') }}"
         entity_id: binary_sensor.gate_closed
         open_cover:
           service: script.gate_open
@@ -43,12 +47,12 @@ device_tracker:
   - platform: owntracks
     new_device_defaults:
       track_new_devices: false
-#  - platform: unifi
-#    host: 192.168.1.14
-#    verify_ssl: false
-#    username: !secret unifi_username
-#    password: !secret unifi_password
-#    scan_interval: 60
+  - platform: unifi
+    host: !secret unifi_host
+    verify_ssl: false
+    username: !secret unifi_username
+    password: !secret unifi_password
+    scan_interval: 60
 
 discovery:
   ignore:
@@ -61,28 +65,24 @@ downloader:
 ecobee:
   api_key: !secret ecobee_key
 
-#emulated_hue:
-#  upnp_bind_multicast: false
-#  exposed_domains:
-#    - switch
-#    - light
-#    - scene
-#    - script
-
 envisalink: !include envisalink.yaml
 
 ffmpeg:
 
 frontend:
 
-#history:
-#  exclude:
-#    domains:
-#      - automation
-#      - group
+google_assistant:
+  project_id: hass
+  api_key: !secret google_api_key
+
+history:
+  exclude:
+    domains:
+      - automation
+      - group
 
 http:
-  api_password: !secret api_password
+  base_url: https://home.bryce.net:8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   trusted_networks:
@@ -95,25 +95,25 @@ http:
   login_attempts_threshold: 5
 
 influxdb:
-  host: 192.168.1.16
+  host: !secret influxdb_host
   username: !secret influxdb_username
   password: !secret influxdb_password
   tags_attributes:
     - friendly_name
 
 ios:
-#  push:
-#    categories:
-#      - name: Gate
-#        identifier: 'gate'
-#        actions:
-#          - identifier: 'CLOSE_GATE'
-#            title: 'Close Gate'
-#      - name: Garage
-#        identifier: 'garage'
-#        actions:
-#          - identifier: 'CLOSE_GARAGE'
-#            title: 'Close Garage'
+  push:
+    categories:
+      - name: Covers
+        identifier: 'covers'
+        actions:
+          - identifier: 'CLOSE_COVERS'
+            title: 'Close'
+      - name: Locks
+        identifier: 'locks'
+        actions:
+          - identifier: 'LOCK_DOORS'
+            title: 'Lock Doors'
 
 logbook:
   exclude:
@@ -123,7 +123,9 @@ logbook:
 logger:
   default: info
   logs:
+    engineio.client: warn
     homeassistant.components.http: warn
+    socketio.client: warn
 
 map:
 
@@ -144,7 +146,6 @@ recorder:
 remote:
   - platform: harmony
     name: 'Media Room'
-    host: 192.168.1.154
     activity: 'Watch Media'
 
 ring:
@@ -161,14 +162,23 @@ sun:
 
 switch: !include switch.yaml
 
+system_health:
+
 updater:
   include_used_components: true
 
 zwave:
-  usb_path: /dev/ttyACM0
   network_key: !secret network_key
-  device_config: !include zwave_device_config.yaml
-  device_config_glob: !include zwave_device_glob.yaml
+  device_config:
+    sensor.gate:
+      ignored: true
+  device_config_glob:
+    "sensor.*_alarm_level":
+      ignored: true
+    "sensor.*_alarm_type":
+      ignored: true
+    "sensor.*_sourcenodeid":
+      ignored: true
 
 #zha:
 #  usb_path: /dev/ttyAMA0
