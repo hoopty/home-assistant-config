@@ -90,44 +90,6 @@
 #    - queue
 #    - status
 
-- platform: speedtest
-  server_id: 4323
-  monitored_conditions:
-    - download
-    - upload
-  hour: 12
-
-- platform: cert_expiry
-  host: home.bryce.net
-
-- platform: wunderground
-  api_key: !secret wunderground_api_key
-  pws_id: KTXFRISC82
-  monitored_conditions:
-    - weather
-    - temp_f
-    - feelslike_f
-    - heat_index_f
-    - dewpoint_f
-    - relative_humidity
-    - visibility_mi
-    - wind_string
-    - wind_mph
-    - wind_dir
-    - precip_today_in
-    - pressure_in
-    - UV
-    - solarradiation
-    - alerts
-
-- platform: pollen
-  zip_code: "75034"
-  monitored_conditions:
-    - allergy_average_forecasted
-    - allergy_index_today
-    - allergy_index_tomorrow
-    - disease_average_forecasted
-
 #- platform: ups
 #  username: !secret ups_username
 #  password: !secret ups_password

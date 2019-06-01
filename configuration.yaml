@@ -22,6 +22,11 @@ camera:
   - platform: ring
 
 cloud:
+  google_actions:
+    filter:
+      exclude_domains:
+        - group
+        - media_player
 
 config:
 
@@ -43,6 +48,8 @@ cover:
         close_cover:
           service: script.gate_close
 
+default_config:
+
 device_tracker:
   - platform: owntracks
     new_device_defaults:
@@ -56,7 +63,7 @@ device_tracker:
 
 discovery:
   ignore:
-    - directv
+    - apple_tv
     - samsung_tv
 
 downloader:
@@ -71,10 +78,6 @@ ffmpeg:
 
 frontend:
 
-google_assistant:
-  project_id: hass
-  api_key: !secret google_api_key
-
 history:
   exclude:
     domains:
@@ -82,24 +85,6 @@ history:
       - group
 
 http:
-  base_url: https://home.bryce.net:8123
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
-  trusted_networks:
-    - 127.0.0.1
-    - ::1
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - 192.168.0.0/16
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
-influxdb:
-  host: !secret influxdb_host
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  tags_attributes:
-    - friendly_name
 
 ios:
   push:
@@ -124,7 +109,6 @@ logger:
   default: info
   logs:
     engineio.client: warn
-    homeassistant.components.http: warn
     socketio.client: warn
 
 map:
@@ -135,18 +119,31 @@ openuv:
   api_key: !secret openuv_api_key
 
 owntracks:
-  max_gps_accuracy: 200
+#  max_gps_accuracy: 200
 
-rachio:
-  api_key: !secret rachio_api_key
+person:
+
+prometheus:
+  namespace: hass
+
+#rachio:
+#  api_key: !secret rachio_api_key
 
 recorder:
   purge_keep_days: 1
+  exclude:
+    domains:
+      - group
+      - zwave
+    entities:
+      - sun.sun
+      - sensor.temp_values
 
 remote:
   - platform: harmony
-    name: 'Media Room'
-    activity: 'Watch Media'
+    name: Media Room
+    #host: 192.168.1.154
+    activity: Watch Media
 
 ring:
   username: !secret ring_username
